@@ -1,0 +1,9 @@
+res://Scenes/world.tscn
+res://Scenes/character.tscn
+res://Scenes/ScrewDriver.tscn
+res://Scenes/electric_fence.tscn
+res://Scenes/spikes.tscn
+res://Scenes/SwitchBox.tscn
+res://Scenes/Map1.tscn
+res://Scenes/switch_box_cover.tscn
+res://Scenes/end_of_level_door.tscn

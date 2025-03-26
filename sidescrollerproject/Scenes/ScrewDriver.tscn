@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://bx5m04jjpvmkn"]
+
+[ext_resource type="Script" uid="uid://03xjl55tler8" path="res://Scripts/screw_driver.gd" id="1_tlhpi"]
+[ext_resource type="Texture2D" uid="uid://bejxqtpfxyo7x" path="res://resources/Sprites/screwdriverV1.png" id="1_ycy33"]
+[ext_resource type="Script" uid="uid://cux46g1trawl1" path="res://Scripts/switch_box_unscrew.gd" id="3_e0f77"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_srjfv"]
+size = Vector2(32, 2.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tlp6u"]
+radius = 1.79265
+
+[node name="ScrewDriver" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_tlhpi")
+
+[node name="BaseCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(16, 0.25)
+shape = SubResource("RectangleShape2D_srjfv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(17, 0)
+rotation = 1.5708
+texture = ExtResource("1_ycy33")
+
+[node name="switchBoxUnscrew" type="Area2D" parent="."]
+script = ExtResource("3_e0f77")
+
+[node name="unscrewShape" type="CollisionShape2D" parent="switchBoxUnscrew"]
+show_behind_parent = true
+position = Vector2(31, 0)
+scale = Vector2(2.3, 2.3)
+shape = SubResource("CircleShape2D_tlp6u")

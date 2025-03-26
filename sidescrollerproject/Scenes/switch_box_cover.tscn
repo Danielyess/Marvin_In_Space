@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbghfgvntbi5n"]
+
+[ext_resource type="Texture2D" uid="uid://l45otfiw2niy" path="res://resources/Sprites/SwitchBox_shell1.png" id="1_nknjm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rsmtj"]
+size = Vector2(30, 30)
+
+[node name="SwitchBoxCover" type="RigidBody2D"]
+collision_layer = 128
+collision_mask = 128
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nknjm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rsmtj")

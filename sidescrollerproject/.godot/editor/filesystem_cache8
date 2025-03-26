@@ -1,0 +1,17 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1740934504
+icon.svg::CompressedTexture2D::4209513257060805994::1730415933::1730415992::1::::<><>::
+::res://resources/::1740417165
+::res://resources/Sprites/::1740417653
+box.png::CompressedTexture2D::7898835218643170420::1730415933::1730415992::1::::<><>::
+MARVIN_V1.png::CompressedTexture2D::6261433530063895014::1730415933::1740417165::1::::<><>::
+robobitch.png::CompressedTexture2D::7895366972598920585::1730415933::1730415992::1::::<><>::
+screwdriverV1.png::CompressedTexture2D::2687181542942467999::1740417653::1740417653::1::::<><>::
+Spikes.png::CompressedTexture2D::4981371104647082840::1730415933::1730415992::1::::<><>::
+::res://Scenes/::1740930532
+character.tscn::PackedScene::537859894158705538::1740930532::0::1::::<><>::res://Scripts/character_script.gd<>uid://cvhc5pedybxqc::::res://resources/Sprites/MARVIN_V1.png<>uid://bx5m04jjpvmkn::::res://Scenes/ScrewDriver.tscn
+ScrewDriver.tscn::PackedScene::4063470206260656521::1740930468::0::1::::<><>::res://Scripts/screw_driver.gd<>uid://bejxqtpfxyo7x::::res://resources/Sprites/screwdriverV1.png
+world.tscn::PackedScene::7389748990621057578::1740930467::0::1::::<><>::uid://hwsqd2fr6flq::::res://Scenes/character.tscn
+::res://Scripts/::1740930532
+character_script.gd::GDScript::-1::1740930532::0::1::::<>CharacterBody2D<>::
+screw_driver.gd::GDScript::-1::1740930466::0::1::::<>CharacterBody2D<>::

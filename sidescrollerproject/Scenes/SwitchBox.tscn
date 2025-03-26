@@ -1,0 +1,82 @@
+[gd_scene load_steps=13 format=3 uid="uid://b7v3wh34e60nq"]
+
+[ext_resource type="Script" uid="uid://bsf4qg6bb2u8" path="res://Scripts/switch_box.gd" id="1_5geuh"]
+[ext_resource type="Texture2D" uid="uid://l45otfiw2niy" path="res://resources/Sprites/SwitchBox_shell1.png" id="1_qv0yl"]
+[ext_resource type="Texture2D" uid="uid://b43kqjwlgpfot" path="res://resources/Sprites/InteractKey-E.png" id="2_pr6hq"]
+[ext_resource type="Texture2D" uid="uid://os04pfpq8ypy" path="res://resources/Sprites/SwitchBox_inside.png" id="3_bvwco"]
+[ext_resource type="Script" uid="uid://cfnotqwi0ab8h" path="res://Scripts/interact_area.gd" id="3_x3u66"]
+[ext_resource type="Script" uid="uid://dwhga3qot48wl" path="res://Scripts/screw_driver_interaction_area.gd" id="5_5nc84"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdssf"]
+atlas = ExtResource("1_qv0yl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_do7ha"]
+atlas = ExtResource("3_bvwco")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4yp2p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdssf")
+}],
+"loop": false,
+"name": &"Locked",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_do7ha")
+}],
+"loop": false,
+"name": &"Open",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pr6hq"]
+size = Vector2(30, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5geuh"]
+size = Vector2(25, 33.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x3u66"]
+size = Vector2(34, 34)
+
+[node name="SwitchBox" type="StaticBody2D"]
+script = ExtResource("1_5geuh")
+
+[node name="MainSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4yp2p")
+animation = &"Open"
+
+[node name="BaseCollShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pr6hq")
+disabled = true
+
+[node name="InteractArea" type="Area2D" parent="."]
+script = ExtResource("3_x3u66")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+position = Vector2(0, 13)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_5geuh")
+
+[node name="InteractionSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_pr6hq")
+
+[node name="openingTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ScrewDriverInteractionArea" type="Area2D" parent="."]
+script = ExtResource("5_5nc84")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScrewDriverInteractionArea"]
+shape = SubResource("RectangleShape2D_x3u66")
+
+[node name="CoverTimeoutTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="openingTimer" to="." method="_on_opening_timer_timeout"]
+[connection signal="timeout" from="CoverTimeoutTimer" to="." method="_on_cover_timeout_timer_timeout"]

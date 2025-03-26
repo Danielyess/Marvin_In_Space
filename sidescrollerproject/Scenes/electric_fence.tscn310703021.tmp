@@ -1,0 +1,115 @@
+[gd_scene load_steps=15 format=3 uid="uid://c87y1ft2pdqgc"]
+
+[ext_resource type="Texture2D" uid="uid://cm3ha2h6f38ke" path="res://resources/Sprites/electricFenceV1Red-Sheet.png" id="1_kksgn"]
+[ext_resource type="Script" uid="uid://bjcx0lsm0velm" path="res://Scripts/hit_box.gd" id="1_lha8c"]
+[ext_resource type="Script" uid="uid://bk2630541vwxw" path="res://Scripts/electric_fence.gd" id="1_rpcnw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpcnw"]
+atlas = ExtResource("1_kksgn")
+region = Rect2(0, 32, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk4k5"]
+atlas = ExtResource("1_kksgn")
+region = Rect2(96, 32, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5av2"]
+atlas = ExtResource("1_kksgn")
+region = Rect2(192, 32, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihpsw"]
+atlas = ExtResource("1_kksgn")
+region = Rect2(0, 32, 96, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i2y13"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpcnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk4k5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5av2")
+}],
+"loop": true,
+"name": &"Active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihpsw")
+}],
+"loop": false,
+"name": &"Inactive",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kksgn"]
+atlas = ExtResource("1_kksgn")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2y13"]
+atlas = ExtResource("1_kksgn")
+region = Rect2(96, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tynph"]
+atlas = ExtResource("1_kksgn")
+region = Rect2(192, 0, 96, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lha8c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kksgn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2y13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tynph")
+}],
+"loop": true,
+"name": &"Active",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Inactive",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kksgn"]
+size = Vector2(96, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpcnw"]
+size = Vector2(7, 32)
+
+[node name="Electric_Fence" type="StaticBody2D"]
+script = ExtResource("1_rpcnw")
+
+[node name="PostSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_i2y13")
+animation = &"Active"
+frame_progress = 0.139507
+
+[node name="EffectSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lha8c")
+animation = &"Active"
+frame_progress = 0.823392
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("1_lha8c")
+metadata/_custom_type_script = "uid://bjcx0lsm0velm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_kksgn")
+
+[node name="PoleLeftColl" type="CollisionShape2D" parent="."]
+position = Vector2(-43.5, 0)
+shape = SubResource("RectangleShape2D_rpcnw")
+
+[node name="PoleRightColl" type="CollisionShape2D" parent="."]
+position = Vector2(43.5, 0)
+shape = SubResource("RectangleShape2D_rpcnw")

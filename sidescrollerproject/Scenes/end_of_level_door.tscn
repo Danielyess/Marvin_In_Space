@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://p04j5jtsnw4v"]
+
+[ext_resource type="Script" uid="uid://n0fa2ffb0er3" path="res://InteractionArea2D.gd" id="1_bl70o"]
+[ext_resource type="Texture2D" uid="uid://b43kqjwlgpfot" path="res://resources/Sprites/InteractKey-E.png" id="2_pgx7h"]
+
+[node name="EndOfLevelDoor" type="StaticBody2D"]
+
+[node name="DoorAnimatedSprite" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="InteractionArea2D" type="Area2D" parent="."]
+script = ExtResource("1_bl70o")
+metadata/_custom_type_script = "uid://n0fa2ffb0er3"
+
+[node name="InteractionSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_pgx7h")

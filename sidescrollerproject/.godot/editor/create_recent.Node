@@ -1,0 +1,14 @@
+Sprite2D
+InteractionArea2D
+CollisionShape2D
+AnimatedSprite2D
+StaticBody2D
+Timer
+RigidBody2D
+TileMapLayer
+TileMap
+Area2D
+HitBox
+HurtBox
+CharacterBody2D
+Polygon2D
