@@ -1,8 +1,8 @@
 extends Area2D
 
 func _init() -> void:
-	collision_layer = 0
-	collision_mask = 3
+	self.collision_layer = 0b0
+	self.collision_mask = 0b100
 
 func _ready() -> void:
 	connect("area_entered", self.showInteract)
@@ -19,6 +19,7 @@ func showInteract(interactionArea) -> void:
 func hideInteract(interactionArea) -> void:
 	if interactionArea == null:
 		return;
+	
 	
 	if owner.has_method("hideInteract"):
 		owner.hideInteract()

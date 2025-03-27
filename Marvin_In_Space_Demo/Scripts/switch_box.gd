@@ -26,11 +26,12 @@ func hideInteract() -> void:
 
 
 func openBox() -> void:
-	$MainSprite.play("Open")
-	isOpen = true
-	$InteractionSprite.visible = true
-	add_child(cover)
-	$CoverTimeoutTimer.start()
+	if !isOpen:
+		$MainSprite.play("Open")
+		isOpen = true
+		$InteractionSprite.visible = true
+		add_child(cover)
+		$CoverTimeoutTimer.start()
 
 func startOpeningTimer() -> void:
 	$openingTimer.start()

@@ -1,5 +1,7 @@
-res://Scenes/world.tscn
 res://Scenes/character.tscn
+res://Scripts/hit_box.gd
+res://Scripts/hurt_box.gd
+res://Scenes/world.tscn
 res://Scenes/ScrewDriver.tscn
 res://Scenes/electric_fence.tscn
 res://Scenes/spikes.tscn
@@ -7,3 +9,8 @@ res://Scenes/SwitchBox.tscn
 res://Scenes/Map1.tscn
 res://Scenes/switch_box_cover.tscn
 res://Scenes/end_of_level_door.tscn
+res://InteractionArea2D.gd
+res://Scripts/interact_area.gd
+res://Scripts/switch_box.gd
+res://Scripts/screw_driver_interaction_area.gd
+res://Scripts/switch_box_unscrew.gd

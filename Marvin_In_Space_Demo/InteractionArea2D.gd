@@ -2,5 +2,5 @@ class_name InteractionArea2D
 extends Area2D
 
 func _init() -> void:
-	collision_layer = 3
-	collision_mask = 0
+	self.collision_layer = 0b100
+	self.collision_mask = 0b0
