@@ -24,6 +24,9 @@ func hideInteract() -> void:
 	if isOpen:
 		$InteractionSprite.visible = false
 
+func interact() -> void:
+	print_debug("Player interacted with: " + self.name)
+
 
 func openBox() -> void:
 	if !isOpen:

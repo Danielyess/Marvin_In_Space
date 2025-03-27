@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://b5dr7q8wglje5"]
+[gd_scene load_steps=13 format=3 uid="uid://b5dr7q8wglje5"]
 
+[ext_resource type="Script" uid="uid://chtgai7qfqc30" path="res://Scripts/lever.gd" id="1_jjeqf"]
 [ext_resource type="Texture2D" uid="uid://d2eu7c32qk53h" path="res://resources/Sprites/Lever-Sheet.png" id="1_wv1st"]
 [ext_resource type="Script" uid="uid://cfnotqwi0ab8h" path="res://Scripts/interact_area.gd" id="2_6kuia"]
 [ext_resource type="Texture2D" uid="uid://b43kqjwlgpfot" path="res://resources/Sprites/InteractKey-E.png" id="3_fhlr4"]
@@ -64,8 +65,9 @@ animations = [{
 size = Vector2(36, 26)
 
 [node name="Lever" type="StaticBody2D"]
+script = ExtResource("1_jjeqf")
 
-[node name="BaseColl" type="CollisionShape2D" parent="."]
+[node name="BaseCollShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 14)
 shape = SubResource("RectangleShape2D_wv1st")
 

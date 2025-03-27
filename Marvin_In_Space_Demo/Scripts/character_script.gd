@@ -5,18 +5,27 @@ extends CharacterBody2D
 @export var jumpForce : float = 200;
 @export var dashStrength : float = 200;
 @export var jumpCharges : int = 2;
-#i want to rename ts
 @export var slowerVariable : float = 10
 @export var speedCap : float = 300
 
+var interactions := []
+var canInteract : bool = true
 
-var ScrewDriver : CharacterBody2D
-var Marker_Right : Marker2D
-var Marker_Left : Marker2D
-var Animation_Handler : AnimatedSprite2D
+@onready var ScrewDriver : CharacterBody2D = $ScrewDriver
+@onready var Marker_Right : Marker2D = $ScrewDriverPosition_Right
+@onready var Marker_Left : Marker2D = $ScrewDriverPosition_Left
+@onready var Animation_Handler : AnimatedSprite2D = $SpriteAnimation
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Interact") and canInteract:
+			if interactions:
+				canInteract = false
+				await interactions[0].interact.call()
+				canInteract = true
+				print_debug("Tried to interact with " + interactions[0].owner.name)
+
 
 func _physics_process(_delta : float):
-	
 	var horizontalDirection : float = Input.get_axis("MoveLeft","MoveRight");
 	movementHandlerFunc(horizontalDirection)
 	
@@ -37,6 +46,7 @@ func _physics_process(_delta : float):
 		else:
 			position.x -= dashStrength;
 	
+	
 	screwDriverFunc()
 	
 		
@@ -46,12 +56,8 @@ func _physics_process(_delta : float):
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	ScrewDriver = get_node("ScrewDriver")
-	Marker_Left = get_node("ScrewDriverPosition_Left")
-	Marker_Right = get_node("ScrewDriverPosition_Right")
-	Animation_Handler = get_node("SpriteAnimation")
 	
-	pass; # Replace with function body.aaaaa
+	pass; # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -97,5 +103,10 @@ func movementHandlerFunc(horizontalDirection: float) -> void:
 func takeDamage() -> void:
 	
 	print_debug("Hit")
-	
-	pass;
+
+
+func addInteractable(area : Area2D):
+	interactions.push_back(area)
+
+func removeInteractable(area : Area2D):
+	interactions.erase(area)

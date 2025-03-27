@@ -6,21 +6,29 @@ func _init() -> void:
 	self.collision_mask = 0b100
 
 func _ready() -> void:
-	connect("area_entered", self.showInteract)
-	connect("area_exited", self.hideInteract)
+	connect("area_entered", self.onEnter)
+	connect("area_exited", self.onExit)
 
 
-func showInteract(interactionArea) -> void:
+func onEnter(interactionArea : Area2D) -> void:
 	if interactionArea == null:
 		return;
+	if interactionArea.owner.has_method("addInteractable"):
+		interactionArea.owner.addInteractable(self)
 	
 	if owner.has_method("showInteract"):
 		owner.showInteract()
 		
 
-func hideInteract(interactionArea) -> void:
+func onExit(interactionArea : Area2D) -> void:
 	if interactionArea == null:
 		return;
+	if interactionArea.owner.has_method("removeInteractable"):
+		interactionArea.owner.removeInteractable(self)
 	
 	if owner.has_method("hideInteract"):
 		owner.hideInteract()
+
+func interact():
+	if owner.has_method("interact"):
+		owner.interact()

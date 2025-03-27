@@ -22,3 +22,7 @@ func switchState(state : State) -> void:
 		isPowered = true
 	else:
 		printerr("State does not exist!")
+		
+		
+func interact() -> void:
+	print_debug("Player interacted with: " + self.name)
