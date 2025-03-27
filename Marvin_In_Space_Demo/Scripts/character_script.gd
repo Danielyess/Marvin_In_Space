@@ -16,6 +16,10 @@ var Marker_Left : Marker2D
 var Animation_Handler : AnimatedSprite2D
 
 func _physics_process(_delta : float):
+	
+	var horizontalDirection : float = Input.get_axis("MoveLeft","MoveRight");
+	movementHandlerFunc(horizontalDirection)
+	
 	if(!is_on_floor()):
 		velocity.y += gravity;
 	else:
@@ -28,13 +32,12 @@ func _physics_process(_delta : float):
 		jumpCharges-=1;
 	
 	if(Input.is_action_just_pressed("Dash")):
-		if(velocity.x >= 0):
+		if(horizontalDirection >= 0):
 			position.x += dashStrength;
 		else:
 			position.x -= dashStrength;
 	
-	var horizontalDirection : float = Input.get_axis("MoveLeft","MoveRight");
-	movementHandlerFunc(horizontalDirection)
+	screwDriverFunc()
 	
 		
 	move_and_slide()
@@ -53,20 +56,16 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	screwDriverFunc()
-	
-	
 	pass;
 
 
 func screwDriverFunc() -> void:
-	if get_local_mouse_position().x < 0 :
+	if get_local_mouse_position().x < 0 or velocity.x < 0 :
 		ScrewDriver.position.x = Marker_Left.position.x
 		ScrewDriver.position.y = Marker_Left.position.y
 	else:
 		ScrewDriver.position.x = Marker_Right.position.x
 		ScrewDriver.position.y = Marker_Right.position.y
-	pass;
 
 
 

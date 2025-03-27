@@ -41,6 +41,13 @@ Dash={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="BaseLayer"
+2d_physics/layer_2="HurtBox_HitBox"
+2d_physics/layer_3="Interaction"
+2d_physics/layer_4="ScrewDriver"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

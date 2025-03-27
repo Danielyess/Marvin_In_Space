@@ -1,3 +1,4 @@
+class_name Interact_Area2D
 extends Area2D
 
 func _init() -> void:
@@ -15,11 +16,11 @@ func showInteract(interactionArea) -> void:
 	
 	if owner.has_method("showInteract"):
 		owner.showInteract()
+		
 
 func hideInteract(interactionArea) -> void:
 	if interactionArea == null:
 		return;
-	
 	
 	if owner.has_method("hideInteract"):
 		owner.hideInteract()

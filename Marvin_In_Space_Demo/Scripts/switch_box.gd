@@ -8,7 +8,7 @@ func _ready() -> void:
 	$MainSprite.play("Locked")
 	$InteractionSprite.visible = false
 	$InteractionSprite.scale = Vector2(0.5,0.5)
-	$InteractionSprite.position.y -= 30
+	$InteractionSprite.position.y -= 30 * (self.scale.x + self.scale.y) /2
 	$BaseCollShape.disabled = true
 	isOpen = false
 	

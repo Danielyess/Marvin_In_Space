@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bx5m04jjpvmkn"]
 
-[ext_resource type="Script" uid="uid://03xjl55tler8" path="res://Scripts/screw_driver.gd" id="1_tlhpi"]
-[ext_resource type="Texture2D" uid="uid://bejxqtpfxyo7x" path="res://resources/Sprites/screwdriverV1.png" id="1_ycy33"]
-[ext_resource type="Script" uid="uid://cux46g1trawl1" path="res://Scripts/switch_box_unscrew.gd" id="3_e0f77"]
+[ext_resource type="Script" uid="uid://03xjl55tler8" path="res://Scripts/screw_driver.gd" id="1_emvic"]
+[ext_resource type="Texture2D" uid="uid://bejxqtpfxyo7x" path="res://resources/Sprites/screwdriverV1.png" id="2_bwb5j"]
+[ext_resource type="Script" uid="uid://cux46g1trawl1" path="res://Scripts/switch_box_unscrew.gd" id="3_41ike"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_srjfv"]
 size = Vector2(32, 2.5)
@@ -13,7 +13,7 @@ radius = 1.79265
 [node name="ScrewDriver" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("1_tlhpi")
+script = ExtResource("1_emvic")
 
 [node name="BaseCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(16, 0.25)
@@ -22,10 +22,10 @@ shape = SubResource("RectangleShape2D_srjfv")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(17, 0)
 rotation = 1.5708
-texture = ExtResource("1_ycy33")
+texture = ExtResource("2_bwb5j")
 
 [node name="switchBoxUnscrew" type="Area2D" parent="."]
-script = ExtResource("3_e0f77")
+script = ExtResource("3_41ike")
 
 [node name="unscrewShape" type="CollisionShape2D" parent="switchBoxUnscrew"]
 show_behind_parent = true

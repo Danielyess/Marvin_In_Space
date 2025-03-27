@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://ddjwc6w1qe6gc"]
 
-[ext_resource type="PackedScene" uid="uid://bl0746x07r5ol" path="res://Scenes/Map1.tscn" id="1_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://hwsqd2fr6flq" path="res://Scenes/character.tscn" id="1_mhoff"]
 [ext_resource type="PackedScene" uid="uid://dh1e6ui48a3ab" path="res://Scenes/spikes.tscn" id="2_go701"]
 [ext_resource type="PackedScene" uid="uid://c87y1ft2pdqgc" path="res://Scenes/electric_fence.tscn" id="3_5a7ea"]
-[ext_resource type="PackedScene" uid="uid://b7v3wh34e60nq" path="res://Scenes/SwitchBox.tscn" id="4_8j60k"]
+[ext_resource type="PackedScene" uid="uid://b7v3wh34e60nq" path="res://Scenes/switch_box.tscn" id="4_8j60k"]
+[ext_resource type="PackedScene" uid="uid://mevhu58gyfpf" path="res://Scenes/door.tscn" id="6_5ukr8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tl5lk"]
 
@@ -12,8 +12,6 @@
 distance = -30.5
 
 [node name="World" type="Node2D"]
-
-[node name="Node2D" parent="." instance=ExtResource("1_fo5ed")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 129
@@ -25,13 +23,17 @@ position = Vector2(604.5, 621.5)
 shape = SubResource("WorldBoundaryShape2D_go701")
 
 [node name="Spikes" parent="." instance=ExtResource("2_go701")]
-position = Vector2(752, 307)
+position = Vector2(626, 631)
 disable_mode = 1
 
 [node name="Electric_Fence" parent="." instance=ExtResource("3_5a7ea")]
-position = Vector2(688, 561)
+position = Vector2(702, 632)
 
 [node name="SwitchBox" parent="." instance=ExtResource("4_8j60k")]
 position = Vector2(401, 607)
 
+[node name="door" parent="." instance=ExtResource("6_5ukr8")]
+position = Vector2(304, 635)
+
 [node name="Character" parent="." instance=ExtResource("1_mhoff")]
+position = Vector2(283, 632)
