@@ -110,3 +110,6 @@ func addInteractable(area : Area2D):
 
 func removeInteractable(area : Area2D):
 	interactions.erase(area)
+
+func multGravity(gravMult):
+	gravity *= gravMult

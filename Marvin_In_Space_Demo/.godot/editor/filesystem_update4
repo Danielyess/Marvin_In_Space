@@ -1,5 +1,3 @@
-res://Scenes/lever.tscn
-res://Scripts/lever.gd
 res://Scenes/world.tscn
 res://Scenes/character.tscn
 res://Scenes/electric_fence.tscn
@@ -9,9 +7,8 @@ res://Scenes/base_map.tscn
 res://Scenes/switch_box_cover.tscn
 res://Scenes/end_of_level_door.tscn
 res://Scenes/door.tscn
-res://Scripts/end_of_level_door.gd
+res://Scenes/lever.tscn
+res://Scripts/lever.gd
+res://Scripts/gravity_area2d.gd
+res://Scenes/gravity_area.tscn
 res://Scripts/character_script.gd
-res://Scripts/hurt_box.gd
-res://Scripts/interact_area.gd
-res://Scripts/switch_box.gd
-res://Scripts/power_line.gd

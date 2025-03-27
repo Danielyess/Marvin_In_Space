@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddjwc6w1qe6gc"]
+[gd_scene load_steps=10 format=3 uid="uid://ddjwc6w1qe6gc"]
 
 [ext_resource type="PackedScene" uid="uid://hwsqd2fr6flq" path="res://Scenes/character.tscn" id="1_mhoff"]
+[ext_resource type="PackedScene" uid="uid://dw4gulmlywi5" path="res://Scenes/gravity_area.tscn" id="1_o06y3"]
 [ext_resource type="PackedScene" uid="uid://dh1e6ui48a3ab" path="res://Scenes/spikes.tscn" id="2_go701"]
 [ext_resource type="PackedScene" uid="uid://c87y1ft2pdqgc" path="res://Scenes/electric_fence.tscn" id="3_5a7ea"]
 [ext_resource type="PackedScene" uid="uid://b7v3wh34e60nq" path="res://Scenes/switch_box.tscn" id="4_8j60k"]
@@ -41,3 +42,6 @@ position = Vector2(283, 632)
 
 [node name="Lever" parent="." instance=ExtResource("6_o06y3")]
 position = Vector2(512, 635)
+
+[node name="gravityArea" parent="." instance=ExtResource("1_o06y3")]
+position = Vector2(127, 584)

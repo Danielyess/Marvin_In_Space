@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b86rfg0qhscq6" path="res://resources/Sprites/MARVIN_V2-Sheet.png" id="2_owm7s"]
 [ext_resource type="PackedScene" uid="uid://bx5m04jjpvmkn" path="res://Scenes/screw_driver.tscn" id="3_wseoq"]
 [ext_resource type="Script" uid="uid://bshrxthreebqr" path="res://Scripts/hurt_box.gd" id="4_nytcm"]
-[ext_resource type="Script" uid="uid://n0fa2ffb0er3" path="res://Scripts/InteractionArea2D.gd" id="5_ejsiy"]
+[ext_resource type="Script" uid="uid://n0fa2ffb0er3" path="res://Scripts/interaction_area2d.gd" id="5_ejsiy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owm7s"]
 size = Vector2(18, 32)
@@ -172,6 +172,7 @@ sprite_frames = SubResource("SpriteFrames_ushfy")
 animation = &"Idle"
 
 [node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
 [node name="ScrewDriverPosition_Right" type="Marker2D" parent="."]

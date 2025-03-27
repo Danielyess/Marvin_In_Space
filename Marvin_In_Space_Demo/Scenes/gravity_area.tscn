@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw4gulmlywi5"]
+
+[ext_resource type="Script" uid="uid://dqinroo6ckm6c" path="res://Scripts/gravity_area2d.gd" id="1_jxtpg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxtpg"]
+size = Vector2(245, 127)
+
+[node name="gravityArea" type="Area2D"]
+priority = 1
+script = ExtResource("1_jxtpg")
+gravityMult = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jxtpg")
+
+[node name="ColorRect" type="ColorRect" parent="CollisionShape2D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -122.0
+offset_top = -63.0
+offset_right = 122.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-121, -63, 123, -63, 123, 64, -123, 64, -123, -63)
