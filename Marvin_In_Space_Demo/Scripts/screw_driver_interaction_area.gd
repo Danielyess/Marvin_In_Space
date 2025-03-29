@@ -21,5 +21,6 @@ func on_area_exited(screwDriver) -> void:
 	if screwDriver == null :
 		return
 	
+	
 	if owner.has_method("pauseTimer"):
 		owner.pauseTimer()

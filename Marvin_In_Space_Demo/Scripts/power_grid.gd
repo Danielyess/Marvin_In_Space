@@ -1,0 +1,26 @@
+class_name PowerGrid2D
+
+extends Node2D
+
+var emitters : Node2D
+var wires : Node2D
+var recievers : Node2D
+
+func _ready() -> void:
+	if self.has_node("Emitters"):
+		emitters = self.get_node("Emitters")
+	else:
+		printerr("NO EMITTERS IN POWERGRID: " + self.name)
+	
+	if self.has_node("Wires"):
+		wires = self.get_node("Wires")
+	else:
+		printerr("NO WIRES IN POWERGRID: " + self.name)
+	
+	if self.has_node("Recievers"):
+		recievers = self.get_node("Recievers")
+
+func refreshGrid(emitter) -> void:
+	for i in range(wires.get_child_count()):
+		if wires.get_child(i).emitter == emitter:
+			wires.get_child(i).switchState(emitter.current_state)

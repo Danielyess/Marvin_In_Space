@@ -1,35 +1,38 @@
 extends StaticBody2D
 
-var isOpen : bool
-
+var current_state : Pwr.PowerState
 func _ready() -> void:
 	$MainSprite.play("Default")
 	$BaseCollShape.disabled = true
 	$InteractionSprite.visible = false
 	$InteractionSprite.scale = self.scale * 0.5
-	$InteractionSprite.position.y -= 30 * (self.scale.x + self.scale.y) /2
-	isOpen = false
-
+	$InteractionSprite.position.y = -30 * (self.scale.x + self.scale.y) /2
+	$InteractionSprite.position.x = 0
+	$InteractionArea2D/CollisionShape2D.disabled = true
+	current_state = Pwr.PowerState.OFF
 
 func showInteract() -> void:
-	if isOpen:
-		$InteractionSprite.visible = true
-	
+	$InteractionSprite.visible = true	
 
 func hideInteract() -> void:
-	if isOpen:
-		$InteractionSprite.visible = false
-
-func openDoor() -> void:
-	if !isOpen:
-		$MainSprite.play("Opening")
-		isOpen = true
-
-func closeDoor() -> void:
-	if isOpen:
-		$MainSprite.play("Closing")
-		isOpen = false
+	$InteractionSprite.visible = false
 
 
 func interact() -> void:
+	if owner.get_parent().has_method("nextLevel"):
+		owner.get_parent().nextLevel()
 	print_debug("Player interacted with: " + self.name)
+
+func switchState(desiredState : Pwr.PowerState) -> void:
+	if current_state != desiredState:
+		match desiredState:
+			Pwr.PowerState.ON:
+				$MainSprite.play("Opening")
+				$InteractionArea2D/CollisionShape2D.disabled = false
+				current_state = Pwr.PowerState.ON
+			Pwr.PowerState.OFF:
+				$MainSprite.play("Closing")
+				$InteractionArea2D/CollisionShape2D.disabled = true
+				current_state = Pwr.PowerState.OFF
+			_:
+				pass;

@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 @export var speedChange : float = 15;
-@export var gravity : float = 10; # 1g
-@export var jumpForce : float = 200;
-@export var dashStrength : float = 200;
+@export var gravity : float = 600; # 1g
+@export var jumpForce : float = 320;
+@export var dashStrength : float = 100;
 @export var jumpCharges : int = 2;
 @export var slowerVariable : float = 10
 @export var speedCap : float = 300
@@ -28,9 +28,8 @@ func _input(event: InputEvent) -> void:
 func _physics_process(_delta : float):
 	var horizontalDirection : float = Input.get_axis("MoveLeft","MoveRight");
 	movementHandlerFunc(horizontalDirection)
-	
 	if(!is_on_floor()):
-		velocity.y += gravity;
+		velocity.y += gravity / 60;
 	else:
 		velocity.y = 0;
 		jumpCharges = 2;
@@ -49,7 +48,6 @@ func _physics_process(_delta : float):
 	
 	screwDriverFunc()
 	
-		
 	move_and_slide()
 	pass; 
 
@@ -101,8 +99,14 @@ func movementHandlerFunc(horizontalDirection: float) -> void:
 	pass;
 
 func takeDamage() -> void:
+	if get_parent().has_method("deathAnimation"):
+		get_parent().deathAnimation()
 	
-	print_debug("Hit")
+	if get_parent().has_method("resetCharacterPosition"):
+		get_parent().resetCharacterPosition()
+	
+	if get_parent().has_method("deathAnimationRev"):
+		get_parent().deathAnimationRev()
 
 
 func addInteractable(area : Area2D):

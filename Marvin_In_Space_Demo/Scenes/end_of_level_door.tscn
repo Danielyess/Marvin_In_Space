@@ -128,4 +128,5 @@ position = Vector2(0.5, -3.5)
 shape = SubResource("RectangleShape2D_mk7qj")
 
 [node name="InteractionSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -31)
 texture = ExtResource("2_pgx7h")

@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://n0fa2ffb0er3" path="res://Scripts/interaction_area2d.gd" id="5_ejsiy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owm7s"]
-size = Vector2(18, 32)
+size = Vector2(18, 31)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nytcm"]
 atlas = ExtResource("2_owm7s")
@@ -165,6 +165,8 @@ floor_stop_on_slope = false
 script = ExtResource("1_pwt0q")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+scale = Vector2(1, 0.96)
 shape = SubResource("RectangleShape2D_owm7s")
 
 [node name="SpriteAnimation" type="AnimatedSprite2D" parent="."]
@@ -172,8 +174,9 @@ sprite_frames = SubResource("SpriteFrames_ushfy")
 animation = &"Idle"
 
 [node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(3.2, 3.2)
 position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 
 [node name="ScrewDriverPosition_Right" type="Marker2D" parent="."]
 position = Vector2(12, 8)
@@ -196,5 +199,4 @@ script = ExtResource("5_ejsiy")
 metadata/_custom_type_script = "uid://n0fa2ffb0er3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea2D"]
-position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_2mse5")

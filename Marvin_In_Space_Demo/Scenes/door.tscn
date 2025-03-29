@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://mevhu58gyfpf"]
+[gd_scene load_steps=16 format=3 uid="uid://mevhu58gyfpf"]
 
 [ext_resource type="Texture2D" uid="uid://cbe5f5dfwk2t3" path="res://resources/Sprites/door-Sheet.png" id="1_ba8gm"]
+[ext_resource type="Script" uid="uid://ow7mblnki50g" path="res://Scripts/door.gd" id="1_p0e35"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ba8gm"]
 size = Vector2(8, 32)
@@ -101,6 +102,7 @@ animations = [{
 }]
 
 [node name="Door" type="StaticBody2D"]
+script = ExtResource("1_p0e35")
 
 [node name="BaseColl" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ba8gm")
