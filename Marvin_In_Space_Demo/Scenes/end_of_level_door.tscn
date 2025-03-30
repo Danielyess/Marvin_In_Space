@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://p04j5jtsnw4v"]
+[gd_scene load_steps=20 format=3 uid="uid://p04j5jtsnw4v"]
 
 [ext_resource type="Script" uid="uid://y6fytuvdkxun" path="res://Scripts/end_of_level_door.gd" id="1_mk7qj"]
 [ext_resource type="Texture2D" uid="uid://drewufpc4sf64" path="res://resources/Sprites/levelEndDoor-Sheet.png" id="1_pgx7h"]
@@ -28,6 +28,10 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_mk7qj"]
 atlas = ExtResource("1_pgx7h")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6kgx"]
+atlas = ExtResource("1_pgx7h")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8mo6f"]
 atlas = ExtResource("1_pgx7h")
@@ -76,7 +80,15 @@ animations = [{
 "texture": SubResource("AtlasTexture_mk7qj")
 }],
 "loop": false,
-"name": &"Default",
+"name": &"DefaultOFF",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6kgx")
+}],
+"loop": false,
+"name": &"DefaultON",
 "speed": 1.0
 }, {
 "frames": [{
@@ -111,9 +123,7 @@ script = ExtResource("1_mk7qj")
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fg72h")
-animation = &"Opening"
-frame = 4
-frame_progress = 1.0
+animation = &"DefaultON"
 
 [node name="BaseCollShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

@@ -10,6 +10,7 @@ extends CharacterBody2D
 
 var interactions := []
 var canInteract : bool = true
+var canGetJump : bool = true
 
 @onready var ScrewDriver : CharacterBody2D = $ScrewDriver
 @onready var Marker_Right : Marker2D = $ScrewDriverPosition_Right
@@ -23,6 +24,13 @@ func _input(event: InputEvent) -> void:
 				await interactions[0].interact.call()
 				canInteract = true
 				print_debug("Tried to interact with " + interactions[0].owner.name)
+	
+	if event.is_action_pressed("Down"):
+		self.collision_layer = 0b1
+		self.collision_mask = 0b1
+	if event.is_action_released("Down"):
+		self.collision_layer = 0b10001
+		self.collision_mask = 0b10001
 
 
 func _physics_process(_delta : float):
@@ -32,12 +40,13 @@ func _physics_process(_delta : float):
 		velocity.y += gravity / 60;
 	else:
 		velocity.y = 0;
-		jumpCharges = 2;
+		jumpCharges = 2
+		canGetJump = true
 	
 	if(Input.is_action_just_pressed("Jump") && jumpCharges > 0):
 		velocity.y = -jumpForce;
 		Animation_Handler.play("Jump")
-		jumpCharges-=1;
+		jumpCharges-=1
 	
 	if(Input.is_action_just_pressed("Dash")):
 		if(horizontalDirection >= 0):
@@ -117,3 +126,10 @@ func removeInteractable(area : Area2D):
 
 func multGravity(gravMult):
 	gravity *= gravMult
+
+func addJumpCharge(num : int) -> void:
+	if canGetJump:
+		jumpCharges += num
+		canGetJump = false
+	if jumpCharges > 2:
+		jumpCharges = 2

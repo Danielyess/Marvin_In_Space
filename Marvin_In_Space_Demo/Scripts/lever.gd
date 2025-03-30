@@ -1,16 +1,20 @@
 extends StaticBody2D
 
-var current_state : Pwr.PowerState
+@export var current_state : Pwr.PowerState = Pwr.PowerState.OFF
 
 signal stateChanged(emitter : StaticBody2D)
 
 func _ready() -> void:
-	$MainSprite.play("Default")
+	switchState(current_state,true)
+	if current_state == Pwr.PowerState.ON:
+		$MainSprite.play("DefaultON")
+	else:
+		$MainSprite.play("DefaultOFF")
+	
 	$BaseCollShape.disabled = true
 	$InteractionSprite.visible = false
 	$InteractionSprite.scale = self.scale * 0.5
 	$InteractionSprite.position.y = -30 * (self.scale.x + self.scale.y) /2
-	current_state = Pwr.PowerState.OFF
 	connect("stateChanged", $"../..".refreshGrid)
 
 func showInteract() -> void:
@@ -22,11 +26,18 @@ func hideInteract() -> void:
 
 
 func interact() -> void:
-	match(current_state):
-		Pwr.PowerState.ON: 
-			$MainSprite.play("Off")
-			current_state = Pwr.PowerState.OFF
-		Pwr.PowerState.OFF:
-			$MainSprite.play("On")
-			current_state = Pwr.PowerState.ON
-	emit_signal("stateChanged", self)
+	if current_state == Pwr.PowerState.ON:
+		switchState(Pwr.PowerState.OFF,false)
+	else:
+		switchState(Pwr.PowerState.ON,false)
+
+func switchState(desired_state : Pwr.PowerState, force : bool) -> void:
+	if current_state != desired_state or force:
+		match(desired_state):
+			Pwr.PowerState.OFF: 
+				$MainSprite.play("Off")
+				current_state = Pwr.PowerState.OFF
+			Pwr.PowerState.ON:
+				$MainSprite.play("On")
+				current_state = Pwr.PowerState.ON
+		emit_signal("stateChanged", self)

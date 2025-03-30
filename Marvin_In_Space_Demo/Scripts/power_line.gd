@@ -2,6 +2,7 @@ class_name PowerLine2D
 extends Line2D
 
 var current_state : Pwr.PowerState
+
 var red : Color
 var green : Color
 
@@ -11,12 +12,13 @@ var green : Color
 func _init() -> void:
 	red = Color(255,0,0,0.5)
 	green = Color(0,255,0,0.5)
+	width = 2
 
 func _ready() -> void:
-	switchState(Pwr.PowerState.OFF)
+	switchState(emitter.current_state, true)
 
-func switchState(desiredState : Pwr.PowerState) -> void:
-	if desiredState != current_state:
+func switchState(desiredState : Pwr.PowerState, force : bool) -> void:
+	if desiredState != current_state or force:
 		match desiredState:
 			Pwr.PowerState.OFF:
 				current_state = Pwr.PowerState.OFF
@@ -26,4 +28,4 @@ func switchState(desiredState : Pwr.PowerState) -> void:
 				self.default_color = green
 			_:
 				printerr("PowerState does not exist!")
-		reciever.switchState(current_state)
+		reciever.switchState(current_state, false)

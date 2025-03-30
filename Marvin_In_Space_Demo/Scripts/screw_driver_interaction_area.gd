@@ -1,3 +1,4 @@
+
 extends Area2D
 
 func _init() -> void:
@@ -13,6 +14,9 @@ func _ready() -> void:
 func on_area_entered(screwDriver) -> void:
 	if screwDriver == null :
 		return
+	
+	if screwDriver.owner.get_parent().has_method("addJumpCharge"):
+		screwDriver.owner.get_parent().addJumpCharge(1)
 	
 	if owner.has_method("startTimer"):
 		owner.startTimer()

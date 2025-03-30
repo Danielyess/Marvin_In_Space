@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://mevhu58gyfpf"]
+[gd_scene load_steps=17 format=3 uid="uid://mevhu58gyfpf"]
 
 [ext_resource type="Texture2D" uid="uid://cbe5f5dfwk2t3" path="res://resources/Sprites/door-Sheet.png" id="1_ba8gm"]
 [ext_resource type="Script" uid="uid://ow7mblnki50g" path="res://Scripts/door.gd" id="1_p0e35"]
@@ -29,6 +29,10 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6xrn"]
 atlas = ExtResource("1_ba8gm")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0e35"]
+atlas = ExtResource("1_ba8gm")
+region = Rect2(120, 0, 40, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ba8gm"]
 atlas = ExtResource("1_ba8gm")
@@ -77,7 +81,15 @@ animations = [{
 "texture": SubResource("AtlasTexture_v6xrn")
 }],
 "loop": false,
-"name": &"Default",
+"name": &"DefaultOFF",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0e35")
+}],
+"loop": false,
+"name": &"DefaultON",
 "speed": 1.0
 }, {
 "frames": [{
@@ -109,4 +121,4 @@ shape = SubResource("RectangleShape2D_ba8gm")
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hun61")
-animation = &"Default"
+animation = &"DefaultON"

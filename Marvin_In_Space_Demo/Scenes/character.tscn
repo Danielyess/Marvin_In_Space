@@ -161,6 +161,8 @@ size = Vector2(18, 32)
 size = Vector2(35, 38)
 
 [node name="MARVIN" type="CharacterBody2D"]
+collision_layer = 17
+collision_mask = 17
 floor_stop_on_slope = false
 script = ExtResource("1_pwt0q")
 

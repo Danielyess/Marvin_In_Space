@@ -23,4 +23,4 @@ func _ready() -> void:
 func refreshGrid(emitter) -> void:
 	for i in range(wires.get_child_count()):
 		if wires.get_child(i).emitter == emitter:
-			wires.get_child(i).switchState(emitter.current_state)
+			wires.get_child(i).switchState(emitter.current_state, false)

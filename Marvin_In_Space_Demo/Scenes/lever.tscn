@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5dr7q8wglje5"]
+[gd_scene load_steps=14 format=3 uid="uid://b5dr7q8wglje5"]
 
 [ext_resource type="Script" uid="uid://chtgai7qfqc30" path="res://Scripts/lever.gd" id="1_jjeqf"]
 [ext_resource type="Texture2D" uid="uid://d2eu7c32qk53h" path="res://resources/Sprites/Lever-Sheet.png" id="1_wv1st"]
@@ -11,6 +11,10 @@ size = Vector2(24, 4)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6kuia"]
 atlas = ExtResource("1_wv1st")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u0ni"]
+atlas = ExtResource("1_wv1st")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fhlr4"]
 atlas = ExtResource("1_wv1st")
@@ -35,8 +39,16 @@ animations = [{
 "texture": SubResource("AtlasTexture_6kuia")
 }],
 "loop": false,
-"name": &"Default",
+"name": &"DefaultOFF",
 "speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1u0ni")
+}],
+"loop": true,
+"name": &"DefaultON",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -73,7 +85,7 @@ shape = SubResource("RectangleShape2D_wv1st")
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1u0ni")
-animation = &"Default"
+animation = &"DefaultON"
 
 [node name="Interact_Area2D" type="Area2D" parent="."]
 script = ExtResource("2_6kuia")

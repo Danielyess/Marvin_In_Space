@@ -1,16 +1,19 @@
 extends StaticBody2D
 
-var current_state : Pwr.PowerState
+@export var current_state : Pwr.PowerState = Pwr.PowerState.OFF
 
 func _ready() -> void:
-	current_state = Pwr.PowerState.OFF
-	$MainSprite.play("Default")
+	switchState(current_state, true)
+	if current_state == Pwr.PowerState.ON:
+		$MainSprite.play("DefaultON")
+	else:
+		$MainSprite.play("DefaultOFF")
 	pass;
 	
 
 
-func switchState(desiredState : Pwr.PowerState) -> void:
-	if current_state != desiredState:
+func switchState(desiredState : Pwr.PowerState, force : bool) -> void:
+	if current_state != desiredState or force:
 		match desiredState:
 			Pwr.PowerState.ON:
 				current_state = Pwr.PowerState.ON
