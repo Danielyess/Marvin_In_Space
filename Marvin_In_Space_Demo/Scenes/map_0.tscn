@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://j3k5hq3ywjtr"]
+[gd_scene load_steps=15 format=4 uid="uid://j3k5hq3ywjtr"]
 
 [ext_resource type="TileSet" uid="uid://cgoaqjyb343q3" path="res://resources/TileSets/Main_Tile_Set.tres" id="1_0861s"]
 [ext_resource type="Script" uid="uid://bjcx0lsm0velm" path="res://Scripts/hit_box.gd" id="2_f3cfk"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://mevhu58gyfpf" path="res://Scenes/door.tscn" id="8_d7xhg"]
 [ext_resource type="PackedScene" uid="uid://c87y1ft2pdqgc" path="res://Scenes/electric_fence.tscn" id="9_sgyuc"]
 [ext_resource type="PackedScene" uid="uid://dh1e6ui48a3ab" path="res://Scenes/spikes.tscn" id="10_450ob"]
+[ext_resource type="PackedScene" uid="uid://b0p2xbcbvwjth" path="res://Scenes/pick_up_jetpack.tscn" id="12_lq7pf"]
+[ext_resource type="PackedScene" uid="uid://cpr2txr18kyjn" path="res://Scenes/pick_up_teleporter.tscn" id="13_gmd6l"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lmd5f"]
 
@@ -103,3 +105,9 @@ position = Vector2(-503, -13)
 
 [node name="Spikes" parent="." instance=ExtResource("10_450ob")]
 position = Vector2(994, 274)
+
+[node name="pickUpJetpack" parent="." instance=ExtResource("12_lq7pf")]
+position = Vector2(410, 429)
+
+[node name="pickUpTeleporter" parent="." instance=ExtResource("13_gmd6l")]
+position = Vector2(451, 426)

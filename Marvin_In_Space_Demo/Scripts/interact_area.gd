@@ -18,11 +18,13 @@ func onEnter(interactionArea : Area2D) -> void:
 	
 	if owner.has_method("showInteract"):
 		owner.showInteract()
-		
+	
+	if owner.has_method("pickUp"):
+		owner.pickUp(interactionArea.owner)
 
 func onExit(interactionArea : Area2D) -> void:
-	if interactionArea == null:
-		return;
+	if owner == null:
+		return
 	if interactionArea.owner.has_method("removeInteractable"):
 		interactionArea.owner.removeInteractable(self)
 	

@@ -2,40 +2,20 @@ extends Node2D
 
 enum CameraState{player, map, menu}
 
+@export var level_index : int = 0
+
 var current_state: CameraState = CameraState.menu
-
-var mapName : String
-var characterName : String
-
 var mapSpawnPoint : Marker2D
-var character : CharacterBody2D
+var Character : CharacterBody2D
+var map : Node2D
 
 var MapCamera : Camera2D 
 var CharacterCamera : Camera2D 
 var MenuCamera: Camera2D
 
 func _ready() -> void:
-	var map : Node2D
-	loadMap(0)
-	map = self.get_node(mapName)
-	if map.has_node("Camera"):
-		MapCamera = map.get_node("Camera")
-	else:
-		printerr("Couldn't get map camera.")
-	
-	if map.has_node("SpawnPoint"):
-		mapSpawnPoint = map.get_node("SpawnPoint")
-	else:
-		printerr("Couldn't get map spawn point.")
-	
-	loadCharacter()
-	character = self.get_node(characterName)
-	resetCharacterPosition()
-	if character.has_node("Camera"):
-		CharacterCamera = character.get_node("Camera")
-	else:
-		printerr("Couldn't get character camera")
-	switchCameraState(CameraState.player)
+	var mainMenu : Control = load("res://Scenes/main_menu.tscn").instantiate()
+	add_child(mainMenu)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("SwitchCamera"):
@@ -45,6 +25,7 @@ func _input(event: InputEvent) -> void:
 			CameraState.player:
 				switchCameraState(CameraState.map)
 	if event.is_action_pressed("MenuButton"):
+		#loadMenu()
 		switchCameraState(CameraState.menu)
 
 func switchCameraState(desired_camera_state: CameraState) -> void:
@@ -65,28 +46,61 @@ func switchCameraState(desired_camera_state: CameraState) -> void:
 			CharacterCamera.enabled = false
 		_:
 			pass;
-	
 
 func loadMap(mapIndex : int) -> void:
 	var desiredMapName : String = "map_" + str(mapIndex)
-	var desiredMap : Node2D = load("res://Scenes/" + desiredMapName + ".tscn").instantiate()
-	add_child(desiredMap)
-	mapName = desiredMap.name
-	pass;
+	map = load("res://Scenes/" + desiredMapName + ".tscn").instantiate()
+	add_child(map)
+	if map.has_node("Camera"):
+		MapCamera = map.get_node("Camera")
+	else:
+		printerr("Couldn't get map camera.")
+		
+	if map.has_node("SpawnPoint"):
+		mapSpawnPoint = map.get_node("SpawnPoint")
+	else:
+		printerr("Couldn't get map spawn point.")
 
 func loadCharacter() -> void:
-	var Character : CharacterBody2D = load("res://Scenes/character.tscn").instantiate()
+	Character = load("res://Scenes/character.tscn").instantiate()
 	add_child(Character)
-	characterName = Character.name
+	if Character.has_node("Camera"):
+		CharacterCamera = Character.get_node("Camera")
+	else:
+		printerr("Couldn't get character camera")
+	resetCharacterPosition()
+
+#func loadMenu() -> void:
+	#
+
 
 func resetCharacterPosition() -> void:
-	character.position = mapSpawnPoint.position
+	Character.position = mapSpawnPoint.position
+	pass;
 
 func nextLevel() -> void:
-	print_debug("going to next stage")
+	deathAnimation()
+	map.queue_free()
+	level_index+=1;
+	initLevel(level_index)
+	deathAnimationRev()
 
 func deathAnimation() -> void:
 	$DeathAnimationHandler.play("DeathScreenIn")
 
 func deathAnimationRev() -> void:
 	$DeathAnimationHandler.play("DeathScreenOut")
+
+func initLevel(level : int) -> void:
+	level_index = level
+	loadMap(level)
+	if level <= 1:
+		loadCharacter()
+	if level < 3:
+		Character.maxJumpCharges = 1
+		Character.updateJumpChargeSprite()
+	if level < 4 :
+		Character.canDash = false 
+		Character.updateDashSprite()
+	resetCharacterPosition()
+	switchCameraState(CameraState.player)

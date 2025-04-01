@@ -3,18 +3,17 @@ extends StaticBody2D
 @export var current_state : Pwr.PowerState = Pwr.PowerState.OFF
 
 func _ready() -> void:
-	switchState(current_state, true)
-	if current_state == Pwr.PowerState.ON:
-		$MainSprite.play("DefaultON")
-	else:
-		$MainSprite.play("DefaultOFF")
-	
 	$BaseCollShape.disabled = true
 	$InteractionSprite.visible = false
 	$InteractionSprite.scale = self.scale * 0.5
 	$InteractionSprite.position.y = -30 * (self.scale.x + self.scale.y) /2
 	$InteractionSprite.position.x = 0
 	$InteractionArea2D/CollisionShape2D.disabled = true
+	switchState(current_state, true)
+	if current_state == Pwr.PowerState.ON:
+		$MainSprite.play("DefaultON")
+	else:
+		$MainSprite.play("DefaultOFF")
 
 func showInteract() -> void:
 	$InteractionSprite.visible = true	
