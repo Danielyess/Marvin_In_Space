@@ -19,6 +19,8 @@ func _ready() -> void:
 	
 	if self.has_node("Recievers"):
 		recievers = self.get_node("Recievers")
+	else:
+		printerr("NO RECIEVERS IN POWERGRID: " + self.name)
 
 func refreshGrid(emitter) -> void:
 	for i in range(wires.get_child_count()):

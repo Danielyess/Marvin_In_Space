@@ -46,9 +46,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1u0ni")
 }],
-"loop": true,
+"loop": false,
 "name": &"DefaultON",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -85,7 +85,7 @@ shape = SubResource("RectangleShape2D_wv1st")
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1u0ni")
-animation = &"DefaultON"
+animation = &"On"
 
 [node name="Interact_Area2D" type="Area2D" parent="."]
 script = ExtResource("2_6kuia")

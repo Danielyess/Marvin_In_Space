@@ -1,0 +1,15 @@
+res://resources/TileSets/Main_Tile_Set.tres::4a9f2cc60d91f6a06331be212db6a01d::1743517011::res://.godot/exported/133200997/export-5dcb592b012339e57ed290197bcda81a-Main_Tile_Set.res
+res://Scenes/base_map.tscn::bde5558ce42825055ff2cea647544792::1743514812::res://.godot/exported/133200997/export-0dc4d06177c272601379dee1af24c4b5-base_map.scn
+res://Scenes/character.tscn::dc6787419d3decba89d4a1801e39c2bb::1743517270::res://.godot/exported/133200997/export-78ec84556dfaaee07f5c3febee60df92-character.scn
+res://Scenes/door.tscn::63df08c066ee52bee8a9b761956f2ee3::1743432863::res://.godot/exported/133200997/export-fe730ee429ab9ada90dbb83893c015e2-door.scn
+res://Scenes/electric_fence.tscn::c8c99bbb5e683b42736dccc59e41dfbb::1743433859::res://.godot/exported/133200997/export-943b61aed66eb04055abfab787d5157a-electric_fence.scn
+res://Scenes/end_of_level_door.tscn::1707080654a7923c6a0499d4d2f78f33::1743432863::res://.godot/exported/133200997/export-798732473cbad80d10802ca372d6c192-end_of_level_door.scn
+res://Scenes/gravity_area.tscn::88a99af21f5e7504875a6898cc151296::1743252409::res://.godot/exported/133200997/export-48dab0538e55d0970e56727f7e64c2bc-gravity_area.scn
+res://Scenes/lever.tscn::55bdd4ebc3bfd9e89d379c67f7727715::1743433908::res://.godot/exported/133200997/export-1e6de4f0d4fa1b781cbf34470dd7e9d3-lever.scn
+res://Scenes/main_menu.tscn::7eb96589f207c848a3b2ab877ea95a53::1743517270::res://.godot/exported/133200997/export-502e6a9b269597544b234abf28958cd8-main_menu.scn
+res://Scenes/map_0.tscn::c5ee5b103d64858ba03c3198eeef5834::1743517629::res://.godot/exported/133200997/export-a775de7b1cb218efb1e93405c927b673-map_0.scn
+res://Scenes/screw_driver.tscn::e586e732570ed372be2c316fcba866ec::1743089670::res://.godot/exported/133200997/export-50628b122d5a307cc590d1e072c07cd3-screw_driver.scn
+res://Scenes/spikes.tscn::a98358d54ccf839a721aa3d3f22270dd::1743252409::res://.godot/exported/133200997/export-be8acbdb54f1fde03380f93fe1460f42-spikes.scn
+res://Scenes/switch_box.tscn::9be2375a61e6cfdcd86916e9b3942d8d::1743432863::res://.godot/exported/133200997/export-5077ddf04cb3cb530007c19be9725115-switch_box.scn
+res://Scenes/switch_box_cover.tscn::5b0901fae3c4eb566cee1cdf44797c23::1743433898::res://.godot/exported/133200997/export-105ccc262bba592263a72c2b74262a39-switch_box_cover.scn
+res://Scenes/world.tscn::e717e49778c9ed8368988bd836c1d079::1743517270::res://.godot/exported/133200997/export-0271e18ecf37a36b455ad0b215994549-world.scn

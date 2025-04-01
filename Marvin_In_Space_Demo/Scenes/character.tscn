@@ -79,9 +79,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nytcm")
 }],
-"loop": true,
+"loop": false,
 "name": &"Idle",
-"speed": 6.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -107,9 +107,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w85my")
 }],
-"loop": true,
+"loop": false,
 "name": &"Look",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -173,10 +173,10 @@ shape = SubResource("RectangleShape2D_owm7s")
 
 [node name="SpriteAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ushfy")
-animation = &"Idle"
+animation = &"Teleport - Begin"
 
 [node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(3.2, 3.2)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 

@@ -16,7 +16,7 @@ var MenuCamera: Camera2D
 
 func _ready() -> void:
 	var map : Node2D
-	loadMap(1)
+	loadMap(0)
 	map = self.get_node(mapName)
 	if map.has_node("Camera"):
 		MapCamera = map.get_node("Camera")
@@ -56,14 +56,16 @@ func switchCameraState(desired_camera_state: CameraState) -> void:
 		CameraState.map:
 			current_state = CameraState.map
 			MapCamera.enabled = true
+			MapCamera.position = Vector2(get_viewport_rect().size.x/2,get_viewport_rect().size.y/2)
 			CharacterCamera.enabled = false
 		CameraState.menu:
 			current_state = CameraState.player
-			MenuCamera.enabled = true
+			#MenuCamera.enabled = true
 			MapCamera.enabled = false
 			CharacterCamera.enabled = false
 		_:
 			pass;
+	
 
 func loadMap(mapIndex : int) -> void:
 	var desiredMapName : String = "map_" + str(mapIndex)

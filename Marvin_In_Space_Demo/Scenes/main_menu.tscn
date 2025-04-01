@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://b70vuir6yugw3"]
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 640.0
+color = Color(0.384314, 0.447059, 0.835294, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 48.0
+offset_right = 856.0
+offset_bottom = 148.0
+theme_override_font_sizes/font_size = 36
+text = "Marvin In Space"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 401.0
+offset_top = 200.0
+offset_right = 751.0
+offset_bottom = 301.0
+
+[node name="PlayButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_next = NodePath("../ContinueButton")
+focus_previous = NodePath("../Button")
+text = "New Game"
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Continue"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit"
