@@ -13,7 +13,7 @@ func _ready() -> void:
 	$CollisionShape2D/ColorRect.color = Color((gravityMult/2.5),1-gravityMult,(1-gravityMult/2.5),0.1)
 	$Label.scale.x = 1.00/self.scale.x
 	$Label.scale.y = 1.00/self.scale.y
-	$Label.add_theme_font_size_override("font_size", 32 * self.scale.x)
+	$Label.add_theme_font_size_override("font_size", 32 * min(self.scale.x, self.scale.y))
 	$Label.text = str(gravityMult) + "g"
 	$Label.add_theme_color_override("font_color",  Color((gravityMult/2.5),1-gravityMult,(1-gravityMult/2.5),1))
 

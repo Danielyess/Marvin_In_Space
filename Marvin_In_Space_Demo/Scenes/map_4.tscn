@@ -13,13 +13,13 @@ tile_map_data = PackedByteArray("AAAHAAEAAQABAAEAAAAHAAIAAQABAAEAAAAHAAMAAQABAAE
 tile_set = ExtResource("1_fp44m")
 
 [node name="gravityArea" parent="." instance=ExtResource("2_hi3rs")]
-position = Vector2(546, 331)
-scale = Vector2(0.48, 2.6)
+position = Vector2(542, 338)
+scale = Vector2(0.5, 2.4)
 gravityMult = 5.0
 
 [node name="gravityArea2" parent="." instance=ExtResource("2_hi3rs")]
-position = Vector2(704, 329)
-scale = Vector2(0.48, 2.6)
+position = Vector2(707, 336)
+scale = Vector2(0.5, 2.4)
 gravityMult = 0.25
 
 [node name="Electric_Fence" parent="." instance=ExtResource("3_lac2h")]
