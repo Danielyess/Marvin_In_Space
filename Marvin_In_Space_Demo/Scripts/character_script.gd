@@ -3,19 +3,19 @@ extends CharacterBody2D
 @export var speedChange : float = 15;
 @export var gravity : float = 600; # 1g
 @export var jumpForce : float = 320;
-@export var dashStrength : float = 100;
+@export var teleportLength : float = 100;
 @export var slowerVariable : float = 10
 @export var speedCap : float = 300
 @export var maxJumpCharges : int = 2
-@export var canDash : bool = true
+@export var canTeleport : bool = true
 
-enum AnimationState{Jump, Run, Idle, Dash}
+enum AnimationState{Jump, Run, Idle, Teleport}
 
 var interactions := []
 var canInteract : bool = true
 var canGetJump : bool = true
 var jumpCharges : int = 2;
-var dashCharge : int = 1;
+var teleportCharge : int = 1;
 var current_state : AnimationState
 
 @onready var ScrewDriver : CharacterBody2D = $ScrewDriver
@@ -48,11 +48,11 @@ func _physics_process(_delta : float):
 	else:
 		velocity.y = 0;
 		jumpCharges = maxJumpCharges
-		dashCharge = 1
+		teleportCharge = 1
 		if maxJumpCharges > 1:
 			canGetJump = true
 		updateJumpChargeSprite()
-		updateDashSprite()
+		updateTeleportSprite()
 	
 	if(Input.is_action_just_pressed("Jump") && jumpCharges > 0):
 		velocity.y = -jumpForce;
@@ -62,15 +62,16 @@ func _physics_process(_delta : float):
 		updateJumpChargeSprite()
 		current_state = AnimationState.Jump
 	
-	if(Input.is_action_just_pressed("Dash") and canDash):
+	if(Input.is_action_just_pressed("Teleport") and canTeleport):
 		if(horizontalDirection >= 0):
-			position.x += dashStrength;
+			position.x += teleportLength;
 		else:
-			position.x -= dashStrength;
+			position.x -= teleportLength;
+		self.velocity.y = 0
 		Animation_Handler.play("Teleport")
-		current_state = AnimationState.Dash
-		dashCharge -= 1
-		updateDashSprite()
+		current_state = AnimationState.Teleport
+		teleportCharge -= 1
+		updateTeleportSprite()
 	
 	
 	screwDriverFunc(horizontalDirection)
@@ -84,9 +85,9 @@ func _ready() -> void:
 	$JetpackIcon2.scale = self.scale * 0.5
 	$JetpackIcon2.position.x = 5
 	$JetpackIcon2.position.y = -25
-	$DashIcon.position.x = self.position.x
-	$DashIcon.position.y = -40
-	$DashIcon.scale = self.scale * 0.5
+	$TeleportIcon.position.x = self.position.x
+	$TeleportIcon.position.y = -40
+	$TeleportIcon.scale = self.scale * 0.5
 	pass; # Replace with function body.
 
 func _process(_delta: float) -> void:
@@ -110,13 +111,13 @@ func screwDriverFunc(horizontalDirection : float) -> void:
 func movementHandlerFunc(horizontalDirection: float) -> void:
 	if horizontalDirection != 0: 
 		velocity.x += speedChange * horizontalDirection;
-		if is_on_floor() and current_state != AnimationState.Jump and current_state != AnimationState.Dash:
+		if is_on_floor() and current_state != AnimationState.Jump and current_state != AnimationState.Teleport:
 			if maxJumpCharges > 1:
 				Animation_Handler.play("Run")
 			else:
 				Animation_Handler.play("Run_NoJetpack")
 			current_state = AnimationState.Run
-		elif current_state != AnimationState.Jump and current_state != AnimationState.Dash:
+		elif current_state != AnimationState.Jump and current_state != AnimationState.Teleport:
 			if maxJumpCharges > 1:
 				Animation_Handler.play("Look")
 			else:
@@ -185,12 +186,12 @@ func updateJumpChargeSprite() -> void:
 		$JetpackIcon1.visible = false
 		$JetpackIcon2.visible = false
 
-func updateDashSprite() -> void:
-	if canDash:
-		$DashIcon.visible = true
-		if dashCharge > 0:
-			$DashIcon.self_modulate = Color(1,1,1,1)
+func updateTeleportSprite() -> void:
+	if canTeleport:
+		$TeleportIcon.visible = true
+		if teleportCharge > 0:
+			$TeleportIcon.self_modulate = Color(1,1,1,1)
 		else:
-			$DashIcon.self_modulate = Color(1,1,1,0.4)
+			$TeleportIcon.self_modulate = Color(1,1,1,0.4)
 	else:
-		$DashIcon.visible = false
+		$TeleportIcon.visible = false

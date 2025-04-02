@@ -23,7 +23,16 @@ offset_right = 122.0
 offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.509804, 0.654902, 0.686275, 0.192157)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 visible = false
 polygon = PackedVector2Array(-121, -63, 123, -63, 123, 64, -123, 64, -123, -63)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -119.0
+offset_top = -61.0
+offset_right = -70.0
+offset_bottom = -38.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20

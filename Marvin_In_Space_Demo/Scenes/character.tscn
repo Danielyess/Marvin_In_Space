@@ -283,5 +283,5 @@ texture = ExtResource("6_2mse5")
 position = Vector2(-10, -60)
 texture = ExtResource("6_2mse5")
 
-[node name="DashIcon" type="Sprite2D" parent="."]
+[node name="TeleportIcon" type="Sprite2D" parent="."]
 texture = ExtResource("7_reotu")

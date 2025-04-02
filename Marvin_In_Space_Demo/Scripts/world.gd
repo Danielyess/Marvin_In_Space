@@ -94,13 +94,13 @@ func deathAnimationRev() -> void:
 func initLevel(level : int) -> void:
 	level_index = level
 	loadMap(level)
-	if level <= 1:
+	if not Character:
 		loadCharacter()
 	if level < 3:
 		Character.maxJumpCharges = 1
 		Character.updateJumpChargeSprite()
 	if level < 4 :
-		Character.canDash = false 
-		Character.updateDashSprite()
+		Character.canTeleport = false 
+		Character.updateTeleportSprite()
 	resetCharacterPosition()
 	switchCameraState(CameraState.player)
