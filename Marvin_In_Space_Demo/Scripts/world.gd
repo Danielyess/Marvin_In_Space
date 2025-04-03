@@ -117,7 +117,8 @@ func showMainMenu() -> void:
 		Map.queue_free()
 	var mainMenu : Control = load("res://Scenes/main_menu.tscn").instantiate()
 	add_child(mainMenu)
-	self.remove_child(Menu)
+	if self.has_node("Menu"):
+		self.remove_child(Menu)
 	get_tree().paused = false
 
 func resume() -> void:

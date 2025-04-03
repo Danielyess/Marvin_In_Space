@@ -21,6 +21,11 @@ func _ready() -> void:
 		recievers = self.get_node("Recievers")
 	else:
 		printerr("NO RECIEVERS IN POWERGRID: " + self.name)
+	
+	if emitters:
+		for i in range(emitters.get_child_count()):
+			if emitters.get_child(i).has_method("startSubroutine"):
+				emitters.get_child(i).startSubroutine()
 
 func refreshGrid(emitter) -> void:
 	for i in range(wires.get_child_count()):

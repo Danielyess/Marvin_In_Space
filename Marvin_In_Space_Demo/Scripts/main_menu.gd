@@ -6,5 +6,5 @@ func _on_quit_button_pressed() -> void:
 
 
 func _on_play_button_pressed() -> void:
-	get_parent().initLevel(4)
+	get_parent().initLevel(0)
 	queue_free()
