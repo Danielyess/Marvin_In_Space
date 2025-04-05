@@ -1,16 +1,16 @@
 extends StaticBody2D
 
 enum SubroutinePreset{ #Check switchBoxPresets OneNote for reference
-	None,
-	One,
-	TwoZeroZero,
-	TwoZeroOne,
-	TwoOneZero,
-	ThreeBaseZero,
-	ThreeBaseOne,
-	ThreeSpecialZero,
-	ThreeSpecialOne,
-	ThreeSpecialTwo
+	None = 0,
+	One = 1,
+	TwoZeroZero = 2,
+	TwoZeroOne = 3,
+	TwoOneZero = 4,
+	ThreeBaseZero = 5,
+	ThreeBaseOne = 6,
+	ThreeSpecialZero = 7,
+	ThreeSpecialOne = 8,
+	ThreeSpecialTwo = 9
 }
 
 enum LogicGate{
@@ -33,7 +33,6 @@ enum LogicGate{
 @export var Wire0 : PowerLine2D
 @export var Wire1 : PowerLine2D
 @export var Wire2 : PowerLine2D
-@export var OutputWire : PowerLine2D
 
 var current_state : Pwr.PowerState = Pwr.PowerState.OFF
 
@@ -63,7 +62,17 @@ func hideInteract() -> void:
 		$InteractionSprite.visible = false
 
 func interact() -> void:
-	print_debug("Player interacted with: " + self.name)
+	var menu : Control = load("res://Scenes/switch_box_menu.tscn").instantiate()
+	menu.process_mode = Node.PROCESS_MODE_ALWAYS
+	menu.loadGraphic(Subroutine, Gate0, Gate1, Gate2, Gate3)
+	menu.scale.x = 1/get_viewport().get_camera_2d().zoom.x
+	menu.scale.y = 1/get_viewport().get_camera_2d().zoom.y
+	if get_viewport().get_camera_2d().owner.position.x <= 0 :
+		menu.position = get_viewport().get_camera_2d().position
+	else:
+		menu.position = get_viewport().get_camera_2d().owner.position
+	add_child(menu)
+	get_tree().paused = true
 
 
 func openBox() -> void:

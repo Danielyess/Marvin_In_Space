@@ -14,15 +14,15 @@ script = ExtResource("1_28flt")
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 1280.0
-offset_bottom = 608.0
+offset_bottom = 800.0
 color = Color(0.384314, 0.447059, 0.835294, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 320.0
-offset_top = 100.0
+offset_top = 250.0
 offset_right = 960.0
-offset_bottom = 200.0
+offset_bottom = 350.0
 theme_override_font_sizes/font_size = 36
 text = "Marvin In Space"
 horizontal_alignment = 1
@@ -33,9 +33,9 @@ uppercase = true
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 465.0
-offset_top = 200.0
+offset_top = 350.0
 offset_right = 815.0
-offset_bottom = 266.0
+offset_bottom = 416.0
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2

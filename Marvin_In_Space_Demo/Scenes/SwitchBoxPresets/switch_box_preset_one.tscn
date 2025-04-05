@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp7xewplhqbld"]
+
+[ext_resource type="Texture2D" uid="uid://86wt7tbkhwk0" path="res://resources/Sprites/SwitchBoxPresets/One.png" id="1_yjkex"]
+[ext_resource type="Texture2D" uid="uid://dmv3v4cqlhssr" path="res://resources/Sprites/SwitchBoxPresets/NOT.png" id="2_ubkv2"]
+
+[node name="SwitchBox Preset One" type="TextureRect"]
+offset_left = -256.0
+offset_top = -300.0
+offset_right = 256.0
+offset_bottom = 212.0
+texture = ExtResource("1_yjkex")
+expand_mode = 5
+
+[node name="Gate0" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 192.0
+offset_right = 320.0
+offset_bottom = 320.0
+texture = ExtResource("2_ubkv2")

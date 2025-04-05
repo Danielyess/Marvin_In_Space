@@ -13,20 +13,21 @@ grow_vertical = 2
 script = ExtResource("1_1rerr")
 
 [node name="Camera" type="Camera2D" parent="."]
-position = Vector2(640, 304)
+position = Vector2(640, 400)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
+offset_top = 50.0
 offset_right = 1280.0
-offset_bottom = 608.0
+offset_bottom = 750.0
 color = Color(0.384314, 0.447059, 0.835294, 0.588235)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 320.0
-offset_top = 100.0
+offset_top = 275.0
 offset_right = 960.0
-offset_bottom = 200.0
+offset_bottom = 375.0
 theme_override_font_sizes/font_size = 36
 text = "Paused"
 horizontal_alignment = 1
@@ -37,9 +38,9 @@ uppercase = true
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 465.0
-offset_top = 249.0
+offset_top = 375.0
 offset_right = 815.0
-offset_bottom = 350.0
+offset_bottom = 476.0
 
 [node name="ResumeButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2

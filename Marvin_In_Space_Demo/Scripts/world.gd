@@ -55,8 +55,8 @@ func loadMap(mapIndex : int) -> void:
 	else:
 		printerr("Couldn't get map camera.")
 		
-	if Map.has_node("SpawnPoint"):
-		mapSpawnPoint = Map.get_node("SpawnPoint")
+	if Map.get_node("Objects").has_node("SpawnPoint"):
+		mapSpawnPoint = Map.get_node("Objects").get_node("SpawnPoint")
 	else:
 		printerr("Couldn't get map spawn point.")
 

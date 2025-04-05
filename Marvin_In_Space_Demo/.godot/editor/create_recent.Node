@@ -1,9 +1,10 @@
-PowerLine2D
-Node2D
+TextureRect
 Button
-VBoxContainer
+Node2D
 ColorRect
 Camera2D
+PowerLine2D
+VBoxContainer
 Label
 Marker2D
 TileMapLayer
@@ -11,4 +12,3 @@ CollisionShape2D
 Interact_Area2D
 Sprite2D
 StaticBody2D
-Timer
