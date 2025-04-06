@@ -79,6 +79,7 @@ func loadMenu() -> void:
 
 
 func resetCharacterPosition() -> void:
+	Character.velocity = Vector2(0.0,0.0)
 	Character.position = mapSpawnPoint.position
 	pass;
 

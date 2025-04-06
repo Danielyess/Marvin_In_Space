@@ -247,7 +247,7 @@ shape = SubResource("RectangleShape2D_owm7s")
 
 [node name="SpriteAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ushfy")
-animation = &"Teleport"
+animation = &"Idle"
 
 [node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)

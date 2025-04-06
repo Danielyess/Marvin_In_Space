@@ -64,7 +64,7 @@ rotation = 3.14159
 [node name="SpikeCluster1" type="Node2D" parent="Objects"]
 
 [node name="Spikes2" parent="Objects/SpikeCluster1" instance=ExtResource("6_f3h04")]
-position = Vector2(593, 463)
+position = Vector2(593, 465)
 rotation = -1.5708
 
 [node name="Spikes3" parent="Objects/SpikeCluster1" instance=ExtResource("6_f3h04")]

@@ -62,7 +62,7 @@ func _physics_process(_delta : float):
 		updateJumpChargeSprite()
 		current_state = AnimationState.Jump
 	
-	if(Input.is_action_just_pressed("Teleport") and canTeleport):
+	if(Input.is_action_just_pressed("Teleport") and canTeleport and teleportCharge > 0):
 		if(horizontalDirection >= 0):
 			position.x += teleportLength;
 		else:

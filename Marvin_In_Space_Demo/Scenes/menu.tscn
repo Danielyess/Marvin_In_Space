@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cqxrc33uy4nnu"]
 
-[ext_resource type="Script" uid="uid://dosudv5mse0rb" path="res://menu.gd" id="1_1rerr"]
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_1rerr"]
 
 [node name="Menu" type="Control"]
 z_index = 10
