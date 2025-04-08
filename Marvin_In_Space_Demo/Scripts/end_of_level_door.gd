@@ -1,25 +1,34 @@
+#This Scene shold be put into a PowerGrid if you want to use it with the intention
+# of opening and closing it
+
+#In the PowerGrid it should be put into the Recievers Node
+
+#For information about Emitters see: power_grid.gd
 extends StaticBody2D
 
-@export var current_state : Pwr.PowerState = Pwr.PowerState.OFF
+@export var currentState : Pwr.PowerState = Pwr.PowerState.OFF
+
+@onready var InteractionSprite : Sprite2D = $InteractionSprite
+@onready var SpriteAnimation : AnimatedSprite2D =  $MainSprite  
 
 func _ready() -> void:
 	$BaseCollShape.disabled = true
-	$InteractionSprite.visible = false
-	$InteractionSprite.scale = self.scale * 0.5
-	$InteractionSprite.position.y = -30 * (self.scale.x + self.scale.y) /2
-	$InteractionSprite.position.x = 0
+	InteractionSprite.visible = false
+	InteractionSprite.scale = self.scale * 0.5
+	InteractionSprite.position.y = -30 * (self.scale.x + self.scale.y) /2
+	InteractionSprite.position.x = 0
 	$InteractionArea2D/CollisionShape2D.disabled = true
-	switchState(current_state, true)
-	if current_state == Pwr.PowerState.ON:
-		$MainSprite.play("DefaultON")
+	switchState(currentState, true)
+	if currentState == Pwr.PowerState.ON:
+		SpriteAnimation.play("DefaultON")
 	else:
-		$MainSprite.play("DefaultOFF")
+		SpriteAnimation.play("DefaultOFF")
 
 func showInteract() -> void:
-	$InteractionSprite.visible = true	
+	InteractionSprite.visible = true	
 
 func hideInteract() -> void:
-	$InteractionSprite.visible = false
+	InteractionSprite.visible = false
 
 
 func interact() -> void:
@@ -28,15 +37,15 @@ func interact() -> void:
 	print_debug("Player interacted with: " + self.name)
 
 func switchState(desiredState : Pwr.PowerState, force : bool) -> void:
-	if current_state != desiredState or force:
+	if currentState != desiredState or force:
 		match desiredState:
 			Pwr.PowerState.ON:
-				$MainSprite.play("Opening")
+				SpriteAnimation.play("Opening")
 				$InteractionArea2D/CollisionShape2D.disabled = false
-				current_state = Pwr.PowerState.ON
+				currentState = Pwr.PowerState.ON
 			Pwr.PowerState.OFF:
-				$MainSprite.play("Closing")
+				SpriteAnimation.play("Closing")
 				$InteractionArea2D/CollisionShape2D.disabled = true
-				current_state = Pwr.PowerState.OFF
+				currentState = Pwr.PowerState.OFF
 			_:
 				pass;

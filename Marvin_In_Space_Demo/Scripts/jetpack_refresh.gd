@@ -1,7 +1,11 @@
+#Should be used with the purpose of giving the player back jumpCharges which are used when jumping (DUH!!!)
+
 extends StaticBody2D
 
+@export var plusJumpCharges : int = 2
+
 func pickUp(character : CharacterBody2D) -> void:
-	character.jumpCharges = 2
+	character.jumpCharges += plusJumpCharges
 	character.updateJumpChargeSprite()
 	refresh()
 

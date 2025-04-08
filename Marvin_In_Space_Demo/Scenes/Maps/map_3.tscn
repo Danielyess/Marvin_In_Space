@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=4 uid="uid://21baavrh6nhh"]
+[gd_scene load_steps=8 format=4 uid="uid://21baavrh6nhh"]
 
 [ext_resource type="TileSet" uid="uid://cgoaqjyb343q3" path="res://resources/TileSets/Main_Tile_Set.tres" id="1_8bmns"]
+[ext_resource type="PackedScene" uid="uid://dyc5f4uqp1qu7" path="res://Scenes/start_level_door.tscn" id="2_57v0g"]
 [ext_resource type="PackedScene" uid="uid://cpr2txr18kyjn" path="res://Scenes/pick_up_teleporter.tscn" id="2_vma17"]
 [ext_resource type="PackedScene" uid="uid://p04j5jtsnw4v" path="res://Scenes/end_of_level_door.tscn" id="3_xtteh"]
 [ext_resource type="PackedScene" uid="uid://mevhu58gyfpf" path="res://Scenes/door.tscn" id="4_xtteh"]
+[ext_resource type="Script" uid="uid://bjcx0lsm0velm" path="res://Scripts/hit_box.gd" id="6_4qfuv"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rhy1k"]
 
 [node name="Map3" type="Node2D"]
 
@@ -19,15 +23,27 @@ tile_set = ExtResource("1_8bmns")
 
 [node name="Objects" type="Node2D" parent="."]
 
+[node name="StartLevelDoor" parent="Objects" instance=ExtResource("2_57v0g")]
+position = Vector2(277, 520)
+scale = Vector2(1.5, 1.5)
+
 [node name="SpawnPoint" type="Marker2D" parent="Objects"]
-position = Vector2(340, 524)
+position = Vector2(277, 530)
 
 [node name="pickUpTeleporter" parent="Objects" instance=ExtResource("2_vma17")]
 position = Vector2(1060, 261)
 
 [node name="EndOfLevelDoor" parent="Objects" instance=ExtResource("3_xtteh")]
-position = Vector2(1064, 528)
-current_state = 0
+position = Vector2(1065, 520)
+scale = Vector2(1.5, 1.5)
 
 [node name="Door" parent="Objects" instance=ExtResource("4_xtteh")]
 position = Vector2(912, 528)
+
+[node name="HitBox" type="Area2D" parent="Objects"]
+script = ExtResource("6_4qfuv")
+metadata/_custom_type_script = "uid://bjcx0lsm0velm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/HitBox"]
+position = Vector2(648, 800)
+shape = SubResource("WorldBoundaryShape2D_rhy1k")

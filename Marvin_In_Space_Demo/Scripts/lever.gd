@@ -1,43 +1,51 @@
+#This Scene should be placed into a PowerGrid2D, which is subtype of a Node2D
+#Should be put into the Node Emitters in the PowerGrid2D
+
+#For information about Emitters see: power_grid.gd
 extends StaticBody2D
 
-@export var current_state : Pwr.PowerState = Pwr.PowerState.OFF
+@export var currentState : Pwr.PowerState = Pwr.PowerState.OFF
 
 signal stateChanged(emitter : StaticBody2D)
 
+@onready var InteractionSprite : Sprite2D = $InteractionSprite
+@onready var SpriteAnimation : AnimatedSprite2D =  $MainSprite  
+
 func _ready() -> void:
-	switchState(current_state,true)
-	if current_state == Pwr.PowerState.ON:
-		$MainSprite.play("DefaultON")
+	switchState(currentState,true)
+	if currentState == Pwr.PowerState.ON:
+		SpriteAnimation.play("DefaultON")
 	else:
-		$MainSprite.play("DefaultOFF")
+		SpriteAnimation.play("DefaultOFF")
 	
 	$BaseCollShape.disabled = true
-	$InteractionSprite.visible = false
-	$InteractionSprite.scale = self.scale * 0.5
-	$InteractionSprite.position.y = -30 * (self.scale.x + self.scale.y) /2
+	InteractionSprite.visible = false
+	InteractionSprite.scale = self.scale * 0.5
+	InteractionSprite.position.y = -30 * (self.scale.x + self.scale.y) /2
+	# This is connected to a powerGrid's refreshGrid function
 	connect("stateChanged", $"../..".refreshGrid)
 
 func showInteract() -> void:
-	$InteractionSprite.visible = true
+	InteractionSprite.visible = true
 	
 
 func hideInteract() -> void:
-	$InteractionSprite.visible = false
+	InteractionSprite.visible = false
 
 
 func interact() -> void:
-	if current_state == Pwr.PowerState.ON:
+	if currentState == Pwr.PowerState.ON:
 		switchState(Pwr.PowerState.OFF,false)
 	else:
 		switchState(Pwr.PowerState.ON,false)
 
 func switchState(desired_state : Pwr.PowerState, force : bool) -> void:
-	if current_state != desired_state or force:
+	if currentState != desired_state or force:
 		match(desired_state):
 			Pwr.PowerState.OFF: 
-				$MainSprite.play("Off")
-				current_state = Pwr.PowerState.OFF
+				SpriteAnimation.play("Off")
+				currentState = Pwr.PowerState.OFF
 			Pwr.PowerState.ON:
-				$MainSprite.play("On")
-				current_state = Pwr.PowerState.ON
+				SpriteAnimation.play("On")
+				currentState = Pwr.PowerState.ON
 		emit_signal("stateChanged", self)

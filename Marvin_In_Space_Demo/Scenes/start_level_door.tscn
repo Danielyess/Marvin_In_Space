@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://dyc5f4uqp1qu7"]
+
+[ext_resource type="Texture2D" uid="uid://drewufpc4sf64" path="res://resources/Sprites/levelEndDoor-Sheet.png" id="1_keovu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_keovu"]
+size = Vector2(20, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0phud"]
+atlas = ExtResource("1_keovu")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hm2mb"]
+atlas = ExtResource("1_keovu")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ybja"]
+atlas = ExtResource("1_keovu")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhfbh"]
+atlas = ExtResource("1_keovu")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_keovu"]
+atlas = ExtResource("1_keovu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xxdsj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0phud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hm2mb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ybja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhfbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_keovu")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="StartLevelDoor" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_keovu")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xxdsj")
+autoplay = "default"

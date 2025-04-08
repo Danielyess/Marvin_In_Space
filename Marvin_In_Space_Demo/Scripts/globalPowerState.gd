@@ -1,43 +1,43 @@
 class_name Pwr
 enum PowerState{ON, OFF}
 
-
-static func OR(one : PowerState, two : PowerState) -> PowerState:
-	if one == PowerState.ON or two == PowerState.ON:
+#Functions for the logic gates
+static func OR(A : PowerState, B : PowerState) -> PowerState:
+	if A == PowerState.ON or B == PowerState.ON:
 		return PowerState.ON
 	else:
 		return PowerState.OFF
 
-static func XOR(one : PowerState, two : PowerState) -> PowerState:
-	if ((one == PowerState.ON and two == PowerState.OFF)  
-	or (two == PowerState.ON and one == PowerState.OFF)):
+static func XOR(A : PowerState, B : PowerState) -> PowerState:
+	if ((A == PowerState.ON and B == PowerState.OFF)  
+	or (B == PowerState.ON and A == PowerState.OFF)):
 		return PowerState.ON
 	else:
 		return PowerState.OFF
 
-static func NOR(one : PowerState, two : PowerState) -> PowerState:
-	if one == PowerState.ON or two == PowerState.ON:
+static func NOR(A : PowerState, B : PowerState) -> PowerState:
+	if A == PowerState.ON or B == PowerState.ON:
 		return PowerState.OFF
 	else:
 		return PowerState.ON
 
-static func AND(one : PowerState, two : PowerState) -> PowerState:
-	if one == PowerState.ON and two == PowerState.ON:
+static func AND(A : PowerState, B : PowerState) -> PowerState:
+	if A == PowerState.ON and B == PowerState.ON:
 		return PowerState.ON
 	else:
 		return PowerState.OFF
 
-static func NAND(one : PowerState, two : PowerState) -> PowerState:
-	if one == PowerState.ON and two == PowerState.ON:
+static func NAND(A : PowerState, B : PowerState) -> PowerState:
+	if A == PowerState.ON and B == PowerState.ON:
 		return PowerState.OFF
 	else:
 		return PowerState.ON
 
-static func NOT(one : PowerState) -> PowerState:
-	if one == PowerState.ON:
+static func NOT(A : PowerState) -> PowerState:
+	if A == PowerState.ON:
 		return PowerState.OFF
 	else:
 		return PowerState.ON
 
-static func BUFFER(one : PowerState) -> PowerState:
-	return one
+static func BUFFER(A : PowerState) -> PowerState:
+	return A

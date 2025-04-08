@@ -1,31 +1,35 @@
+#This node is used to transport powerstate between and emitter and a reciever
+#Should also be used if you want to attach the output of a switchbox to one of its ports
+
 class_name PowerLine2D
 extends Line2D
 
-var current_state : Pwr.PowerState
-
-var red : Color
-var green : Color
+var currentState : Pwr.PowerState
 
 @export var emitter : StaticBody2D
 @export var reciever : StaticBody2D
 
 func _init() -> void:
-	red = Color(255,0,0,0.5)
-	green = Color(0,255,0,0.5)
 	width = 2
+	z_index = 2
 
 func _ready() -> void:
-	switchState(emitter.current_state, true)
+	#Forces the emitter's state onto the wire so that it updates when the map is 
+	#loaded so its not needed to be done in the editor by hand
+	switchState(emitter.currentState, true)
 
 func switchState(desiredState : Pwr.PowerState, force : bool) -> void:
-	if desiredState != current_state or force:
+	if desiredState != currentState or force:
 		match desiredState:
 			Pwr.PowerState.OFF:
-				current_state = Pwr.PowerState.OFF
-				self.default_color = red
+				currentState = Pwr.PowerState.OFF
+				#if the wire carries an off signal then be red
+				self.default_color = Color(255,0,0,0.5)
 			Pwr.PowerState.ON:
-				current_state = Pwr.PowerState.ON
-				self.default_color = green
+				currentState = Pwr.PowerState.ON
+				#if the wire carries an on signal then be green
+				self.default_color = Color(0,255,0,0.5)
 			_:
 				printerr("PowerState does not exist!")
-		reciever.switchState(current_state, false)
+		#Switches it's reciever's powerstate if it is not already
+		reciever.switchState(currentState, false)

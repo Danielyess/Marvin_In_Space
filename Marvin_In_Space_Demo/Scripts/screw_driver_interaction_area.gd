@@ -1,4 +1,5 @@
-
+#This node should be used when you want something to happen if Marvin's screwdriver touches it
+#Currently used by: SwitchBox in order to open it's cover and the electric fence to give Marvin 1 jumpcharge
 extends Area2D
 
 func _init() -> void:
@@ -15,7 +16,7 @@ func on_area_entered(screwDriver) -> void:
 	if screwDriver == null :
 		return
 	
-	if screwDriver.owner.get_parent().has_method("addJumpCharge"):
+	if screwDriver.owner.get_parent().has_method("addJumpCharge") and owner.canGiveJump:
 		screwDriver.owner.get_parent().addJumpCharge(1)
 	
 	if owner.has_method("startTimer"):
@@ -24,7 +25,6 @@ func on_area_entered(screwDriver) -> void:
 func on_area_exited(screwDriver) -> void:
 	if screwDriver == null :
 		return
-	
 	
 	if owner.has_method("pauseTimer"):
 		owner.pauseTimer()

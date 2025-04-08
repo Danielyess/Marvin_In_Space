@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=4 uid="uid://bnvnuwkfbny0b"]
+[gd_scene load_steps=8 format=4 uid="uid://bnvnuwkfbny0b"]
 
 [ext_resource type="TileSet" uid="uid://cgoaqjyb343q3" path="res://resources/TileSets/Main_Tile_Set.tres" id="1_08gir"]
+[ext_resource type="PackedScene" uid="uid://dyc5f4uqp1qu7" path="res://Scenes/start_level_door.tscn" id="2_qmr3o"]
 [ext_resource type="PackedScene" uid="uid://b0p2xbcbvwjth" path="res://Scenes/pick_up_jetpack.tscn" id="2_wuwv3"]
 [ext_resource type="PackedScene" uid="uid://p04j5jtsnw4v" path="res://Scenes/end_of_level_door.tscn" id="3_uuwls"]
 [ext_resource type="PackedScene" uid="uid://dw4gulmlywi5" path="res://Scenes/gravity_area.tscn" id="4_uuwls"]
+[ext_resource type="Script" uid="uid://bjcx0lsm0velm" path="res://Scripts/hit_box.gd" id="6_lfstx"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_54pvs"]
 
 [node name="Map2" type="Node2D"]
 
@@ -19,17 +23,29 @@ tile_set = ExtResource("1_08gir")
 
 [node name="Objects" type="Node2D" parent="."]
 
+[node name="StartLevelDoor" parent="Objects" instance=ExtResource("2_qmr3o")]
+position = Vector2(466, 584)
+scale = Vector2(1.5, 1.5)
+
 [node name="SpawnPoint" type="Marker2D" parent="Objects"]
-position = Vector2(479, 588)
+position = Vector2(466, 594)
 
 [node name="pickUpJetpack" parent="Objects" instance=ExtResource("2_wuwv3")]
 position = Vector2(561, 239)
 
 [node name="EndOfLevelDoor" parent="Objects" instance=ExtResource("3_uuwls")]
-position = Vector2(904, 272)
-current_state = 0
+position = Vector2(909, 264)
+scale = Vector2(1.5, 1.5)
 
 [node name="gravityArea" parent="Objects" instance=ExtResource("4_uuwls")]
-position = Vector2(657, 399)
-scale = Vector2(0.376132, 3.31277)
+position = Vector2(654, 399)
+scale = Vector2(0.323891, 3.31277)
 gravityMult = 10.0
+
+[node name="HitBox" type="Area2D" parent="Objects"]
+script = ExtResource("6_lfstx")
+metadata/_custom_type_script = "uid://bjcx0lsm0velm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/HitBox"]
+position = Vector2(648, 800)
+shape = SubResource("WorldBoundaryShape2D_54pvs")

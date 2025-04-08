@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2w5g4xjdwjur"]
+
+[ext_resource type="Texture2D" uid="uid://dpyey44krmlgd" path="res://resources/Sprites/MARVIN_Damaged.png" id="1_62ic7"]
+
+[node name="MARVINDamaged" type="RigidBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(11, -16, -11, -16, -13, 4, -6, 10, 0, 11, 6, 10, 13, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_62ic7")

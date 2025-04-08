@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d7h1m65osd0w"]
+
+[ext_resource type="Texture2D" uid="uid://dydti1h8haahh" path="res://resources/Sprites/Marvin_Unpowered.png" id="1_p4l6d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gsfq"]
+size = Vector2(26, 32)
+
+[node name="MARVINInactive" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3gsfq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_p4l6d")

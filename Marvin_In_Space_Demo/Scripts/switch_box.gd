@@ -34,10 +34,11 @@ enum LogicGate{
 @export var Wire1 : PowerLine2D
 @export var Wire2 : PowerLine2D
 
-var current_state : Pwr.PowerState = Pwr.PowerState.OFF
+var currentState : Pwr.PowerState = Pwr.PowerState.OFF
 
 var isOpen : bool
-var cover : RigidBody2D 
+var cover : RigidBody2D
+var canGiveJump : bool = false
 
 signal stateChanged(emitter : StaticBody2D)
 
@@ -55,24 +56,24 @@ func _ready() -> void:
 func showInteract() -> void:
 	if isOpen:
 		$InteractionSprite.visible = true
-	
 
 func hideInteract() -> void:
 	if isOpen:
 		$InteractionSprite.visible = false
 
 func interact() -> void:
-	var menu : Control = load("res://Scenes/switch_box_menu.tscn").instantiate()
-	menu.process_mode = Node.PROCESS_MODE_ALWAYS
-	menu.loadGraphic(Subroutine, Gate0, Gate1, Gate2, Gate3)
-	menu.scale.x = 1/get_viewport().get_camera_2d().zoom.x
-	menu.scale.y = 1/get_viewport().get_camera_2d().zoom.y
-	if get_viewport().get_camera_2d().owner.position.x <= 0 :
-		menu.position = get_viewport().get_camera_2d().position
-	else:
-		menu.position = get_viewport().get_camera_2d().owner.position
-	add_child(menu)
-	get_tree().paused = true
+	if isOpen:
+		var menu : Control = load("res://Scenes/switch_box_menu.tscn").instantiate()
+		menu.process_mode = Node.PROCESS_MODE_ALWAYS
+		menu.loadGraphic(Subroutine, Gate0, Gate1, Gate2, Gate3)
+		menu.scale.x = 1/get_viewport().get_camera_2d().zoom.x
+		menu.scale.y = 1/get_viewport().get_camera_2d().zoom.y
+		if get_viewport().get_camera_2d().owner.position.x <= 0 :
+			menu.position = get_viewport().get_camera_2d().position
+		else:
+			menu.position = get_viewport().get_camera_2d().owner.position
+		add_child(menu)
+		get_tree().paused = true
 
 
 func openBox() -> void:
@@ -111,36 +112,45 @@ func startSubroutine() -> void:
 		SubroutinePreset.None:
 			pass;
 		SubroutinePreset.One:
-			current_state = callGateFunc(Gate0, Wire0.current_state)
+			currentState = callGateFunc(Gate0, Wire0.currentState)
+			
 		SubroutinePreset.TwoZeroZero: #Both wires go into one 2-input logic gate
-			current_state = callGateFunc(Gate0, Wire0.current_state, Wire1.current_state)
+			currentState = callGateFunc(Gate0, Wire0.currentState, Wire1.currentState)
+			
 		SubroutinePreset.TwoZeroOne: #The Left Wire goes into a 1-input logic gate, then both into a 2-input
-			subGateVal = callGateFunc(Gate1, Wire1.current_state)
-			current_state = callGateFunc(Gate0, subGateVal, Wire0.current_state)
+			subGateVal = callGateFunc(Gate1, Wire1.currentState)
+			currentState = callGateFunc(Gate0, subGateVal, Wire0.currentState)
+			
 		SubroutinePreset.TwoOneZero: #The Right Wire goes into a 1-input logic gate, then both into a 2-input
-			subGateVal = callGateFunc(Gate1, Wire0.current_state)
-			current_state = callGateFunc(Gate0, Wire1.current_state, subGateVal)
+			subGateVal = callGateFunc(Gate1, Wire0.currentState)
+			currentState = callGateFunc(Gate0, Wire1.currentState, subGateVal)
+			
 		SubroutinePreset.ThreeBaseZero: #The Left and the Middle wires go into a 2-input gate and then the result plus the Right go into another 2-input gate 
-			subGateVal = callGateFunc(Gate1, Wire0.current_state, Wire1.current_state)
-			current_state = callGateFunc(Gate0, subGateVal, Wire2.current_state)
+			subGateVal = callGateFunc(Gate1, Wire0.currentState, Wire1.currentState)
+			currentState = callGateFunc(Gate0, subGateVal, Wire2.currentState)
+			
 		SubroutinePreset.ThreeBaseOne: #The Left and the Middle wires go into a 2-input gate and then the result plus the Right goes into a 1-input gate then they go into another 2-input gate 
-			subGateVal = callGateFunc(Gate1, Wire0.current_state, Wire1.current_state)
-			subGateVal2 = callGateFunc(Gate2, Wire2.current_state)
-			current_state = callGateFunc(Gate0, subGateVal, subGateVal2)
+			subGateVal = callGateFunc(Gate1, Wire0.currentState, Wire1.currentState)
+			subGateVal2 = callGateFunc(Gate2, Wire2.currentState)
+			currentState = callGateFunc(Gate0, subGateVal, subGateVal2)
+			
 		SubroutinePreset.ThreeSpecialZero:
-			subGateVal = callGateFunc(Gate1, Wire0.current_state, Wire1.current_state)
-			subGateVal2 = callGateFunc(Gate2, Wire1.current_state, Wire2.current_state)
-			current_state = callGateFunc(Gate0, subGateVal, subGateVal2)
+			subGateVal = callGateFunc(Gate1, Wire0.currentState, Wire1.currentState)
+			subGateVal2 = callGateFunc(Gate2, Wire1.currentState, Wire2.currentState)
+			currentState = callGateFunc(Gate0, subGateVal, subGateVal2)
+			
 		SubroutinePreset.ThreeSpecialOne:
-			subGateVal3 = callGateFunc(Gate3, Wire1.current_state)
-			subGateVal = callGateFunc(Gate1, Wire0.current_state, subGateVal3)
-			subGateVal2 = callGateFunc(Gate2, Wire1.current_state, Wire2.current_state)
-			current_state = callGateFunc(Gate0, subGateVal, subGateVal2)
+			subGateVal3 = callGateFunc(Gate3, Wire1.currentState)
+			subGateVal = callGateFunc(Gate1, Wire0.currentState, subGateVal3)
+			subGateVal2 = callGateFunc(Gate2, Wire1.currentState, Wire2.currentState)
+			currentState = callGateFunc(Gate0, subGateVal, subGateVal2)
+			
 		SubroutinePreset.ThreeSpecialTwo:
-			subGateVal3 = callGateFunc(Gate3, Wire1.current_state, Wire2.current_state)
-			subGateVal = callGateFunc(Gate1, Wire0.current_state, Wire1.current_state)
-			subGateVal2 = callGateFunc(Gate2, subGateVal3, Wire2.current_state)
-			current_state = callGateFunc(Gate0, subGateVal, subGateVal2)
+			subGateVal3 = callGateFunc(Gate3, Wire1.currentState, Wire2.currentState)
+			subGateVal = callGateFunc(Gate1, Wire0.currentState, Wire1.currentState)
+			subGateVal2 = callGateFunc(Gate2, subGateVal3, Wire2.currentState)
+			currentState = callGateFunc(Gate0, subGateVal, subGateVal2)
+			
 		_:
 			printerr("SUBROUTINE DOESNT EXIST!!!!!!")
 	emit_signal("stateChanged", self)
@@ -149,18 +159,25 @@ func callGateFunc(gate : LogicGate, state1 : Pwr.PowerState, state2: Pwr.PowerSt
 	match(gate):
 		LogicGate.Buffer:
 			return Pwr.BUFFER(state1)
+			
 		LogicGate.Not:
 			return Pwr.NOT(state1)
+			
 		LogicGate.Or:
 			return Pwr.OR(state1, state2)
+			
 		LogicGate.And:
 			return Pwr.AND(state1, state2)
+			
 		LogicGate.NAnd:
 			return Pwr.NAND(state1, state2)
+			
 		LogicGate.NOr:
 			return Pwr.NOR(state1, state2)
+			
 		LogicGate.XOr:
 			return Pwr.XOR(state1, state2)
+			
 	return Pwr.PowerState.OFF
 
 func switchState(_desiredState : Pwr.PowerState, _force : bool) ->void:

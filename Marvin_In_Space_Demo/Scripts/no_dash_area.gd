@@ -1,3 +1,7 @@
+#This Area should be used when we don't want the charater to dash in an area
+#which can be a result of dash oversimpifying puzzles
+#this may be because the original design is bad, but this should do it
+
 class_name NoDashArea
 extends Area2D
 

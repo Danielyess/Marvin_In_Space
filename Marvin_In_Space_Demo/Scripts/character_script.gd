@@ -1,12 +1,20 @@
 extends CharacterBody2D
 
-@export var speedChange : float = 15;
-@export var gravity : float = 600; # 1g
-@export var jumpForce : float = 320;
-@export var teleportLength : float = 100;
-@export var slowerVariable : float = 10
+#How much the character will accelerate in given direction
+#If no inputs are given to the character it will be slowed by speedSlow to the point it is still
+@export var speedChange : float = 15
+@export var speedSlow : float = 10
 @export var speedCap : float = 300
+
+#/60 because of the _physics_process
+@export var gravity : float = 600 # 1g 
+
+#How much velocity will the character jump
+@export var jumpForce : float = 320
 @export var maxJumpCharges : int = 2
+
+#How far he can teleport
+@export var teleportLength : float = 100
 @export var canTeleport : bool = true
 
 enum AnimationState{Jump, Run, Idle, Teleport}
@@ -16,12 +24,12 @@ var canInteract : bool = true
 var canGetJump : bool = true
 var jumpCharges : int = 2;
 var teleportCharge : int = 1;
-var current_state : AnimationState
+var currentState : AnimationState
 
 @onready var ScrewDriver : CharacterBody2D = $ScrewDriver
-@onready var Marker_Right : Marker2D = $ScrewDriverPosition_Right
-@onready var Marker_Left : Marker2D = $ScrewDriverPosition_Left
-@onready var Animation_Handler : AnimatedSprite2D = $SpriteAnimation
+@onready var MarkerRight : Marker2D = $ScrewDriverPosition_Right
+@onready var MarkerLeft : Marker2D = $ScrewDriverPosition_Left
+@onready var SpriteAnimation : AnimatedSprite2D = $SpriteAnimation
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Interact") and canInteract:
@@ -55,21 +63,22 @@ func _physics_process(_delta : float):
 		updateTeleportSprite()
 	
 	if(Input.is_action_just_pressed("Jump") && jumpCharges > 0):
-		velocity.y = -jumpForce;
+		if maxJumpCharges == 1 and !is_on_floor():
+			velocity.y = -jumpForce;
 		if maxJumpCharges > 1:
-			Animation_Handler.play("Jump")
+			SpriteAnimation.play("Jump")
 		jumpCharges -= 1
 		updateJumpChargeSprite()
-		current_state = AnimationState.Jump
+		currentState = AnimationState.Jump
 	
 	if(Input.is_action_just_pressed("Teleport") and canTeleport and teleportCharge > 0):
-		if(horizontalDirection >= 0):
+		if horizontalDirection >= 0:
 			position.x += teleportLength;
 		else:
 			position.x -= teleportLength;
 		self.velocity.y = 0
-		Animation_Handler.play("Teleport")
-		current_state = AnimationState.Teleport
+		SpriteAnimation.play("Teleport")
+		currentState = AnimationState.Teleport
 		teleportCharge -= 1
 		updateTeleportSprite()
 	
@@ -95,49 +104,49 @@ func _process(_delta: float) -> void:
 
 func screwDriverFunc(horizontalDirection : float) -> void:
 	if horizontalDirection < 0:
-			ScrewDriver.position.x = Marker_Left.position.x
-			ScrewDriver.position.y = Marker_Left.position.y
+			ScrewDriver.position.x = MarkerLeft.position.x
+			ScrewDriver.position.y = MarkerLeft.position.y
 	elif horizontalDirection > 0:
-			ScrewDriver.position.x = Marker_Right.position.x
-			ScrewDriver.position.y = Marker_Right.position.y
+			ScrewDriver.position.x = MarkerRight.position.x
+			ScrewDriver.position.y = MarkerRight.position.y
 	else:
 		if get_local_mouse_position().x > 0 :
-			ScrewDriver.position.x = Marker_Right.position.x
-			ScrewDriver.position.y = Marker_Right.position.y
+			ScrewDriver.position.x = MarkerRight.position.x
+			ScrewDriver.position.y = MarkerRight.position.y
 		else:
-			ScrewDriver.position.x = Marker_Left.position.x
-			ScrewDriver.position.y = Marker_Left.position.y
+			ScrewDriver.position.x = MarkerLeft.position.x
+			ScrewDriver.position.y = MarkerLeft.position.y
 
 func movementHandlerFunc(horizontalDirection: float) -> void:
 	if horizontalDirection != 0: 
 		velocity.x += speedChange * horizontalDirection;
-		if is_on_floor() and current_state != AnimationState.Jump and current_state != AnimationState.Teleport:
+		if is_on_floor() and currentState != AnimationState.Jump and currentState != AnimationState.Teleport:
 			if maxJumpCharges > 1:
-				Animation_Handler.play("Run")
+				SpriteAnimation.play("Run")
 			else:
-				Animation_Handler.play("Run_NoJetpack")
-			current_state = AnimationState.Run
-		elif current_state != AnimationState.Jump and current_state != AnimationState.Teleport:
+				SpriteAnimation.play("Run_NoJetpack")
+			currentState = AnimationState.Run
+		elif currentState != AnimationState.Jump and currentState != AnimationState.Teleport:
 			if maxJumpCharges > 1:
-				Animation_Handler.play("Look")
+				SpriteAnimation.play("Look")
 			else:
-				Animation_Handler.play("Look_NoJetpack")
-			current_state = AnimationState.Run
+				SpriteAnimation.play("Look_NoJetpack")
+			currentState = AnimationState.Run
 			
 		if horizontalDirection > 0 :
-			Animation_Handler.flip_h = 0
+			SpriteAnimation.flip_h = 0
 		else:
-			Animation_Handler.flip_h = 1
+			SpriteAnimation.flip_h = 1
 	else:
-		velocity.x -= slowerVariable * sign(velocity.x)
-		Animation_Handler.play("Idle")
-		current_state = AnimationState.Idle
+		velocity.x -= speedSlow * sign(velocity.x)
+		SpriteAnimation.play("Idle")
+		currentState = AnimationState.Idle
 	
 	if abs(velocity.x) > speedCap :
 		velocity.x -= (abs(velocity.x) - speedCap) * 0.33 * sign(velocity.x)
 		pass; 
 	
-	if abs(velocity.x) < slowerVariable:
+	if abs(velocity.x) < speedSlow:
 		velocity.x = 0
 	
 	pass;

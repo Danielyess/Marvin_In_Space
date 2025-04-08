@@ -1,10 +1,16 @@
-class_name PowerGrid2D
+#Firstly, this has to have 3 Node2Ds which themselves serve no purpose apart from being containers,
+#They are required for functioning and the 3 Nodes Should be: "Emitters", "Wires" and "Recievers"
 
-extends Node2D
+#Emitters should contain everything that can emit a powerstate such as Levers and SwitchBoxes
+#Wires should contain PowerLine2Ds that are connected to an emitter and a reciever and only transport info
+#Recievers should contain things that can be turned on and off or opened and closed, such as fences and doors
 
-var emitters : Node2D
-var wires : Node2D
-var recievers : Node2D
+class_name PowerGrid
+extends Node
+
+var emitters : Node
+var wires : Node
+var recievers : Node
 
 func _ready() -> void:
 	if self.has_node("Emitters"):
@@ -30,4 +36,4 @@ func _ready() -> void:
 func refreshGrid(emitter) -> void:
 	for i in range(wires.get_child_count()):
 		if wires.get_child(i).emitter == emitter:
-			wires.get_child(i).switchState(emitter.current_state, false)
+			wires.get_child(i).switchState(emitter.currentState, false)
