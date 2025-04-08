@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dw4gulmlywi5"]
+[gd_scene load_steps=4 format=3 uid="uid://dw4gulmlywi5"]
 
 [ext_resource type="Script" uid="uid://dqinroo6ckm6c" path="res://Scripts/gravity_area2d.gd" id="1_jxtpg"]
+[ext_resource type="FontFile" uid="uid://bgeobguk8qd2n" path="res://resources/Round9x13.ttf" id="2_i82as"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxtpg"]
 size = Vector2(245, 127)
@@ -34,5 +35,5 @@ offset_left = -119.0
 offset_top = -61.0
 offset_right = -70.0
 offset_bottom = -38.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("2_i82as")
+theme_override_font_sizes/font_size = 26

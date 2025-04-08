@@ -163,7 +163,6 @@ func callGateFunc(gate : LogicGate, state1 : Pwr.PowerState, state2: Pwr.PowerSt
 			return Pwr.BUFFER(state1)
 			
 		LogicGate.Not:
-			print_debug("...")
 			return Pwr.NOT(state1)
 			
 		LogicGate.Or:
@@ -182,9 +181,6 @@ func callGateFunc(gate : LogicGate, state1 : Pwr.PowerState, state2: Pwr.PowerSt
 			return Pwr.XOR(state1, state2)
 			
 	return Pwr.PowerState.OFF
-
-func switchState(_desiredState : Pwr.PowerState, _force : bool) ->void:
-	startSubroutine()
 
 func resetState() -> void:
 	currentState = defaultState

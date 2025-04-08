@@ -32,4 +32,9 @@ func switchState(desiredState : Pwr.PowerState, force : bool) -> void:
 			_:
 				printerr("PowerState does not exist!")
 		#Switches it's reciever's powerstate if it is not already
-		reciever.switchState(currentState, false)
+		if reciever.has_method("switchState"):
+			reciever.switchState(currentState, false)
+		elif reciever.has_method("startSubroutine"):
+			reciever.startSubroutine()
+		else:
+			printerr(reciever.name + "doesn't have a statemanager function")

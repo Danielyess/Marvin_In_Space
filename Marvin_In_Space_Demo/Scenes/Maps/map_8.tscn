@@ -53,7 +53,7 @@ points = PackedVector2Array(231, 513, 231, 528, 177, 528, 175, 623, 591, 623, 59
 width = 2.0
 script = ExtResource("5_qlp7g")
 emitter = NodePath("../../Emitters/Lever")
-reciever = NodePath("../../Recievers/Electric_Fence2")
+reciever = NodePath("../../Emitters/SwitchBox2")
 metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
 
 [node name="PL_SWToSW" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
@@ -92,11 +92,19 @@ emitter = NodePath("../../Emitters/SwitchBox2")
 reciever = NodePath("../../Recievers/Electric_Fence2")
 metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
 
+[node name="PL_SWToEndDoor" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
+z_index = 1
+points = PackedVector2Array(659, 303, 659, 261, 710, 261, 710, 166, 1113, 166, 1113, 473, 1058, 473, 1058, 498)
+width = 2.0
+script = ExtResource("5_qlp7g")
+emitter = NodePath("../../Emitters/SwitchBox")
+reciever = NodePath("../../Recievers/EndOfLevelDoor")
+metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
+
 [node name="Emitters" type="Node" parent="Objects/PowerGrid"]
 
 [node name="Lever" parent="Objects/PowerGrid/Emitters" instance=ExtResource("5_17qb3")]
 position = Vector2(231, 497)
-currentState = 0
 
 [node name="Lever2" parent="Objects/PowerGrid/Emitters" instance=ExtResource("5_17qb3")]
 position = Vector2(1058, 273)

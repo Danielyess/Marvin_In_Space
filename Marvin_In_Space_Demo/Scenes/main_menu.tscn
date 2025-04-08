@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b70vuir6yugw3"]
+[gd_scene load_steps=3 format=3 uid="uid://b70vuir6yugw3"]
 
 [ext_resource type="Script" uid="uid://cbmgx26w2ttim" path="res://Scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="FontFile" uid="uid://bgeobguk8qd2n" path="res://resources/Round9x13.ttf" id="2_48xlc"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -23,7 +24,9 @@ offset_left = 320.0
 offset_top = 250.0
 offset_right = 960.0
 offset_bottom = 350.0
-theme_override_font_sizes/font_size = 36
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_font_sizes/font_size = 32
 text = "Marvin In Space"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -39,11 +42,19 @@ offset_bottom = 416.0
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
 focus_previous = NodePath("../QuitButton")
+theme_override_fonts/font = ExtResource("2_48xlc")
 text = "New Game"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../PlayButton")
+focus_next = NodePath("../PlayButton")
+focus_previous = NodePath("../PlayButton")
+theme_override_fonts/font = ExtResource("2_48xlc")
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

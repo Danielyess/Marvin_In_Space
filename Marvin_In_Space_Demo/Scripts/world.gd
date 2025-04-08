@@ -15,7 +15,7 @@ var CharacterCamera : Camera2D
 var MenuCamera: Camera2D
 
 func _ready() -> void:
-	$DeathAnimationHandler.process_mode = Node.PROCESS_MODE_ALWAYS
+	$DeathAnimContainer/DeathAnimationHandler.process_mode = Node.PROCESS_MODE_ALWAYS
 	Menu = load("res://Scenes/menu.tscn").instantiate()
 	showMainMenu()
 
@@ -90,10 +90,10 @@ func nextLevel() -> void:
 	deathAnimationRev()
 
 func deathAnimation() -> void:
-	$DeathAnimationHandler.play("DeathScreenIn")
+	$DeathAnimContainer/DeathAnimationHandler.play("DeathScreenIn")
 
 func deathAnimationRev() -> void:
-	$DeathAnimationHandler.play("DeathScreenOut")
+	$DeathAnimContainer/DeathAnimationHandler.play("DeathScreenOut")
 
 func initLevel(level : int) -> void:
 	levelIndex = level
@@ -110,11 +110,10 @@ func initLevel(level : int) -> void:
 	switchCameraState(CameraState.player)
 
 func showMainMenu() -> void:
-	if Character:
-		Character.queue_free()
-	
 	if Map:
 		Map.queue_free()
+	if Character:
+		Character.queue_free()
 	
 	var mainMenu : Control = load("res://Scenes/main_menu.tscn").instantiate()
 	add_child(mainMenu)

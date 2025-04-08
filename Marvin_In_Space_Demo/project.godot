@@ -21,7 +21,14 @@ window/size/viewport_width=1280
 window/size/viewport_height=800
 window/size/resizable=false
 window/stretch/mode="viewport"
+window/vsync/vsync_mode=0
 mouse_cursor/custom_image="uid://kogogpa367pg"
+
+[gui]
+
+theme/custom_font="uid://bgeobguk8qd2n"
+theme/default_font_antialiasing=0
+theme/default_font_subpixel_positioning=0
 
 [input]
 
