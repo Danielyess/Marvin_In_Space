@@ -9,10 +9,13 @@ var mapSpawnPoint : Marker2D
 var Character : CharacterBody2D
 var Map : Node2D
 var Menu : Control
+var EndOfGameUI : Control
 
 var MapCamera : Camera2D 
 var CharacterCamera : Camera2D 
 var MenuCamera: Camera2D
+
+var collectibleGot : bool = false
 
 func _ready() -> void:
 	$DeathAnimContainer/DeathAnimationHandler.process_mode = Node.PROCESS_MODE_ALWAYS
@@ -48,8 +51,11 @@ func switchCameraState(desired_camera_state: CameraState) -> void:
 			pass;
 
 func loadMap(mapIndex : int) -> void:
-	var desiredMapName : String = "map_" + str(mapIndex)
-	Map = load("res://Scenes/Maps/" + desiredMapName + ".tscn").instantiate()
+	if mapIndex < 6:
+		var desiredMapName : String = "map_" + str(mapIndex)
+		Map = load("res://Scenes/Maps/" + desiredMapName + ".tscn").instantiate()
+	else:
+		Map = load("res://Scenes/Maps/final_map_bridge.tscn").instantiate()
 	add_child(Map)
 	if Map.has_node("Camera"):
 		MapCamera = Map.get_node("Camera")
@@ -84,6 +90,8 @@ func resetCharacterPosition() -> void:
 
 func nextLevel() -> void:
 	deathAnimation()
+	MapCamera = null
+	mapSpawnPoint = null
 	Map.queue_free()
 	levelIndex+=1;
 	initLevel(levelIndex)
@@ -114,6 +122,8 @@ func showMainMenu() -> void:
 		Map.queue_free()
 	if Character:
 		Character.queue_free()
+	if self.has_node("EndOfGameUI"):
+		self.remove_child(EndOfGameUI)
 	
 	var mainMenu : Control = load("res://Scenes/main_menu.tscn").instantiate()
 	add_child(mainMenu)
@@ -133,3 +143,18 @@ func restartMap():
 	if Map and Map.get_node("Objects").get_node_or_null("PowerGrid"):
 		Map.get_node("Objects").get_node("PowerGrid").Reset()
 	pass;
+
+func showGameOver() -> void:
+	if Map:
+		Map.queue_free()
+	if Character:
+		Character.queue_free()
+	
+	EndOfGameUI = load("res://Scenes/end_of_game_ui.tscn").instantiate()
+	add_child(EndOfGameUI)
+
+func loadSpaceInvaders()-> void:
+	if self.has_node("EndOfGameUI"):
+		self.remove_child(EndOfGameUI)
+	
+	

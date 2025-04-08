@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=4 uid="uid://bjl0a44ofvemo"]
+
+[ext_resource type="TileSet" uid="uid://cgoaqjyb343q3" path="res://resources/TileSets/Main_Tile_Set.tres" id="1_lnc41"]
+[ext_resource type="PackedScene" uid="uid://dyc5f4uqp1qu7" path="res://Scenes/start_level_door.tscn" id="2_xe71m"]
+[ext_resource type="PackedScene" uid="uid://b65pkqrd3m3me" path="res://Scenes/console.tscn" id="3_kd17s"]
+
+[node name="FinalMapBridge" type="Node2D"]
+
+[node name="BaseLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAVAAsAAQAAAAgAAAAVAAwAAQAAAAgAAAAUAAwAAQAAAAgAAAAUAAsAAQAAAAgAAAATAAsAAQAAAAgAAAATAAwAAQAAAAgAAAASAAwAAQAAAAgAAAASAAsAAQAAAAgAAAARAAsAAQAEAAgAAAAQAAsAAQAEAAgAAAAPAAsAAQAEAAgAAAAOAAsAAQAEAAgAAAANAAsAAQAEAAgAAAARAAwAAQADAAgAAAAOAAwAAQAAAAkAAAAPAAwAAQACAAgAAAAQAAwAAQABAAgAAAANAAwAAQAAAAkAAAANAA0AAQAAAAkAAAAOAA0AAQAAAAkAAAAPAA0AAQAAAAkAAAAQAA0AAQAAAAkAAAARAA0AAQAAAAkAAAASAA0AAQAAAAkAAAATAA0AAQAAAAkAAAAUAA0AAQAAAAkAAAAVAA0AAQAAAAkAAAA=")
+tile_set = ExtResource("1_lnc41")
+
+[node name="MapElementsLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAARAAoAAQABAAAAAAARAA4AAQABAAIAAAASAA4AAQABAAIAAAATAA4AAQABAAIAAAAUAA4AAQABAAIAAAAVAA4AAQABAAIAAAAQAA4AAQABAAIAAAAPAA4AAQABAAIAAAAOAA4AAQABAAIAAAANAA4AAQABAAIAAAASAAoAAQABAAAAAAATAAoAAQABAAAAAAAUAAoAAQABAAAAAAAVAAoAAQABAAAAAAAQAAoAAQABAAAAAAAPAAoAAQABAAAAAAAOAAoAAQABAAAAAAANAAoAAQABAAAAAAAMAAoAAQAAAAAAAAAMAA4AAQAAAAIAAAAMAAsAAQAAAAEAAAAMAAwAAQAAAAEAAAAMAA0AAQAAAAEAAAAWAAoAAQACAAAAAAAWAA4AAQACAAIAAAAWAAsAAQACAAEAAAAWAAwAAQACAAEAAAAWAA0AAQACAAEAAAA=")
+tile_set = ExtResource("1_lnc41")
+
+[node name="Camera" type="Camera2D" parent="."]
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="StartLevelDoor" parent="Objects" instance=ExtResource("2_xe71m")]
+position = Vector2(440, 424)
+scale = Vector2(1.5, 1.5)
+
+[node name="SpawnPoint" type="Marker2D" parent="Objects"]
+position = Vector2(440, 435)
+
+[node name="Console" parent="Objects" instance=ExtResource("3_kd17s")]
+position = Vector2(690, 432)

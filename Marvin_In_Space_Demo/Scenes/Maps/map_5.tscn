@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://b3jhe3d25g058"]
+[gd_scene load_steps=11 format=4 uid="uid://b3jhe3d25g058"]
 
 [ext_resource type="TileSet" uid="uid://cgoaqjyb343q3" path="res://resources/TileSets/Main_Tile_Set.tres" id="1_n2sm0"]
 [ext_resource type="PackedScene" uid="uid://c87y1ft2pdqgc" path="res://Scenes/electric_fence.tscn" id="2_bmg5i"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dh1e6ui48a3ab" path="res://Scenes/spikes.tscn" id="5_73jlt"]
 [ext_resource type="Script" uid="uid://bjcx0lsm0velm" path="res://Scripts/hit_box.gd" id="7_ww7tq"]
 [ext_resource type="PackedScene" uid="uid://dw4gulmlywi5" path="res://Scenes/gravity_area.tscn" id="8_n50vi"]
+[ext_resource type="PackedScene" uid="uid://dl1880w1nkyhn" path="res://Scenes/collectible.tscn" id="9_cprxy"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7f33l"]
 
@@ -201,3 +202,6 @@ gravityMult = 2.5
 
 [node name="Electric_Fence" parent="Objects" instance=ExtResource("2_bmg5i")]
 position = Vector2(660, 324)
+
+[node name="Collectible" parent="Objects" instance=ExtResource("9_cprxy")]
+position = Vector2(1137, 497)

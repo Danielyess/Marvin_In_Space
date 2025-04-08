@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://b65pkqrd3m3me"]
+
+[ext_resource type="Script" uid="uid://cheenju4b0na2" path="res://Scripts/console.gd" id="1_atbq5"]
+[ext_resource type="Texture2D" uid="uid://cdqr35fyn0r12" path="res://resources/Sprites/controlPanel.png" id="1_buh4c"]
+[ext_resource type="Script" uid="uid://cfnotqwi0ab8h" path="res://Scripts/interact_area.gd" id="2_ewjey"]
+[ext_resource type="Texture2D" uid="uid://b43kqjwlgpfot" path="res://resources/Sprites/InteractKey-E.png" id="3_ewjey"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljg6h"]
+size = Vector2(49.5, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_buh4c"]
+size = Vector2(29, 30)
+
+[node name="Console" type="StaticBody2D"]
+script = ExtResource("1_atbq5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_buh4c")
+
+[node name="Interact_Area2D" type="Area2D" parent="."]
+script = ExtResource("2_ewjey")
+metadata/_custom_type_script = "uid://cfnotqwi0ab8h"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact_Area2D"]
+position = Vector2(-10.25, -9.5)
+shape = SubResource("RectangleShape2D_ljg6h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_buh4c")
+
+[node name="InteractionSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_ewjey")
