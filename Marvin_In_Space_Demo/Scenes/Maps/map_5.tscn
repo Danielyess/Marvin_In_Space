@@ -36,7 +36,7 @@ position = Vector2(160, 658)
 [node name="EndOfLevelDoor" parent="Objects" instance=ExtResource("2_hw2rt")]
 position = Vector2(1129, 168)
 scale = Vector2(1.5, 1.5)
-current_state = 0
+currentState = 0
 
 [node name="JetpackRefresh" parent="Objects" instance=ExtResource("4_7dmid")]
 position = Vector2(350, 475)

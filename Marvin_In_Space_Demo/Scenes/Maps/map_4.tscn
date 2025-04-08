@@ -160,6 +160,7 @@ rotation = -1.5708
 [node name="EndOfLevelDoor" parent="Objects" instance=ExtResource("7_qveub")]
 position = Vector2(956, 168)
 scale = Vector2(1.5, 1.5)
+currentState = 0
 
 [node name="HitBox" type="Area2D" parent="Objects"]
 script = ExtResource("7_1smp0")

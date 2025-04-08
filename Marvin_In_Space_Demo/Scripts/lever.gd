@@ -11,8 +11,11 @@ signal stateChanged(emitter : StaticBody2D)
 @onready var InteractionSprite : Sprite2D = $InteractionSprite
 @onready var SpriteAnimation : AnimatedSprite2D =  $MainSprite  
 
+var defaultState : Pwr.PowerState
+
 func _ready() -> void:
 	switchState(currentState,true)
+	defaultState = currentState
 	if currentState == Pwr.PowerState.ON:
 		SpriteAnimation.play("DefaultON")
 	else:
@@ -49,3 +52,6 @@ func switchState(desired_state : Pwr.PowerState, force : bool) -> void:
 				SpriteAnimation.play("On")
 				currentState = Pwr.PowerState.ON
 		emit_signal("stateChanged", self)
+
+func resetState():
+	switchState(defaultState, true)

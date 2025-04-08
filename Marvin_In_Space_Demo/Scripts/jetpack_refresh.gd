@@ -5,7 +5,7 @@ extends StaticBody2D
 @export var plusJumpCharges : int = 2
 
 func pickUp(character : CharacterBody2D) -> void:
-	character.jumpCharges += plusJumpCharges
+	character.addJumpCharge(2, true)
 	character.updateJumpChargeSprite()
 	refresh()
 

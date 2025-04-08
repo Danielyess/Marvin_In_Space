@@ -2,7 +2,7 @@ extends Node2D
 
 enum CameraState{player, map, menu}
 
-@export var level_index : int = 0
+@export var levelIndex : int = 0
 
 var currentState: CameraState = CameraState.menu
 var mapSpawnPoint : Marker2D
@@ -15,6 +15,7 @@ var CharacterCamera : Camera2D
 var MenuCamera: Camera2D
 
 func _ready() -> void:
+	$DeathAnimationHandler.process_mode = Node.PROCESS_MODE_ALWAYS
 	Menu = load("res://Scenes/menu.tscn").instantiate()
 	showMainMenu()
 
@@ -80,13 +81,12 @@ func loadMenu() -> void:
 func resetCharacterPosition() -> void:
 	Character.velocity = Vector2(0.0,0.0)
 	Character.position = mapSpawnPoint.position
-	pass;
 
 func nextLevel() -> void:
 	deathAnimation()
 	Map.queue_free()
-	level_index+=1;
-	initLevel(level_index)
+	levelIndex+=1;
+	initLevel(levelIndex)
 	deathAnimationRev()
 
 func deathAnimation() -> void:
@@ -96,7 +96,7 @@ func deathAnimationRev() -> void:
 	$DeathAnimationHandler.play("DeathScreenOut")
 
 func initLevel(level : int) -> void:
-	level_index = level
+	levelIndex = level
 	loadMap(level)
 	if not Character:
 		loadCharacter()
@@ -128,3 +128,9 @@ func resume() -> void:
 	get_tree().paused = false
 	self.remove_child(Menu)
 	switchCameraState(CameraState.player)
+
+func restartMap():
+	resetCharacterPosition()
+	if Map and Map.get_node("Objects").get_node_or_null("PowerGrid"):
+		Map.get_node("Objects").get_node("PowerGrid").Reset()
+	pass;

@@ -36,6 +36,7 @@ position = Vector2(1060, 261)
 [node name="EndOfLevelDoor" parent="Objects" instance=ExtResource("3_xtteh")]
 position = Vector2(1065, 520)
 scale = Vector2(1.5, 1.5)
+currentState = 0
 
 [node name="Door" parent="Objects" instance=ExtResource("4_xtteh")]
 position = Vector2(912, 528)

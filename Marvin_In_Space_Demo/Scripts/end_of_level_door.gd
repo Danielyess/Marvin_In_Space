@@ -17,7 +17,7 @@ func _ready() -> void:
 	InteractionSprite.scale = self.scale * 0.5
 	InteractionSprite.position.y = -30 * (self.scale.x + self.scale.y) /2
 	InteractionSprite.position.x = 0
-	$InteractionArea2D/CollisionShape2D.disabled = true
+	$InteractionArea2D/CollisionShape2D.set_deferred("disabled", true)
 	switchState(currentState, true)
 	if currentState == Pwr.PowerState.ON:
 		SpriteAnimation.play("DefaultON")
@@ -34,18 +34,17 @@ func hideInteract() -> void:
 func interact() -> void:
 	if owner.get_parent().has_method("nextLevel"):
 		owner.get_parent().nextLevel()
-	print_debug("Player interacted with: " + self.name)
 
 func switchState(desiredState : Pwr.PowerState, force : bool) -> void:
 	if currentState != desiredState or force:
 		match desiredState:
 			Pwr.PowerState.ON:
 				SpriteAnimation.play("Opening")
-				$InteractionArea2D/CollisionShape2D.disabled = false
+				$InteractionArea2D/CollisionShape2D.set_deferred("disabled", false)
 				currentState = Pwr.PowerState.ON
 			Pwr.PowerState.OFF:
 				SpriteAnimation.play("Closing")
-				$InteractionArea2D/CollisionShape2D.disabled = true
+				$InteractionArea2D/CollisionShape2D.set_deferred("disabled", true)
 				currentState = Pwr.PowerState.OFF
 			_:
 				pass;

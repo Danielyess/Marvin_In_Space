@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://j3k5hq3ywjtr"]
+[gd_scene load_steps=12 format=4 uid="uid://j3k5hq3ywjtr"]
 
 [ext_resource type="TileSet" uid="uid://cgoaqjyb343q3" path="res://resources/TileSets/Main_Tile_Set.tres" id="1_0861s"]
 [ext_resource type="Script" uid="uid://bjcx0lsm0velm" path="res://Scripts/hit_box.gd" id="2_f3cfk"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b7v3wh34e60nq" path="res://Scenes/switch_box.tscn" id="7_f3cfk"]
 [ext_resource type="PackedScene" uid="uid://mevhu58gyfpf" path="res://Scenes/door.tscn" id="8_d7xhg"]
 [ext_resource type="PackedScene" uid="uid://c87y1ft2pdqgc" path="res://Scenes/electric_fence.tscn" id="9_sgyuc"]
+[ext_resource type="PackedScene" uid="uid://b0p2xbcbvwjth" path="res://Scenes/pick_up_jetpack.tscn" id="10_cgy58"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lmd5f"]
 
@@ -101,7 +102,6 @@ position = Vector2(693, 529)
 
 [node name="Lever" parent="Objects/PowerGrid/Emitters" instance=ExtResource("6_ejqre")]
 position = Vector2(433, 368)
-current_state = 0
 
 [node name="Lever3" parent="Objects/PowerGrid/Emitters" instance=ExtResource("6_ejqre")]
 position = Vector2(538, 530)
@@ -132,3 +132,6 @@ position = Vector2(915, 367)
 
 [node name="Electric_Fence" parent="Objects/PowerGrid/Recievers" instance=ExtResource("9_sgyuc")]
 position = Vector2(292, 370)
+
+[node name="pickUpJetpack" parent="Objects" instance=ExtResource("10_cgy58")]
+position = Vector2(480, 427)

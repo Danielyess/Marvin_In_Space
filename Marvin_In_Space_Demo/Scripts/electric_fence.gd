@@ -20,12 +20,12 @@ func switchState(desired_state : Pwr.PowerState, force : bool)  -> void:
 				$PostSprite.play("Active")
 				$EffectSprite.play("Active")
 				$EffectSprite.visible = true
-				$HitBox/CollisionShape2D.disabled = false
-				$ScrewDriverArea/CollisionShape2D.disabled = false
+				$HitBox/CollisionShape2D.set_deferred("disabled", false)
+				$ScrewDriverArea/CollisionShape2D.set_deferred("disabled", false)
 			Pwr.PowerState.OFF:
 				currentState = Pwr.PowerState.OFF
 				$PostSprite.play("Inactive")
 				$EffectSprite.pause()
 				$EffectSprite.visible = false
-				$HitBox/CollisionShape2D.disabled = true
-				$ScrewDriverArea/CollisionShape2D.disabled = true
+				$HitBox/CollisionShape2D.set_deferred("disabled", true)
+				$ScrewDriverArea/CollisionShape2D.set_deferred("disabled", true)

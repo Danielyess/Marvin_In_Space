@@ -36,6 +36,7 @@ position = Vector2(561, 239)
 [node name="EndOfLevelDoor" parent="Objects" instance=ExtResource("3_uuwls")]
 position = Vector2(909, 264)
 scale = Vector2(1.5, 1.5)
+currentState = 0
 
 [node name="gravityArea" parent="Objects" instance=ExtResource("4_uuwls")]
 position = Vector2(654, 399)

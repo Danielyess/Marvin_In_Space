@@ -39,6 +39,7 @@ var currentState : Pwr.PowerState = Pwr.PowerState.OFF
 var isOpen : bool
 var cover : RigidBody2D
 var canGiveJump : bool = false
+var defaultState : Pwr.PowerState
 
 signal stateChanged(emitter : StaticBody2D)
 
@@ -50,6 +51,7 @@ func _ready() -> void:
 	$BaseCollShape.disabled = true
 	isOpen = false
 	connect("stateChanged", $"../..".refreshGrid)
+	defaultState = currentState
 	
 	cover = load("res://Scenes/switch_box_cover.tscn").instantiate()
 
@@ -161,6 +163,7 @@ func callGateFunc(gate : LogicGate, state1 : Pwr.PowerState, state2: Pwr.PowerSt
 			return Pwr.BUFFER(state1)
 			
 		LogicGate.Not:
+			print_debug("...")
 			return Pwr.NOT(state1)
 			
 		LogicGate.Or:
@@ -182,3 +185,7 @@ func callGateFunc(gate : LogicGate, state1 : Pwr.PowerState, state2: Pwr.PowerSt
 
 func switchState(_desiredState : Pwr.PowerState, _force : bool) ->void:
 	startSubroutine()
+
+func resetState() -> void:
+	currentState = defaultState
+	emit_signal("stateChanged", self)

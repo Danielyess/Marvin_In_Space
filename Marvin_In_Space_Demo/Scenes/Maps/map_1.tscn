@@ -30,7 +30,7 @@ position = Vector2(143, 464)
 [node name="EndOfLevelDoor" parent="Objects" instance=ExtResource("2_gt30j")]
 position = Vector2(1084, 360)
 scale = Vector2(1.5, 1.5)
-current_state = 0
+currentState = 0
 
 [node name="SpikeCluster" type="Node2D" parent="Objects"]
 
@@ -84,7 +84,7 @@ position = Vector2(143, 400)
 
 [node name="Door" parent="Objects" instance=ExtResource("5_lmd5f")]
 position = Vector2(178, 464)
-current_state = 0
+currentState = 0
 
 [node name="Door2" parent="Objects" instance=ExtResource("5_lmd5f")]
 position = Vector2(178, 400)
@@ -97,7 +97,7 @@ position = Vector2(178, 272)
 
 [node name="Door5" parent="Objects" instance=ExtResource("5_lmd5f")]
 position = Vector2(178, 528)
-current_state = 0
+currentState = 0
 
 [node name="MARVINDamaged" parent="Objects" instance=ExtResource("6_ptrbc")]
 position = Vector2(767, 530)

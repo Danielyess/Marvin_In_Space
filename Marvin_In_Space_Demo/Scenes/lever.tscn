@@ -80,6 +80,7 @@ size = Vector2(36, 26)
 script = ExtResource("1_jjeqf")
 
 [node name="InteractionSprite" type="Sprite2D" parent="."]
+visible = false
 z_index = 2
 texture = ExtResource("3_fhlr4")
 

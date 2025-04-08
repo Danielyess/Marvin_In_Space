@@ -17,7 +17,7 @@ func on_area_entered(screwDriver) -> void:
 		return
 	
 	if screwDriver.owner.get_parent().has_method("addJumpCharge") and owner.canGiveJump:
-		screwDriver.owner.get_parent().addJumpCharge(1)
+		screwDriver.owner.get_parent().addJumpCharge(1, false)
 	
 	if owner.has_method("startTimer"):
 		owner.startTimer()
