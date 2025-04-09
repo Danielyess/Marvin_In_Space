@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cxugkokj73alk" path="res://resources/Sprites/SwitchBoxPresets/ThreeSpecialX.png" id="1_66hob"]
 [ext_resource type="Texture2D" uid="uid://cy5uueqriqb28" path="res://resources/Sprites/SwitchBoxPresets/OR.png" id="2_4ad1l"]
 [ext_resource type="Texture2D" uid="uid://dmewg72vjrn6s" path="res://resources/Sprites/SwitchBoxPresets/XOR.png" id="3_66hob"]
-[ext_resource type="Texture2D" uid="uid://ckm1xypkyetnp" path="res://resources/Sprites/SwitchBoxPresets/BUFFER.png" id="4_4ad1l"]
+[ext_resource type="Texture2D" uid="uid://xrx6ehg6lpox" path="res://resources/Sprites/SwitchBoxPresets/NONE.png" id="4_4ad1l"]
 
 [node name="SwitchBox Preset ThreeSpecialX" type="TextureRect"]
 anchors_preset = 8

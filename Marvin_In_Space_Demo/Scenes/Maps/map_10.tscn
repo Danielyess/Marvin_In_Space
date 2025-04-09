@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg66ovgvm1dx1"]
+
+[ext_resource type="PackedScene" uid="uid://dyc5f4uqp1qu7" path="res://Scenes/start_level_door.tscn" id="1_0bhyp"]
+
+[node name="Map10" type="Node2D"]
+
+[node name="BaseLayer" type="TileMapLayer" parent="."]
+
+[node name="MapElementsLayer" type="TileMapLayer" parent="."]
+
+[node name="Camera" type="Camera2D" parent="."]
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="SpawnPoint" type="Marker2D" parent="Objects"]
+
+[node name="StartLevelDoor" parent="Objects" instance=ExtResource("1_0bhyp")]
+scale = Vector2(1.5, 1.5)

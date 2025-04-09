@@ -10,7 +10,6 @@ func _ready() -> void:
 
 func showInteract() -> void:
 	InteractionSprite.visible = true
-	
 
 func hideInteract() -> void:
 	InteractionSprite.visible = false

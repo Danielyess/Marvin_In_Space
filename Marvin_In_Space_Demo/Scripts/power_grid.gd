@@ -33,11 +33,13 @@ func _ready() -> void:
 			if emitters.get_child(i).has_method("startSubroutine"):
 				emitters.get_child(i).startSubroutine()
 
-func refreshGrid(emitter) -> void:
+func refreshGrid(emitter : StaticBody2D) -> void:
 	for i in range(wires.get_child_count()):
 		if wires.get_child(i).emitter.name == emitter.name:
-			wires.get_child(i).call_deferred("switchState",emitter.currentState, false)
+				wires.get_child(i).call_deferred("switchState",emitter.currentState, false, false)
 
 func Reset() -> void:
+	for i in range(wires.get_child_count()):
+		wires.get_child(i).call_deferred("switchState", Pwr.PowerState.OFF, true, true)
 	for i in range(emitters.get_child_count()):
 		emitters.get_child(i).resetState()

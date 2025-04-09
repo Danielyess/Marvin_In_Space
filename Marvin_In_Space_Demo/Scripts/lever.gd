@@ -30,11 +30,9 @@ func _ready() -> void:
 
 func showInteract() -> void:
 	InteractionSprite.visible = true
-	
 
 func hideInteract() -> void:
 	InteractionSprite.visible = false
-
 
 func interact() -> void:
 	if currentState == Pwr.PowerState.ON:

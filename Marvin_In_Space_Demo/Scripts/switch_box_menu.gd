@@ -2,7 +2,6 @@ extends Control
 
 enum LogicGate{
 	None,
-	Buffer,
 	Not,
 	Or,
 	And,
@@ -18,8 +17,10 @@ func loadGraphic(preset : int, gate0 : LogicGate, gate1 : LogicGate = LogicGate.
 		return;
 	elif preset == 1:
 		initOne(gate0)
-	elif preset == 2:
+	elif preset < 3:
 		initTwo(gate0, gate1)
+	elif preset == 3:
+		initTwoZeroOne(gate0,gate1)
 	elif preset < 7:
 		initThreeBase(gate0, gate1, gate2)
 	elif preset == 7:
@@ -40,6 +41,11 @@ func initTwo(gate0: LogicGate, gate1: LogicGate) -> void:
 	graphic.get_node("Gate0").texture = getGate(gate0)
 	graphic.get_node("Gate1").texture = getGate(gate1)
 
+func initTwoZeroOne(gate0: LogicGate, gate1: LogicGate) -> void:
+	graphic = load("res://Scenes/SwitchBoxPresets/switch_box_preset_two_x.tscn").instantiate()
+	graphic.get_node("Gate0").texture = getGate(gate0)
+	graphic.get_node("Gate2").texture = getGate(gate1)
+
 func initThreeBase(gate0 : LogicGate, gate1 : LogicGate, gate2 : LogicGate) -> void:
 	graphic = load("res://Scenes/SwitchBoxPresets/switch_box_preset_three_base_x.tscn").instantiate()
 	graphic.get_node("Gate0").texture = getGate(gate0)
@@ -58,8 +64,6 @@ func getGate(gate : LogicGate) -> CompressedTexture2D:
 	match gate:
 		LogicGate.None:
 			return load("res://resources/Sprites/SwitchBoxPresets/NONE.png")
-		LogicGate.Buffer:
-			return load("res://resources/Sprites/SwitchBoxPresets/BUFFER.png")
 		LogicGate.Not:
 			return load("res://resources/Sprites/SwitchBoxPresets/NOT.png")
 		LogicGate.Or:
@@ -74,7 +78,6 @@ func getGate(gate : LogicGate) -> CompressedTexture2D:
 			return load("res://resources/Sprites/SwitchBoxPresets/XOR.png")
 		_:
 			return load("res://resources/Sprites/SwitchBoxPresets/NONE.png")
-
 
 func _on_ok_button_pressed() -> void:
 	get_tree().paused = false

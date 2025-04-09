@@ -15,7 +15,6 @@ enum SubroutinePreset{ #Check switchBoxPresets OneNote for reference
 
 enum LogicGate{
 	None,
-	Buffer,
 	Not,
 	Or,
 	And,
@@ -89,7 +88,6 @@ func openBox() -> void:
 func startOpeningTimer() -> void:
 	$openingTimer.start()
 
-
 func _on_opening_timer_timeout() -> void:
 	openBox()
 
@@ -159,9 +157,9 @@ func startSubroutine() -> void:
 
 func callGateFunc(gate : LogicGate, state1 : Pwr.PowerState, state2: Pwr.PowerState = Pwr.PowerState.OFF) -> Pwr.PowerState:
 	match(gate):
-		LogicGate.Buffer:
-			return Pwr.BUFFER(state1)
-			
+		LogicGate.None:
+			return state1
+		
 		LogicGate.Not:
 			return Pwr.NOT(state1)
 			

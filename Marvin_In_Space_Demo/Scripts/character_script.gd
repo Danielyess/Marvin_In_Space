@@ -62,7 +62,7 @@ func _input(event: InputEvent) -> void:
 		self.collision_mask = 0b10001
 	
 	#When the character gets stuck or just is stuck
-	if event.is_action("Explode"):
+	if event.is_action_pressed("Explode"):
 		self.takeDamage()
 
 func _physics_process(_delta : float):
@@ -103,7 +103,6 @@ func _physics_process(_delta : float):
 	
 	screwDriverFunc(horizontalDirection)
 	move_and_slide() 
-
 
 func _process(_delta: float) -> void:
 	pass;
@@ -162,17 +161,17 @@ func AnimationHandler(horizontalDirection : float) -> void:
 func takeDamage() -> void:
 	if get_parent().has_method("deathAnimation"):
 		get_parent().deathAnimation()
-	
+		
 	if get_parent().has_method("restartMap"):
-		get_parent().restartMap()
-	
+		get_parent().call_deferred("restartMap")
+		
 	if get_parent().has_method("deathAnimationRev"):
 		get_parent().deathAnimationRev()
 
-func addInteractable(area : Area2D):
+func AddInteractable(area : Area2D):
 	interactions.push_back(area)
 
-func removeInteractable(area : Area2D):
+func RemoveInteractable(area : Area2D):
 	interactions.erase(area)
 
 func multGravity(gravMult):

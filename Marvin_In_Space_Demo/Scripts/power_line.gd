@@ -16,9 +16,9 @@ func _init() -> void:
 func _ready() -> void:
 	#Forces the emitter's state onto the wire so that it updates when the map is 
 	#loaded so its not needed to be done in the editor by hand
-	switchState(emitter.currentState, true)
+	switchState(emitter.currentState, true, false)
 
-func switchState(desiredState : Pwr.PowerState, force : bool) -> void:
+func switchState(desiredState : Pwr.PowerState, force : bool, reset : bool) -> void:
 	if desiredState != currentState or force:
 		match desiredState:
 			Pwr.PowerState.OFF:
@@ -33,8 +33,8 @@ func switchState(desiredState : Pwr.PowerState, force : bool) -> void:
 				printerr("PowerState does not exist!")
 		#Switches it's reciever's powerstate if it is not already
 		if reciever.has_method("switchState"):
-			reciever.switchState(currentState, false)
-		elif reciever.has_method("startSubroutine"):
+			reciever.call_deferred("switchState", currentState, false)
+		elif !reset and reciever.has_method("startSubroutine"):
 			reciever.startSubroutine()
-		else:
+		elif !reset:
 			printerr(reciever.name + "doesn't have a statemanager function")

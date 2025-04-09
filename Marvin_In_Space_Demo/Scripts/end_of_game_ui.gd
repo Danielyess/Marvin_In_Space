@@ -10,6 +10,7 @@ func _ready() -> void:
 	collectibleGot = get_parent().collectibleGot
 	if !collectibleGot:
 		get_node("Collectible").queue_free()
+	$VBoxContainer/MenuButton.grab_focus()
 
 func _process(delta: float) -> void:
 	if collectibleGot:
@@ -23,14 +24,11 @@ func _process(delta: float) -> void:
 		if (collectiblePos.x < 0 and direction.x < 0) or (collectiblePos.x > screenSize.x-(get_node("Collectible").size.x * get_node("Collectible").scale.x) and direction.x > 0):
 			direction.x = -direction.x
 
-
 func _on_collectible_pressed() -> void:
 	print_debug("hihi refernce")
 
-
 func _on_menu_button_pressed() -> void:
 	get_parent().showMainMenu()
-
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()

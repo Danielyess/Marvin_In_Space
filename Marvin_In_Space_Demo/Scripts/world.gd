@@ -35,8 +35,8 @@ func _input(event: InputEvent) -> void:
 			loadMenu()
 			switchCameraState(CameraState.menu)	
 
-func switchCameraState(desired_camera_state: CameraState) -> void:
-	match desired_camera_state:
+func switchCameraState(desiredCameraState: CameraState) -> void:
+	match desiredCameraState:
 		CameraState.player: 
 			currentState = CameraState.player
 			CharacterCamera.make_current()
@@ -51,11 +51,14 @@ func switchCameraState(desired_camera_state: CameraState) -> void:
 			pass;
 
 func loadMap(mapIndex : int) -> void:
-	if mapIndex < 6:
+	
+	if mapIndex < 12:
 		var desiredMapName : String = "map_" + str(mapIndex)
 		Map = load("res://Scenes/Maps/" + desiredMapName + ".tscn").instantiate()
 	else:
 		Map = load("res://Scenes/Maps/final_map_bridge.tscn").instantiate()
+	
+	
 	add_child(Map)
 	if Map.has_node("Camera"):
 		MapCamera = Map.get_node("Camera")
@@ -79,6 +82,7 @@ func loadCharacter() -> void:
 func loadMenu() -> void:
 	Menu.process_mode = Node.PROCESS_MODE_ALWAYS
 	add_child(Menu)
+	Menu.initFocus()
 	if Menu.has_node("Camera"):
 		MenuCamera = Menu.get_node("Camera")
 	else:
@@ -141,8 +145,7 @@ func resume() -> void:
 func restartMap():
 	resetCharacterPosition()
 	if Map and Map.get_node("Objects").get_node_or_null("PowerGrid"):
-		Map.get_node("Objects").get_node("PowerGrid").Reset()
-	pass;
+		Map.get_node("Objects").get_node("PowerGrid").call_deferred("Reset")
 
 func showGameOver() -> void:
 	if Map:
@@ -152,9 +155,3 @@ func showGameOver() -> void:
 	
 	EndOfGameUI = load("res://Scenes/end_of_game_ui.tscn").instantiate()
 	add_child(EndOfGameUI)
-
-func loadSpaceInvaders()-> void:
-	if self.has_node("EndOfGameUI"):
-		self.remove_child(EndOfGameUI)
-	
-	
