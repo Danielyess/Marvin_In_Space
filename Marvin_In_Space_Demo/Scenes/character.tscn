@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://hwsqd2fr6flq"]
+[gd_scene load_steps=37 format=3 uid="uid://hwsqd2fr6flq"]
 
 [ext_resource type="Script" uid="uid://bydph30rrsyb2" path="res://Scripts/character_script.gd" id="1_pwt0q"]
 [ext_resource type="Texture2D" uid="uid://b86rfg0qhscq6" path="res://resources/Sprites/MARVIN_V2-Sheet.png" id="2_owm7s"]
@@ -233,6 +233,9 @@ size = Vector2(18, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2mse5"]
 size = Vector2(35, 38)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_reotu"]
+radius = 2.0
+
 [node name="MARVIN" type="CharacterBody2D"]
 z_index = 4
 z_as_relative = false
@@ -286,3 +289,8 @@ texture = ExtResource("6_2mse5")
 
 [node name="TeleportIcon" type="Sprite2D" parent="."]
 texture = ExtResource("7_reotu")
+
+[node name="TeleportArea" type="Area2D" parent="."]
+
+[node name="TeleportCollShape" type="CollisionShape2D" parent="TeleportArea"]
+shape = SubResource("CircleShape2D_reotu")

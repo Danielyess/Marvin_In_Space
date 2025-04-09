@@ -34,6 +34,7 @@ var canInteract : bool = true
 
 @onready var JetpackIcons :=  [$JetpackIcon1, $JetpackIcon2]
 @onready var TeleportIcon : Sprite2D = $TeleportIcon
+@onready var TeleportFeeler : Area2D = $TeleportArea
 
 func _ready() -> void:
 	JetpackIcons[0].scale = self.scale * 0.5
@@ -45,6 +46,9 @@ func _ready() -> void:
 	TeleportIcon.position.x = self.position.x
 	TeleportIcon.position.y = -40
 	TeleportIcon.scale = self.scale * 0.5
+	TeleportFeeler.position.y = 0
+	TeleportFeeler.collision_layer = 0
+	TeleportFeeler.collision_mask = 0b10001
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Interact") and canInteract:
@@ -69,6 +73,7 @@ func _physics_process(_delta : float):
 	var horizontalDirection : float = Input.get_axis("MoveLeft","MoveRight");
 	MovementHandler(horizontalDirection)
 	AnimationHandler(horizontalDirection)
+	TeleportFeeler.position.x = teleportLength * sign(horizontalDirection+0.1)
 	if !is_on_floor():
 		velocity.y += gravity / 60;
 	else:
@@ -89,11 +94,8 @@ func _physics_process(_delta : float):
 		updateJumpChargeSprite()
 		currentState = AnimationState.Jump
 	
-	if(Input.is_action_just_pressed("Teleport") and canTeleport and teleportCharge > 0):
-		if horizontalDirection >= 0:
-			position.x += teleportLength;
-		else:
-			position.x -= teleportLength;
+	if(Input.is_action_just_pressed("Teleport") and canTeleport and teleportCharge > 0 and TeleportFeeler.get_overlapping_bodies().is_empty()):
+		position.x += teleportLength * sign(horizontalDirection+0.1);
 		self.velocity.y = 0
 		SpriteAnimation.play("Teleport")
 		currentState = AnimationState.Teleport

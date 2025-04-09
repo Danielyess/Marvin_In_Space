@@ -1,4 +1,10 @@
-res://Scenes/main_menu.tscn
+res://Scenes/world.tscn
 res://resources/TileSets/Main_Tile_Set.tres
 res://Scripts/character_script.gd
-res://Scripts/main_menu.gd
+res://Scenes/Maps/map_7.tscn
+res://Scenes/Maps/map_9.tscn
+res://Scenes/Maps/map_8.tscn
+res://Scenes/switch_box.tscn
+res://Scenes/Maps/map_10.tscn
+res://Scenes/main_menu.tscn
+res://Scenes/character.tscn

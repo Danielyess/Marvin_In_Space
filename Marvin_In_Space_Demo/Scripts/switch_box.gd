@@ -48,6 +48,7 @@ func _ready() -> void:
 	$InteractionSprite.scale = Vector2(0.5,0.5)
 	$InteractionSprite.position.y -= 30 * (self.scale.x + self.scale.y) /2
 	$BaseCollShape.disabled = true
+	$InteractArea/CollisionShape2D.set_deferred("disabled", true)
 	isOpen = false
 	connect("stateChanged", $"../..".refreshGrid)
 	defaultState = currentState
@@ -76,7 +77,6 @@ func interact() -> void:
 		add_child(menu)
 		get_tree().paused = true
 
-
 func openBox() -> void:
 	if !isOpen:
 		$MainSprite.play("Open")
@@ -84,6 +84,7 @@ func openBox() -> void:
 		$InteractionSprite.visible = true
 		add_child(cover)
 		$CoverTimeoutTimer.start()
+		$InteractArea/CollisionShape2D.set_deferred("disabled", false)
 
 func startOpeningTimer() -> void:
 	$openingTimer.start()
