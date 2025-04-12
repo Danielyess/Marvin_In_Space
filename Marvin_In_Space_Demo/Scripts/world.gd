@@ -1,34 +1,34 @@
 extends Node2D
 
-enum CameraState{player, map, menu}
+enum CameraState{player, Level, menu}
 
 @export var levelIndex : int = 0
 
 var currentState: CameraState = CameraState.menu
-var mapSpawnPoint : Marker2D
-var Character : CharacterBody2D
-var Map : Node2D
-var Menu : Control
-var EndOfGameUI : Control
+var LevelSpawnPoint : Marker2D
+var Player : CharacterBody2D
+var Level : Node2D
+var PauseMenu : Control
+var EndScreen : Control
 
-var MapCamera : Camera2D 
-var CharacterCamera : Camera2D 
+var LevelCamera : Camera2D 
+var PlayerCamera : Camera2D 
 var MenuCamera: Camera2D
 
 var collectibleGot : bool = false
 
 func _ready() -> void:
 	$DeathAnimContainer/DeathAnimationHandler.process_mode = Node.PROCESS_MODE_ALWAYS
-	Menu = load("res://Scenes/menu.tscn").instantiate()
+	PauseMenu = load("res://Scenes/pause_menu.tscn").instantiate()
 	showMainMenu()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("SwitchCamera"):
 		match(currentState):
-			CameraState.map:
+			CameraState.Level:
 				switchCameraState(CameraState.player)
 			CameraState.player:
-				switchCameraState(CameraState.map)
+				switchCameraState(CameraState.Level)
 	if event.is_action_pressed("MenuButton"):
 		if not self.has_node("Main Menu"):
 			get_tree().paused = true
@@ -39,64 +39,63 @@ func switchCameraState(desiredCameraState: CameraState) -> void:
 	match desiredCameraState:
 		CameraState.player: 
 			currentState = CameraState.player
-			CharacterCamera.make_current()
-		CameraState.map:
-			currentState = CameraState.map
-			MapCamera.make_current()
-			MapCamera.position = Vector2(get_viewport_rect().size.x/2,get_viewport_rect().size.y/2)
+			PlayerCamera.make_current()
+		CameraState.Level:
+			currentState = CameraState.Level
+			LevelCamera.make_current()
+			LevelCamera.position = Vector2(get_viewport_rect().size.x/2,get_viewport_rect().size.y/2)
 		CameraState.menu:
 			currentState = CameraState.menu
 			MenuCamera.make_current()
 		_:
 			pass;
 
-func loadMap(mapIndex : int) -> void:
-	
-	if mapIndex < 12:
-		var desiredMapName : String = "map_" + str(mapIndex)
-		Map = load("res://Scenes/Maps/" + desiredMapName + ".tscn").instantiate()
+func loadLevel() -> void:
+	if levelIndex < 13:
+		var desiredLevelName : String = "level_" + str(levelIndex)
+		Level = load("res://Scenes/Levels/" + desiredLevelName + ".tscn").instantiate()
 	else:
-		Map = load("res://Scenes/Maps/final_map_bridge.tscn").instantiate()
+		Level = load("res://Scenes/Levels/final_level_bridge.tscn").instantiate()
 	
 	
-	add_child(Map)
-	if Map.has_node("Camera"):
-		MapCamera = Map.get_node("Camera")
+	add_child(Level)
+	if Level.has_node("Camera"):
+		LevelCamera = Level.get_node("Camera")
 	else:
-		printerr("Couldn't get map camera.")
+		printerr("Couldn't get Level camera.")
 		
-	if Map.get_node("Objects").has_node("SpawnPoint"):
-		mapSpawnPoint = Map.get_node("Objects").get_node("SpawnPoint")
+	if Level.get_node("Objects").has_node("SpawnPoint"):
+		LevelSpawnPoint = Level.get_node("Objects").get_node("SpawnPoint")
 	else:
-		printerr("Couldn't get map spawn point.")
+		printerr("Couldn't get Level spawn point.")
 
-func loadCharacter() -> void:
-	Character = load("res://Scenes/character.tscn").instantiate()
-	add_child(Character)
-	if Character.has_node("Camera"):
-		CharacterCamera = Character.get_node("Camera")
+func loadPlayer() -> void:
+	Player = load("res://Scenes/Player.tscn").instantiate()
+	add_child(Player)
+	if Player.has_node("Camera"):
+		PlayerCamera = Player.get_node("Camera")
 	else:
-		printerr("Couldn't get character camera")
-	resetCharacterPosition()
+		printerr("Couldn't get Player camera")
+	resetPlayerPosition()
 
 func loadMenu() -> void:
-	Menu.process_mode = Node.PROCESS_MODE_ALWAYS
-	add_child(Menu)
-	Menu.initFocus()
-	if Menu.has_node("Camera"):
-		MenuCamera = Menu.get_node("Camera")
+	PauseMenu.process_mode = Node.PROCESS_MODE_ALWAYS
+	add_child(PauseMenu)
+	PauseMenu.initFocus()
+	if PauseMenu.has_node("Camera"):
+		MenuCamera = PauseMenu.get_node("Camera")
 	else:
 		printerr("Menu has no Camera node!!")
 
-func resetCharacterPosition() -> void:
-	Character.velocity = Vector2(0.0,0.0)
-	Character.position = mapSpawnPoint.position
+func resetPlayerPosition() -> void:
+	Player.velocity = Vector2(0.0,0.0)
+	Player.position = LevelSpawnPoint.position
 
 func nextLevel() -> void:
 	deathAnimation()
-	MapCamera = null
-	mapSpawnPoint = null
-	Map.queue_free()
+	LevelCamera = null
+	LevelSpawnPoint = null
+	Level.queue_free()
 	levelIndex+=1;
 	initLevel(levelIndex)
 	deathAnimationRev()
@@ -109,49 +108,49 @@ func deathAnimationRev() -> void:
 
 func initLevel(level : int) -> void:
 	levelIndex = level
-	loadMap(level)
-	if not Character:
-		loadCharacter()
+	loadLevel()
+	if not Player:
+		loadPlayer()
 	if level < 3:
-		Character.maxJumpCharges = 1
-		Character.updateJumpChargeSprite()
+		Player.maxJumpCharges = 1
+		Player.updateJumpChargeSprite()
 	if level < 4 :
-		Character.canTeleport = false 
-		Character.updateTeleportSprite()
-	resetCharacterPosition()
+		Player.canTeleport = false 
+		Player.updateTeleportSprite()
+	resetPlayerPosition()
 	switchCameraState(CameraState.player)
 
 func showMainMenu() -> void:
-	if Map:
-		Map.queue_free()
-	if Character:
-		Character.queue_free()
-	if self.has_node("EndOfGameUI"):
-		self.remove_child(EndOfGameUI)
+	if Level:
+		Level.queue_free()
+	if Player:
+		Player.queue_free()
+	if self.has_node("EndScreen"):
+		self.remove_child(EndScreen)
 	
 	var mainMenu : Control = load("res://Scenes/main_menu.tscn").instantiate()
 	add_child(mainMenu)
 
-	if self.has_node("Menu"):
-		self.remove_child(Menu)
+	if self.has_node("PauseMenu"):
+		self.remove_child(PauseMenu)
 	
 	get_tree().paused = false
 
-func resume() -> void:
+func resumeGame() -> void:
 	get_tree().paused = false
-	self.remove_child(Menu)
+	self.remove_child(PauseMenu)
 	switchCameraState(CameraState.player)
 
-func restartMap():
-	resetCharacterPosition()
-	if Map and Map.get_node("Objects").get_node_or_null("PowerGrid"):
-		Map.get_node("Objects").get_node("PowerGrid").call_deferred("Reset")
+func restartLevel():
+	resetPlayerPosition()
+	if Level and Level.get_node("Objects").get_node_or_null("PowerGrid"):
+		Level.get_node("Objects").get_node("PowerGrid").call_deferred("Reset")
 
 func showGameOver() -> void:
-	if Map:
-		Map.queue_free()
-	if Character:
-		Character.queue_free()
+	if Level:
+		Level.queue_free()
+	if Player:
+		Player.queue_free()
 	
-	EndOfGameUI = load("res://Scenes/end_of_game_ui.tscn").instantiate()
-	add_child(EndOfGameUI)
+	EndScreen = load("res://Scenes/end_screen.tscn").instantiate()
+	add_child(EndScreen)

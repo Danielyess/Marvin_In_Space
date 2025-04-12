@@ -4,5 +4,5 @@ extends StaticBody2D
 func pickUp(character : CharacterBody2D) -> void:
 	character.canTeleport = true
 	character.updateTeleportSprite()
-	character.RemoveInteractable($Interact_Area2D)
+	character.removeInteractable($InteractionArea2D)
 	queue_free()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dw4gulmlywi5"]
 
-[ext_resource type="Script" uid="uid://dqinroo6ckm6c" path="res://Scripts/gravity_area2d.gd" id="1_jxtpg"]
+[ext_resource type="Script" uid="uid://dqinroo6ckm6c" path="res://Scripts/gravity_area_script.gd" id="1_i82as"]
 [ext_resource type="FontFile" uid="uid://bgeobguk8qd2n" path="res://resources/Round9x13.ttf" id="2_i82as"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxtpg"]
@@ -8,13 +8,13 @@ size = Vector2(245, 127)
 
 [node name="gravityArea" type="Area2D"]
 priority = 1
-script = ExtResource("1_jxtpg")
+script = ExtResource("1_i82as")
 gravityMult = 2.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="BaseCollShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jxtpg")
 
-[node name="ColorRect" type="ColorRect" parent="CollisionShape2D"]
+[node name="ColorRect" type="ColorRect" parent="BaseCollShape"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -25,10 +25,6 @@ offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.509804, 0.654902, 0.686275, 0.192157)
-
-[node name="Polygon2D" type="Polygon2D" parent="."]
-visible = false
-polygon = PackedVector2Array(-121, -63, 123, -63, 123, 64, -123, 64, -123, -63)
 
 [node name="Label" type="Label" parent="."]
 offset_left = -119.0

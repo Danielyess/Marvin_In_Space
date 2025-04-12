@@ -1,5 +1,6 @@
 #This node should be used when you want something to happen if Marvin's screwdriver touches it
 #Currently used by: SwitchBox in order to open it's cover and the electric fence to give Marvin 1 jumpcharge
+class_name ScrewDriverInteractionArea2D
 extends Area2D
 
 func _init() -> void:

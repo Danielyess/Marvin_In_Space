@@ -1,28 +1,28 @@
 [gd_scene load_steps=5 format=3 uid="uid://dh1e6ui48a3ab"]
 
 [ext_resource type="Texture2D" uid="uid://cc8appgbu1gia" path="res://resources/Sprites/Spikes.png" id="1_a5dqs"]
-[ext_resource type="Script" uid="uid://bjcx0lsm0velm" path="res://Scripts/hit_box.gd" id="1_gwqs2"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwqs2"]
-size = Vector2(30, 6.5)
+[ext_resource type="Script" uid="uid://bjcx0lsm0velm" path="res://Scripts/hit_box2D.gd" id="1_gwqs2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qgod"]
 size = Vector2(80, 2.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwqs2"]
+size = Vector2(30, 6.5)
+
 [node name="Spikes" type="StaticBody2D"]
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="BaseCollShape" type="CollisionShape2D" parent="."]
+position = Vector2(-7.45058e-07, 15.5)
+scale = Vector2(0.4, 0.4)
+shape = SubResource("RectangleShape2D_0qgod")
+
+[node name="MainSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_a5dqs")
 
 [node name="HitBox" type="Area2D" parent="."]
 script = ExtResource("1_gwqs2")
 metadata/_custom_type_script = "uid://bjcx0lsm0velm"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+[node name="HitBoxCollShape" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_gwqs2")
-
-[node name="Shape" type="CollisionShape2D" parent="."]
-position = Vector2(-7.45058e-07, 15.5)
-scale = Vector2(0.4, 0.4)
-shape = SubResource("RectangleShape2D_0qgod")

@@ -15,19 +15,19 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_emvic")
 
-[node name="BaseCollisionShape" type="CollisionShape2D" parent="."]
+[node name="BaseCollShape" type="CollisionShape2D" parent="."]
 position = Vector2(16, 0.25)
 shape = SubResource("RectangleShape2D_srjfv")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="MainSprite" type="Sprite2D" parent="."]
 position = Vector2(17, 0)
 rotation = 1.5708
 texture = ExtResource("2_bwb5j")
 
-[node name="switchBoxUnscrew" type="Area2D" parent="."]
+[node name="ScrewDriverInteractorArea" type="Area2D" parent="."]
 script = ExtResource("3_41ike")
 
-[node name="unscrewShape" type="CollisionShape2D" parent="switchBoxUnscrew"]
+[node name="InteractorShapeColl" type="CollisionShape2D" parent="ScrewDriverInteractorArea"]
 show_behind_parent = true
 position = Vector2(31, 0)
 scale = Vector2(2.3, 2.3)

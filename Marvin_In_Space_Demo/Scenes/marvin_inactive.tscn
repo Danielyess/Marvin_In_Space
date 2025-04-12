@@ -7,8 +7,8 @@ size = Vector2(26, 32)
 
 [node name="MARVINInactive" type="RigidBody2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="BaseCollShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3gsfq")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="MainSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_p4l6d")

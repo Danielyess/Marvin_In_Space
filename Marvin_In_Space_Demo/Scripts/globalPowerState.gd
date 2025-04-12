@@ -1,5 +1,5 @@
 class_name Pwr
-enum PowerState{ON, OFF}
+enum PowerState{OFF = 0, ON = 1}
 
 #Functions for the logic gates
 

@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=4 uid="uid://dhmbbitnp2rws"]
+
+[ext_resource type="TileSet" uid="uid://cgoaqjyb343q3" path="res://resources/TileSets/Main_Tile_Set.tres" id="1_qyfjo"]
+[ext_resource type="Script" uid="uid://c7xlswb662q1m" path="res://Scripts/power_grid.gd" id="2_5sum7"]
+[ext_resource type="PackedScene" uid="uid://p04j5jtsnw4v" path="res://Scenes/end_of_level_door.tscn" id="3_uxb2q"]
+[ext_resource type="PackedScene" uid="uid://dyc5f4uqp1qu7" path="res://Scenes/start_level_door.tscn" id="3_xddmj"]
+[ext_resource type="Script" uid="uid://bnk5b2ptmbdnt" path="res://Scripts/power_line.gd" id="4_k2j6k"]
+[ext_resource type="PackedScene" uid="uid://b5dr7q8wglje5" path="res://Scenes/lever.tscn" id="4_uxb2q"]
+[ext_resource type="PackedScene" uid="uid://c87y1ft2pdqgc" path="res://Scenes/electric_fence.tscn" id="5_k2j6k"]
+
+[node name="Level6" type="Node2D"]
+
+[node name="BaseLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAKAAcAAQABAAEAAAAKAAgAAQABAAEAAAAKAAkAAQABAAEAAAAKAAoAAQABAAEAAAAKAAsAAQABAAEAAAAKAAwAAQABAAEAAAAKAA0AAQABAAEAAAAKAA4AAQABAAEAAAAKAA8AAQABAAEAAAAKABAAAQABAAEAAAALAAcAAQABAAEAAAALAAgAAQABAAEAAAALAAkAAQABAAEAAAALAAoAAQABAAEAAAALAAsAAQABAAEAAAALAAwAAQABAAEAAAALAA0AAQABAAEAAAALAA4AAQABAAEAAAALAA8AAQABAAEAAAALABAAAQABAAEAAAAMAAcAAQABAAEAAAAMAAgAAQABAAEAAAAMAAkAAQABAAEAAAAMAAoAAQABAAEAAAAMAAsAAQABAAEAAAAMAAwAAQABAAEAAAAMAA0AAQABAAEAAAAMAA4AAQABAAEAAAAMAA8AAQABAAEAAAAMABAAAQABAAEAAAANAAcAAQABAAEAAAANAAgAAQABAAEAAAANAAkAAQABAAEAAAANAAoAAQABAAEAAAANAAsAAQABAAEAAAANAAwAAQABAAEAAAANAA0AAQABAAEAAAANAA4AAQABAAEAAAANAA8AAQABAAEAAAANABAAAQABAAEAAAAOAAcAAQABAAEAAAAOAAgAAQABAAEAAAAOAAkAAQABAAEAAAAOAAoAAQABAAEAAAAOAAsAAQABAAEAAAAOAAwAAQABAAEAAAAOAA0AAQABAAEAAAAOAA4AAQABAAEAAAAOAA8AAQABAAEAAAAOABAAAQABAAEAAAAPAAcAAQABAAEAAAAPAAgAAQABAAEAAAAPAAkAAQABAAEAAAAPAAoAAQABAAEAAAAPAAsAAQABAAEAAAAPAAwAAQABAAEAAAAPAA0AAQABAAEAAAAPAA4AAQABAAEAAAAPAA8AAQABAAEAAAAPABAAAQABAAEAAAAQAAcAAQABAAEAAAAQAAgAAQABAAEAAAAQAAkAAQABAAEAAAAQAAoAAQABAAEAAAAQAAsAAQABAAEAAAAQAAwAAQABAAEAAAAQAA0AAQABAAEAAAAQAA4AAQABAAEAAAAQAA8AAQABAAEAAAAQABAAAQABAAEAAAARAAwAAQABAAEAAAARAA0AAQABAAEAAAARAA4AAQABAAEAAAARAA8AAQABAAEAAAARABAAAQABAAEAAAASAAwAAQABAAEAAAASAA0AAQABAAEAAAASAA4AAQABAAEAAAASAA8AAQABAAEAAAASABAAAQABAAEAAAATAAwAAQABAAEAAAATAA0AAQABAAEAAAATAA4AAQABAAEAAAATAA8AAQABAAEAAAATABAAAQABAAEAAAAUAAwAAQABAAEAAAAUAA0AAQABAAEAAAAUAA4AAQABAAEAAAAUAA8AAQABAAEAAAAUABAAAQABAAEAAAAVAAwAAQABAAEAAAAVAA0AAQABAAEAAAAVAA4AAQABAAEAAAAVAA8AAQABAAEAAAAVABAAAQABAAEAAAAWAAwAAQABAAEAAAAWAA0AAQABAAEAAAAWAA4AAQABAAEAAAAWAA8AAQABAAEAAAAWABAAAQABAAEAAAAXAAwAAQABAAEAAAAXAA0AAQABAAEAAAAXAA4AAQABAAEAAAAXAA8AAQABAAEAAAAXABAAAQABAAEAAAAYAAwAAQABAAEAAAAYAA0AAQABAAEAAAAYAA4AAQABAAEAAAAYAA8AAQABAAEAAAAYABAAAQABAAEAAAAZAAwAAQABAAEAAAAZAA0AAQABAAEAAAAZAA4AAQABAAEAAAAZAA8AAQABAAEAAAAZABAAAQABAAEAAAAaAAwAAQABAAEAAAAaAA0AAQABAAEAAAAaAA4AAQABAAEAAAAaAA8AAQABAAEAAAAaABAAAQABAAEAAAA=")
+tile_set = ExtResource("1_qyfjo")
+
+[node name="MapElementsLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAKAAcAAQAAAAAAAAAKAAgAAQAAAAEAAAAKAAkAAQAAAAQAAAAKAAoAAQAAAAEAAAAKAAsAAQAAAAEAAAAKAAwAAQAAAAEAAAAKAA0AAQAAAAEAAAAKAA4AAQAAAAEAAAAKAA8AAQAAAAEAAAAKABAAAQAAAAIAAAALAAcAAQABAAAAAAALABAAAQABAAIAAAAMAAcAAQABAAAAAAAMABAAAQABAAIAAAANAAcAAQABAAAAAAANABAAAQABAAIAAAAOAAcAAQABAAAAAAAOABAAAQABAAIAAAAPAAcAAQABAAAAAAAPABAAAQABAAIAAAAQAAcAAQACAAAAAAAQAAgAAQACAAEAAAAQAAkAAQACAAEAAAAQAAoAAQACAAEAAAAQAAsAAQACAAEAAAAQAAwAAQAIAAEAAAAQABAAAQABAAIAAAARAAwAAQABAAAAAAARABAAAQABAAIAAAASAAwAAQABAAAAAAASABAAAQABAAIAAAATAAwAAQABAAAAAAATABAAAQABAAIAAAAUAAwAAQABAAAAAAAUABAAAQABAAIAAAAVAAwAAQABAAAAAAAVABAAAQABAAIAAAAWAAwAAQABAAAAAAAWABAAAQABAAIAAAAXAAwAAQABAAAAAAAXABAAAQABAAIAAAAYAAwAAQABAAAAAAAYABAAAQABAAIAAAAZAAwAAQABAAAAAAAZABAAAQABAAIAAAAaAAwAAQACAAAAAAAaAA0AAQACAAEAAAAaAA4AAQACAAEAAAAaAA8AAQACAAEAAAAaABAAAQACAAIAAAALAAkAAQACAAQAAAA=")
+tile_set = ExtResource("1_qyfjo")
+
+[node name="Camera" type="Camera2D" parent="."]
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="SpawnPoint" type="Marker2D" parent="Objects"]
+position = Vector2(432, 498)
+
+[node name="PowerGrid" type="Node" parent="Objects"]
+script = ExtResource("2_5sum7")
+metadata/_custom_type_script = "uid://c7xlswb662q1m"
+
+[node name="Wires" type="Node" parent="Objects/PowerGrid"]
+
+[node name="PowerLine2D" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
+points = PackedVector2Array(372, 513, 372, 528, 336, 528, 336, 415, 351, 415)
+width = 2.0
+script = ExtResource("4_k2j6k")
+emitter = NodePath("../../Emitters/Lever")
+reciever = NodePath("../../Recievers/Electric_Fence")
+metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
+
+[node name="PowerLine2D2" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
+points = PackedVector2Array(375, 512, 375, 528, 738, 528, 738, 511)
+width = 2.0
+script = ExtResource("4_k2j6k")
+emitter = NodePath("../../Emitters/Lever")
+reciever = NodePath("../../Recievers/Electric_Fence2")
+metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
+
+[node name="PowerLine2D3" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
+points = PackedVector2Array(369, 289, 369, 304, 336, 304, 336, 240, 527, 240, 527, 400, 788, 400, 788, 467)
+width = 2.0
+script = ExtResource("4_k2j6k")
+emitter = NodePath("../../Emitters/Lever2")
+reciever = NodePath("../../Recievers/EndOfLevelDoor")
+metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
+
+[node name="Emitters" type="Node" parent="Objects/PowerGrid"]
+
+[node name="Lever" parent="Objects/PowerGrid/Emitters" instance=ExtResource("4_uxb2q")]
+position = Vector2(372, 497)
+
+[node name="Lever2" parent="Objects/PowerGrid/Emitters" instance=ExtResource("4_uxb2q")]
+position = Vector2(368, 273)
+
+[node name="Recievers" type="Node" parent="Objects/PowerGrid"]
+
+[node name="Electric_Fence" parent="Objects/PowerGrid/Recievers" instance=ExtResource("5_k2j6k")]
+position = Vector2(366, 371)
+rotation = 1.5708
+
+[node name="Electric_Fence2" parent="Objects/PowerGrid/Recievers" instance=ExtResource("5_k2j6k")]
+position = Vector2(782, 496)
+
+[node name="EndOfLevelDoor" parent="Objects/PowerGrid/Recievers" instance=ExtResource("3_uxb2q")]
+position = Vector2(788, 488)
+scale = Vector2(1.5, 1.5)
+
+[node name="StartLevelDoor" parent="Objects" instance=ExtResource("3_xddmj")]
+position = Vector2(432, 488)
+scale = Vector2(1.5, 1.5)

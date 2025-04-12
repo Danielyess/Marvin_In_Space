@@ -1,9 +1,12 @@
 [gd_scene load_steps=20 format=3 uid="uid://p04j5jtsnw4v"]
 
-[ext_resource type="Script" uid="uid://y6fytuvdkxun" path="res://Scripts/end_of_level_door.gd" id="1_mk7qj"]
+[ext_resource type="Script" uid="uid://y6fytuvdkxun" path="res://Scripts/end_of_level_door_script.gd" id="1_mk7qj"]
 [ext_resource type="Texture2D" uid="uid://drewufpc4sf64" path="res://resources/Sprites/levelEndDoor-Sheet.png" id="1_pgx7h"]
-[ext_resource type="Script" uid="uid://cfnotqwi0ab8h" path="res://Scripts/interact_area.gd" id="2_mk7qj"]
 [ext_resource type="Texture2D" uid="uid://b43kqjwlgpfot" path="res://resources/Sprites/InteractKey-E.png" id="2_pgx7h"]
+[ext_resource type="Script" uid="uid://cfnotqwi0ab8h" path="res://Scripts/interaction_area2D.gd" id="4_fg72h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgx7h"]
+size = Vector2(20, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pgx7h"]
 atlas = ExtResource("1_pgx7h")
@@ -112,33 +115,31 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgx7h"]
-size = Vector2(20, 30)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mk7qj"]
 size = Vector2(47, 39)
 
 [node name="EndOfLevelDoor" type="StaticBody2D"]
 script = ExtResource("1_mk7qj")
 
-[node name="MainSprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_fg72h")
-animation = &"DefaultON"
-
 [node name="BaseCollShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_pgx7h")
+disabled = true
 
-[node name="InteractionArea2D" type="Area2D" parent="."]
-script = ExtResource("2_mk7qj")
-metadata/_custom_type_script = "uid://cfnotqwi0ab8h"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea2D"]
-position = Vector2(0.5, -3.5)
-shape = SubResource("RectangleShape2D_mk7qj")
+[node name="MainSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fg72h")
+animation = &"DefaultON"
 
 [node name="InteractionSprite" type="Sprite2D" parent="."]
 visible = false
 z_index = 2
 position = Vector2(0, -31)
 texture = ExtResource("2_pgx7h")
+
+[node name="InteractionArea2D" type="Area2D" parent="."]
+script = ExtResource("4_fg72h")
+metadata/_custom_type_script = "uid://cfnotqwi0ab8h"
+
+[node name="InteractionCollShape" type="CollisionShape2D" parent="InteractionArea2D"]
+position = Vector2(0.5, -3.5)
+shape = SubResource("RectangleShape2D_mk7qj")
