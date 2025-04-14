@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cbmgx26w2ttim" path="res://Scripts/main_menu_script.gd" id="1_48xlc"]
 [ext_resource type="FontFile" uid="uid://bgeobguk8qd2n" path="res://resources/Round9x13.ttf" id="2_48xlc"]
 
-[node name="Main Menu" type="Control"]
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

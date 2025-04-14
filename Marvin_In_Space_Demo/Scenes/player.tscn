@@ -236,7 +236,7 @@ size = Vector2(35, 38)
 [sub_resource type="CircleShape2D" id="CircleShape2D_reotu"]
 radius = 2.0
 
-[node name="MARVIN" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 z_index = 4
 z_as_relative = false
 collision_layer = 17
@@ -265,18 +265,18 @@ position = Vector2(-12, 8)
 [node name="ScrewDriver" parent="." instance=ExtResource("3_f1ek2")]
 position = Vector2(56, -32)
 
-[node name="HurtBox" type="Area2D" parent="."]
+[node name="HurtBox2D" type="Area2D" parent="."]
 script = ExtResource("4_tx1dd")
 metadata/_custom_type_script = "uid://bshrxthreebqr"
 
-[node name="HurtBoxShape" type="CollisionShape2D" parent="HurtBox"]
+[node name="HurtBoxShape" type="CollisionShape2D" parent="HurtBox2D"]
 shape = SubResource("RectangleShape2D_ejsiy")
 
-[node name="InteractionArea2D" type="Area2D" parent="."]
+[node name="InteractorArea2D" type="Area2D" parent="."]
 script = ExtResource("5_gymyn")
 metadata/_custom_type_script = "uid://n0fa2ffb0er3"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractorArea2D"]
 shape = SubResource("RectangleShape2D_2mse5")
 
 [node name="JetpackIcon1" type="Sprite2D" parent="."]

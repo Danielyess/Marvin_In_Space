@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cfnotqwi0ab8h" path="res://Scripts/interaction_area2D.gd" id="1_0uvsj"]
 [ext_resource type="Texture2D" uid="uid://djn3h45xrgkq3" path="res://resources/Sprites/dashIcon.png" id="1_440na"]
-[ext_resource type="Script" uid="uid://c11dfaiq3orib" path="res://Scripts/pick_up_teleporter.gd" id="1_xuggr"]
+[ext_resource type="Script" uid="uid://c11dfaiq3orib" path="res://Scripts/pick_up_teleporter_script.gd" id="1_xuggr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xuggr"]
 
