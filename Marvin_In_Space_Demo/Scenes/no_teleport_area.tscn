@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcfg0bhgf8xoh"]
+
+[ext_resource type="Script" uid="uid://b7yyeugmbcwiq" path="res://Scripts/no_teleport_area_script.gd" id="1_0j20x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxtpg"]
+size = Vector2(245, 127)
+
+[node name="NoTeleportArea" type="Area2D"]
+priority = 1
+script = ExtResource("1_0j20x")
+
+[node name="BaseCollShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jxtpg")
+
+[node name="ColorRect" type="ColorRect" parent="BaseCollShape"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -122.0
+offset_top = -63.0
+offset_right = 122.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 0, 0.196078)

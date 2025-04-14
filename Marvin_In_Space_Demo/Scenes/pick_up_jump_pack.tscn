@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0p2xbcbvwjth"]
+
+[ext_resource type="Script" uid="uid://cw7hvm8j8udap" path="res://Scripts/pick_up_jump_pack_script.gd" id="1_a6ked"]
+[ext_resource type="Texture2D" uid="uid://pwgmd6c58myb" path="res://resources/Sprites/JetpackIcon.png" id="2_yeiwj"]
+[ext_resource type="Script" uid="uid://cfnotqwi0ab8h" path="res://Scripts/interaction_area2D.gd" id="3_0xi2d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sx70b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_scbk0"]
+size = Vector2(21, 25)
+
+[node name="pickUpJumpPack" type="StaticBody2D"]
+script = ExtResource("1_a6ked")
+
+[node name="BaseCollShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sx70b")
+disabled = true
+
+[node name="MainSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_yeiwj")
+
+[node name="InteractionArea2D" type="Area2D" parent="."]
+script = ExtResource("3_0xi2d")
+metadata/_custom_type_script = "uid://cfnotqwi0ab8h"
+
+[node name="InteractionCollShape" type="CollisionShape2D" parent="InteractionArea2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_scbk0")

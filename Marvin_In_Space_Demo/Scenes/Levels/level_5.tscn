@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c87y1ft2pdqgc" path="res://Scenes/electric_fence.tscn" id="2_bmg5i"]
 [ext_resource type="PackedScene" uid="uid://p04j5jtsnw4v" path="res://Scenes/end_of_level_door.tscn" id="2_hw2rt"]
 [ext_resource type="PackedScene" uid="uid://dyc5f4uqp1qu7" path="res://Scenes/start_level_door.tscn" id="3_73jlt"]
-[ext_resource type="PackedScene" uid="uid://cfllmawvoim2g" path="res://Scenes/jetpack_refresh.tscn" id="4_7dmid"]
+[ext_resource type="PackedScene" uid="uid://cfllmawvoim2g" path="res://Scenes/jump_pack_refresh.tscn" id="4_7dmid"]
 [ext_resource type="PackedScene" uid="uid://dh1e6ui48a3ab" path="res://Scenes/spikes.tscn" id="5_73jlt"]
 [ext_resource type="Script" uid="uid://bjcx0lsm0velm" path="res://Scripts/hit_box2D.gd" id="7_ww7tq"]
 [ext_resource type="PackedScene" uid="uid://dw4gulmlywi5" path="res://Scenes/gravity_area.tscn" id="8_n50vi"]

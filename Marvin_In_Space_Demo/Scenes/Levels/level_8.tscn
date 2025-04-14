@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b7v3wh34e60nq" path="res://Scenes/switch_box.tscn" id="7_775jq"]
 [ext_resource type="PackedScene" uid="uid://mevhu58gyfpf" path="res://Scenes/door.tscn" id="7_jaooa"]
 [ext_resource type="PackedScene" uid="uid://p04j5jtsnw4v" path="res://Scenes/end_of_level_door.tscn" id="7_qlp7g"]
-[ext_resource type="PackedScene" uid="uid://bcfg0bhgf8xoh" path="res://Scenes/no_dash_area.tscn" id="9_2ckth"]
+[ext_resource type="PackedScene" uid="uid://bcfg0bhgf8xoh" path="res://Scenes/no_teleport_area.tscn" id="9_2ckth"]
 [ext_resource type="PackedScene" uid="uid://dw4gulmlywi5" path="res://Scenes/gravity_area.tscn" id="9_ixfw4"]
 
 [node name="Level8" type="Node2D"]

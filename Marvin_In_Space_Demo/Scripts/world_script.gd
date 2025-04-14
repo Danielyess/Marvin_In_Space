@@ -57,7 +57,7 @@ func switchCameraState(desiredCameraState: CameraState) -> void:
 			pass;
 
 func loadLevel() -> void:
-	if levelIndex < 13:
+	if levelIndex < 10:
 		var desiredLevelName : String = "level_" + str(levelIndex)
 		Level = load("res://Scenes/Levels/" + desiredLevelName + ".tscn").instantiate()
 	else:
@@ -76,7 +76,7 @@ func loadLevel() -> void:
 		printerr("Couldn't get Level spawn point.")
 
 func loadPlayer() -> void:
-	Player = load("res://Scenes/Player.tscn").instantiate()
+	Player = load("res://Scenes/player.tscn").instantiate()
 	add_child(Player)
 	if Player.has_node("Camera"):
 		PlayerCamera = Player.get_node("Camera")
@@ -114,7 +114,6 @@ func deathAnimationRev() -> void:
 func initLevel(level : int = levelIndex) -> void:
 	if MainMenu.is_inside_tree():
 		remove_child(MainMenu)
-		
 	levelIndex = level
 	loadLevel()
 	if not Player:

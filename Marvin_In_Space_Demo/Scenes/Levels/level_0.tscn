@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b7v3wh34e60nq" path="res://Scenes/switch_box.tscn" id="7_f3cfk"]
 [ext_resource type="PackedScene" uid="uid://mevhu58gyfpf" path="res://Scenes/door.tscn" id="8_d7xhg"]
 [ext_resource type="PackedScene" uid="uid://c87y1ft2pdqgc" path="res://Scenes/electric_fence.tscn" id="9_sgyuc"]
-[ext_resource type="PackedScene" uid="uid://b0p2xbcbvwjth" path="res://Scenes/pick_up_jetpack.tscn" id="10_cgy58"]
+[ext_resource type="PackedScene" uid="uid://b0p2xbcbvwjth" path="res://Scenes/pick_up_jump_pack.tscn" id="10_cgy58"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lmd5f"]
 

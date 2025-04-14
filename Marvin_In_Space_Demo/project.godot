@@ -13,7 +13,7 @@ config_version=5
 config/name="Marvin_In_Space_Demo"
 run/main_scene="uid://ddjwc6w1qe6gc"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://bbqyv1l07ocii"
 
 [display]
 

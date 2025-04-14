@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b5dr7q8wglje5" path="res://Scenes/lever.tscn" id="5_cgbbm"]
 [ext_resource type="PackedScene" uid="uid://mevhu58gyfpf" path="res://Scenes/door.tscn" id="6_tvwx8"]
 [ext_resource type="PackedScene" uid="uid://p04j5jtsnw4v" path="res://Scenes/end_of_level_door.tscn" id="7_r56u0"]
-[ext_resource type="PackedScene" uid="uid://bcfg0bhgf8xoh" path="res://Scenes/no_dash_area.tscn" id="8_safr0"]
+[ext_resource type="PackedScene" uid="uid://bcfg0bhgf8xoh" path="res://Scenes/no_teleport_area.tscn" id="8_safr0"]
 [ext_resource type="Script" uid="uid://bjcx0lsm0velm" path="res://Scripts/hit_box2D.gd" id="9_cxfpl"]
 [ext_resource type="PackedScene" uid="uid://c87y1ft2pdqgc" path="res://Scenes/electric_fence.tscn" id="10_2dorg"]
 
