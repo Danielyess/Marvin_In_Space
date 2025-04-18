@@ -1,0 +1,5 @@
+res://Scenes/world.tscn
+res://Scripts/player_script.gd
+res://resources/TileSets/Main_Tile_Set.tres
+res://Scripts/world.gd
+res://Scripts/main_menu_script.gd
