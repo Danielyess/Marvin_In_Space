@@ -3,3 +3,14 @@ res://Scripts/player_script.gd
 res://resources/TileSets/Main_Tile_Set.tres
 res://Scripts/world.gd
 res://Scripts/main_menu_script.gd
+res://Scenes/collectible.tscn
+res://Scenes/world.tscn
+res://resources/TileSets/Main_Tile_Set.tres
+res://Scripts/world_script.gd
+res://Scenes/end_of_level_door.tscn
+res://Scenes/end_screen.tscn
+res://Scripts/main_menu_script.gd
+res://Scripts/collectible_script.gd
+res://Scenes/Levels/level_10.tscn
+res://resources/TileSets/Main_Tile_Set.tres
+res://Scripts/lever_script.gd
