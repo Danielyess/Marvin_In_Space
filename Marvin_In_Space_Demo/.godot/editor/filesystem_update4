@@ -1,0 +1,7 @@
+res://Scenes/main_menu.tscn
+res://resources/TileSets/Main_Tile_Set.tres
+res://Scripts/world.gd
+res://Scenes/world.tscn
+res://Scenes/Levels/level_10.tscn
+res://Scenes/end_of_level_door.tscn
+res://Scripts/console_script.gd

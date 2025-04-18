@@ -7,5 +7,4 @@ func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
 func _on_play_button_pressed() -> void:
-	get_parent().initLevel(5)
 	get_parent().initLevel(10)

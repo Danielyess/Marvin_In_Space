@@ -15,4 +15,4 @@ func hideInteract() -> void:
 	InteractionSprite.visible = false
 
 func interact():
-	owner.get_parent().showGameOver()
+	owner.get_parent().showEndScreen()

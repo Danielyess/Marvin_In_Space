@@ -8,6 +8,7 @@ var currentState: CameraState = CameraState.menu
 var LevelSpawnPoint : Marker2D
 var Player : CharacterBody2D
 var Level : Node2D
+var MainMenu : Control
 var PauseMenu : Control
 var EndScreen : Control
 
@@ -20,6 +21,11 @@ var collectibleGot : bool = false
 func _ready() -> void:
 	$DeathAnimContainer/DeathAnimationHandler.process_mode = Node.PROCESS_MODE_ALWAYS
 	PauseMenu = load("res://Scenes/pause_menu.tscn").instantiate()
+	PauseMenu.process_mode = Node.PROCESS_MODE_ALWAYS
+	MainMenu  = load("res://Scenes/main_menu.tscn").instantiate()
+	MainMenu.process_mode = Node.PROCESS_MODE_ALWAYS
+	EndScreen = load("res://Scenes/end_screen.tscn").instantiate()
+	EndScreen.process_mode = Node.PROCESS_MODE_ALWAYS
 	showMainMenu()
 
 func _input(event: InputEvent) -> void:
@@ -30,7 +36,7 @@ func _input(event: InputEvent) -> void:
 			CameraState.player:
 				switchCameraState(CameraState.Level)
 	if event.is_action_pressed("MenuButton"):
-		if not self.has_node("Main Menu"):
+		if not MainMenu.is_inside_tree():
 			get_tree().paused = true
 			loadMenu()
 			switchCameraState(CameraState.menu)	
@@ -51,7 +57,7 @@ func switchCameraState(desiredCameraState: CameraState) -> void:
 			pass;
 
 func loadLevel() -> void:
-	if levelIndex < 12:
+	if levelIndex < 10:
 		var desiredLevelName : String = "level_" + str(levelIndex)
 		Level = load("res://Scenes/Levels/" + desiredLevelName + ".tscn").instantiate()
 	else:
@@ -70,7 +76,7 @@ func loadLevel() -> void:
 		printerr("Couldn't get Level spawn point.")
 
 func loadPlayer() -> void:
-	Player = load("res://Scenes/Player.tscn").instantiate()
+	Player = load("res://Scenes/player.tscn").instantiate()
 	add_child(Player)
 	if Player.has_node("Camera"):
 		PlayerCamera = Player.get_node("Camera")
@@ -79,7 +85,6 @@ func loadPlayer() -> void:
 	resetPlayerPosition()
 
 func loadMenu() -> void:
-	PauseMenu.process_mode = Node.PROCESS_MODE_ALWAYS
 	add_child(PauseMenu)
 	PauseMenu.initFocus()
 	if PauseMenu.has_node("Camera"):
@@ -97,7 +102,7 @@ func nextLevel() -> void:
 	LevelSpawnPoint = null
 	Level.queue_free()
 	levelIndex+=1;
-	initLevel(levelIndex)
+	initLevel()
 	deathAnimationRev()
 
 func deathAnimation() -> void:
@@ -106,7 +111,9 @@ func deathAnimation() -> void:
 func deathAnimationRev() -> void:
 	$DeathAnimContainer/DeathAnimationHandler.play("DeathScreenOut")
 
-func initLevel(level : int) -> void:
+func initLevel(level : int = levelIndex) -> void:
+	if MainMenu.is_inside_tree():
+		remove_child(MainMenu)
 	levelIndex = level
 	loadLevel()
 	if not Player:
@@ -125,15 +132,13 @@ func showMainMenu() -> void:
 		Level.queue_free()
 	if Player:
 		Player.queue_free()
-	if self.has_node("EndScreen"):
+	if EndScreen.is_inside_tree():
 		self.remove_child(EndScreen)
 	
-	var mainMenu : Control = load("res://Scenes/main_menu.tscn").instantiate()
-	add_child(mainMenu)
-
-	if self.has_node("PauseMenu"):
+	if PauseMenu.is_inside_tree():
 		self.remove_child(PauseMenu)
 	
+	add_child(MainMenu)
 	get_tree().paused = false
 
 func resumeGame() -> void:
@@ -141,16 +146,15 @@ func resumeGame() -> void:
 	self.remove_child(PauseMenu)
 	switchCameraState(CameraState.player)
 
-func restartLevel():
+func restartLevel() -> void:
 	resetPlayerPosition()
 	if Level and Level.get_node("Objects").get_node_or_null("PowerGrid"):
 		Level.get_node("Objects").get_node("PowerGrid").call_deferred("Reset")
 
-func showGameOver() -> void:
+func showEndScreen() -> void:
 	if Level:
 		Level.queue_free()
 	if Player:
 		Player.queue_free()
 	
-	EndScreen = load("res://Scenes/end_screen.tscn").instantiate()
 	add_child(EndScreen)
