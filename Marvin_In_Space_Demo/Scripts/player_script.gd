@@ -69,9 +69,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Explode"):
 		self.takeDamage()
 
-func _physics_process(_delta : float) -> void:
+func _physics_process(_delta : float):
 	var horizontalDirection : float = Input.get_axis("MoveLeft","MoveRight");
 	movementHandler(horizontalDirection)
+	animationHandler(horizontalDirection)
 	TeleportFeeler.position.x = teleportLength * sign(horizontalDirection+0.1)
 	if !is_on_floor():
 		velocity.y += gravity / 60;
@@ -106,8 +107,6 @@ func _physics_process(_delta : float) -> void:
 	move_and_slide() 
 
 func _process(_delta: float) -> void:
-	var horizontalDirection : float = Input.get_axis("MoveLeft","MoveRight");
-	animationHandler(horizontalDirection)
 	pass;
 
 func updateScrewDriverPosition(horizontalDirection : float) -> void:
@@ -171,13 +170,13 @@ func takeDamage() -> void:
 	if get_parent().has_method("deathAnimationRev"):
 		get_parent().deathAnimationRev()
 
-func addInteractable(area : Area2D) -> void:
+func addInteractable(area : Area2D):
 	interactions.push_back(area)
 
-func removeInteractable(area : Area2D) -> void:
+func removeInteractable(area : Area2D):
 	interactions.erase(area)
 
-func multGravity(gravMult : float) -> void:
+func multGravity(gravMult):
 	gravity *= gravMult
 
 func addJumpCharge(num : int , force: bool) -> void:

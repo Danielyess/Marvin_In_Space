@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b0p2xbcbvwjth"]
 
-[ext_resource type="Script" uid="uid://cw7hvm8j8udap" path="res://Scripts/pick_up_jetpack_script.gd" id="1_chlt8"]
+[ext_resource type="Script" uid="uid://cw7hvm8j8udap" path="res://Scripts/pick_up_jetpack.gd" id="1_chlt8"]
 [ext_resource type="Texture2D" uid="uid://pwgmd6c58myb" path="res://resources/Sprites/JetpackIcon.png" id="1_scbk0"]
 [ext_resource type="Script" uid="uid://cfnotqwi0ab8h" path="res://Scripts/interaction_area2D.gd" id="2_chlt8"]
 

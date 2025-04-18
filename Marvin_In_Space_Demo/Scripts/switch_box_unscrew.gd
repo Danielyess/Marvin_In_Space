@@ -1,4 +1,3 @@
-class_name ScrewDriverInteractorArea2D
 extends Area2D
 
 func _init() -> void:

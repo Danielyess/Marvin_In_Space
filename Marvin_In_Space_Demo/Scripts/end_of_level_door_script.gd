@@ -33,16 +33,6 @@ func interact() -> void:
 	if owner.get_parent().has_method("nextLevel"):
 		owner.get_parent().nextLevel()
 
-func switchOn() -> void:
-	SpriteAnimation.play("Opening")
-	$InteractionArea2D/InteractionCollShape.set_deferred("disabled", false)
-	currentState = Pwr.PowerState.ON
-
-func switchOff() -> void:
-	SpriteAnimation.play("Closing")
-	$InteractionArea2D/InteractionCollShape.set_deferred("disabled", true)
-	currentState = Pwr.PowerState.OFF
-
 func switchState(desiredState : Pwr.PowerState, force : bool) -> void:
 	if currentState != desiredState or force:
 		match desiredState:
@@ -52,3 +42,13 @@ func switchState(desiredState : Pwr.PowerState, force : bool) -> void:
 				switchOff()
 			_:
 				printerr("Desired state does not exist!")
+
+func switchOn() -> void:
+	SpriteAnimation.play("Opening")
+	$InteractionArea2D/InteractionCollShape.set_deferred("disabled", false)
+	currentState = Pwr.PowerState.ON
+
+func switchOff() -> void:
+	SpriteAnimation.play("Closing")
+	$InteractionArea2D/InteractionCollShape.set_deferred("disabled", true)
+	currentState = Pwr.PowerState.OFF

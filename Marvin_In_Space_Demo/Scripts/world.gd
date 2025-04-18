@@ -8,7 +8,6 @@ var currentState: CameraState = CameraState.menu
 var LevelSpawnPoint : Marker2D
 var Player : CharacterBody2D
 var Level : Node2D
-var MainMenu : Control
 var PauseMenu : Control
 var EndScreen : Control
 
@@ -16,16 +15,11 @@ var LevelCamera : Camera2D
 var PlayerCamera : Camera2D 
 var MenuCamera: Camera2D
 
-var collectibleGot : bool = true
+var collectibleGot : bool = false
 
 func _ready() -> void:
 	$DeathAnimContainer/DeathAnimationHandler.process_mode = Node.PROCESS_MODE_ALWAYS
 	PauseMenu = load("res://Scenes/pause_menu.tscn").instantiate()
-	PauseMenu.process_mode = Node.PROCESS_MODE_ALWAYS
-	MainMenu  = load("res://Scenes/main_menu.tscn").instantiate()
-	MainMenu.process_mode = Node.PROCESS_MODE_ALWAYS
-	EndScreen = load("res://Scenes/end_screen.tscn").instantiate()
-	EndScreen.process_mode = Node.PROCESS_MODE_ALWAYS
 	showMainMenu()
 
 func _input(event: InputEvent) -> void:
@@ -36,7 +30,7 @@ func _input(event: InputEvent) -> void:
 			CameraState.player:
 				switchCameraState(CameraState.Level)
 	if event.is_action_pressed("MenuButton"):
-		if not MainMenu.is_inside_tree():
+		if not self.has_node("Main Menu"):
 			get_tree().paused = true
 			loadMenu()
 			switchCameraState(CameraState.menu)	
@@ -89,6 +83,7 @@ func loadPlayer() -> void:
 	resetPlayerPosition()
 
 func loadMenu() -> void:
+	PauseMenu.process_mode = Node.PROCESS_MODE_ALWAYS
 	add_child(PauseMenu)
 	PauseMenu.initFocus()
 	if PauseMenu.has_node("Camera"):
@@ -106,7 +101,7 @@ func nextLevel() -> void:
 	LevelSpawnPoint = null
 	Level.queue_free()
 	levelIndex+=1;
-	initLevel()
+	initLevel(levelIndex)
 	deathAnimationRev()
 
 func deathAnimation() -> void:
@@ -115,10 +110,7 @@ func deathAnimation() -> void:
 func deathAnimationRev() -> void:
 	$DeathAnimContainer/DeathAnimationHandler.play("DeathScreenOut")
 
-func initLevel(level : int = levelIndex) -> void:
-	if MainMenu.is_inside_tree():
-		remove_child(MainMenu)
-		
+func initLevel(level : int) -> void:
 	levelIndex = level
 	loadLevel()
 	if not Player:
@@ -137,13 +129,15 @@ func showMainMenu() -> void:
 		Level.queue_free()
 	if Player:
 		Player.queue_free()
-	if EndScreen.is_inside_tree():
+	if self.has_node("EndScreen"):
 		self.remove_child(EndScreen)
 	
-	if PauseMenu.is_inside_tree():
+	var mainMenu : Control = load("res://Scenes/main_menu.tscn").instantiate()
+	add_child(mainMenu)
+
+	if self.has_node("PauseMenu"):
 		self.remove_child(PauseMenu)
 	
-	add_child(MainMenu)
 	get_tree().paused = false
 
 func resumeGame() -> void:
@@ -151,15 +145,16 @@ func resumeGame() -> void:
 	self.remove_child(PauseMenu)
 	switchCameraState(CameraState.player)
 
-func restartLevel() -> void:
+func restartLevel():
 	resetPlayerPosition()
 	if Level and Level.get_node("Objects").get_node_or_null("PowerGrid"):
 		Level.get_node("Objects").get_node("PowerGrid").call_deferred("Reset")
 
-func showEndScreen() -> void:
+func showGameOver() -> void:
 	if Level:
 		Level.queue_free()
 	if Player:
 		Player.queue_free()
 	
+	EndScreen = load("res://Scenes/end_screen.tscn").instantiate()
 	add_child(EndScreen)
