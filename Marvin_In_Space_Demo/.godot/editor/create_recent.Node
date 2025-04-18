@@ -1,14 +1,12 @@
+PowerLine2D
 Area2D
 CollisionShape2D
 Marker2D
 Node2D
 Camera2D
 TileMapLayer
-PowerLine2D
 Node
 PowerGrid
-HurtBox
-HitBox
 Sprite2D
 StaticBody2D
 TextureButton

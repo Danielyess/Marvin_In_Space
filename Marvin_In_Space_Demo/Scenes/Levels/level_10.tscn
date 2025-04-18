@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://cg66ovgvm1dx1"]
+[gd_scene load_steps=10 format=4 uid="uid://cg66ovgvm1dx1"]
 
 [ext_resource type="PackedScene" uid="uid://dyc5f4uqp1qu7" path="res://Scenes/start_level_door.tscn" id="1_0bhyp"]
 [ext_resource type="TileSet" uid="uid://cgoaqjyb343q3" path="res://resources/TileSets/Main_Tile_Set.tres" id="1_ct4v0"]
 [ext_resource type="PackedScene" uid="uid://dw4gulmlywi5" path="res://Scenes/gravity_area.tscn" id="3_icg2m"]
 [ext_resource type="Script" uid="uid://c7xlswb662q1m" path="res://Scripts/power_grid.gd" id="4_icg2m"]
 [ext_resource type="PackedScene" uid="uid://c87y1ft2pdqgc" path="res://Scenes/electric_fence.tscn" id="5_2doy4"]
+[ext_resource type="Script" uid="uid://bnk5b2ptmbdnt" path="res://Scripts/power_line.gd" id="5_l0dhx"]
 [ext_resource type="PackedScene" uid="uid://b7v3wh34e60nq" path="res://Scenes/switch_box.tscn" id="5_snwp0"]
 [ext_resource type="PackedScene" uid="uid://b5dr7q8wglje5" path="res://Scenes/lever.tscn" id="6_2fy10"]
 [ext_resource type="PackedScene" uid="uid://p04j5jtsnw4v" path="res://Scenes/end_of_level_door.tscn" id="7_2fy10"]
@@ -47,26 +48,126 @@ metadata/_custom_type_script = "uid://c7xlswb662q1m"
 
 [node name="Wires" type="Node" parent="Objects/PowerGrid"]
 
+[node name="L2toSW3" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
+z_index = 2
+points = PackedVector2Array(607, 210, 591, 210, 591, 239, 557, 239, 557, 198)
+width = 2.0
+script = ExtResource("5_l0dhx")
+emitter = NodePath("../../Emitters/Lever2")
+reciever = NodePath("../../Emitters/SwitchBox3")
+metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
+
+[node name="L1toEF" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
+z_index = 2
+points = PackedVector2Array(238, 353, 238, 369, 112, 369, 112, 240, 251, 240)
+width = 2.0
+script = ExtResource("5_l0dhx")
+emitter = NodePath("../../Emitters/Lever")
+reciever = NodePath("../../Recievers/Electric_Fence")
+metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
+
+[node name="L1toSW2" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
+z_index = 2
+points = PackedVector2Array(236, 353, 236, 359, 158, 359, 158, 326)
+width = 2.0
+script = ExtResource("5_l0dhx")
+emitter = NodePath("../../Emitters/Lever")
+reciever = NodePath("../../Emitters/SwitchBox2")
+metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
+
+[node name="L3toSW3" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
+z_index = 2
+points = PackedVector2Array(152, 226, 152, 240, 548, 240, 548, 198)
+width = 2.0
+script = ExtResource("5_l0dhx")
+emitter = NodePath("../../Emitters/Lever3")
+reciever = NodePath("../../Emitters/SwitchBox3")
+metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
+
+[node name="L2toSW2" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
+z_index = 2
+points = PackedVector2Array(606, 209, 598, 209, 598, 247, 115, 247, 115, 366, 149, 366, 149, 326)
+width = 2.0
+script = ExtResource("5_l0dhx")
+emitter = NodePath("../../Emitters/Lever2")
+reciever = NodePath("../../Emitters/SwitchBox2")
+metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
+
+[node name="SW3toSW1" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
+z_index = 2
+points = PackedVector2Array(552, 167, 552, 110, 110, 111, 110, 687, 419, 687, 419, 646)
+width = 2.0
+script = ExtResource("5_l0dhx")
+emitter = NodePath("../../Emitters/SwitchBox3")
+reciever = NodePath("../../Emitters/SwitchBox")
+metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
+
+[node name="SW2toSW1" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
+z_index = 2
+points = PackedVector2Array(154, 295, 154, 277, 120, 277, 120, 677, 433, 677, 433, 645)
+width = 2.0
+script = ExtResource("5_l0dhx")
+emitter = NodePath("../../Emitters/SwitchBox2")
+reciever = NodePath("../../Emitters/SwitchBox")
+metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
+
+[node name="L4toSW1" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
+z_index = 2
+points = PackedVector2Array(572, 673, 572, 688, 425, 688, 425, 646)
+width = 2.0
+script = ExtResource("5_l0dhx")
+emitter = NodePath("../../Emitters/Lever4")
+reciever = NodePath("../../Emitters/SwitchBox")
+metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
+
+[node name="SW1toELD" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
+points = PackedVector2Array(424, 615, 424, 600, 330, 600, 330, 626)
+script = ExtResource("5_l0dhx")
+emitter = NodePath("../../Emitters/SwitchBox")
+reciever = NodePath("../../Recievers/EndOfLevelDoor")
+metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
+
 [node name="Emitters" type="Node" parent="Objects/PowerGrid"]
 
 [node name="Lever" parent="Objects/PowerGrid/Emitters" instance=ExtResource("6_2fy10")]
 position = Vector2(238, 337)
+currentState = 1
 
 [node name="Lever2" parent="Objects/PowerGrid/Emitters" instance=ExtResource("6_2fy10")]
 position = Vector2(623, 209)
 rotation = 1.5708
 
-[node name="SwitchBox" parent="Objects/PowerGrid/Emitters" instance=ExtResource("5_snwp0")]
-position = Vector2(424, 630)
-
-[node name="SwitchBox2" parent="Objects/PowerGrid/Emitters" instance=ExtResource("5_snwp0")]
-position = Vector2(153, 310)
-
-[node name="SwitchBox3" parent="Objects/PowerGrid/Emitters" instance=ExtResource("5_snwp0")]
-position = Vector2(551, 182)
-
 [node name="Lever3" parent="Objects/PowerGrid/Emitters" instance=ExtResource("6_2fy10")]
-position = Vector2(152, 208)
+position = Vector2(152, 209)
+
+[node name="Lever4" parent="Objects/PowerGrid/Emitters" instance=ExtResource("6_2fy10")]
+position = Vector2(572, 657)
+
+[node name="SwitchBox" parent="Objects/PowerGrid/Emitters" node_paths=PackedStringArray("Wire0", "Wire1", "Wire2") instance=ExtResource("5_snwp0")]
+position = Vector2(424, 630)
+Subroutine = 8
+Gate0 = 5
+Gate1 = 6
+Gate2 = 6
+Gate3 = 1
+Wire0 = NodePath("../../Wires/SW3toSW1")
+Wire1 = NodePath("../../Wires/L4toSW1")
+Wire2 = NodePath("../../Wires/SW2toSW1")
+
+[node name="SwitchBox2" parent="Objects/PowerGrid/Emitters" node_paths=PackedStringArray("Wire0", "Wire1") instance=ExtResource("5_snwp0")]
+position = Vector2(153, 310)
+Subroutine = 2
+Gate0 = 3
+Wire0 = NodePath("../../Wires/L2toSW2")
+Wire1 = NodePath("../../Wires/L1toSW2")
+
+[node name="SwitchBox3" parent="Objects/PowerGrid/Emitters" node_paths=PackedStringArray("Wire0", "Wire1") instance=ExtResource("5_snwp0")]
+position = Vector2(551, 182)
+Subroutine = 3
+Gate0 = 3
+Gate1 = 1
+Wire0 = NodePath("../../Wires/L3toSW3")
+Wire1 = NodePath("../../Wires/L2toSW3")
 
 [node name="Recievers" type="Node" parent="Objects/PowerGrid"]
 

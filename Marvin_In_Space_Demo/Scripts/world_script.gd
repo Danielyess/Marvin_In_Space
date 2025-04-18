@@ -57,7 +57,7 @@ func switchCameraState(desiredCameraState: CameraState) -> void:
 			pass;
 
 func loadLevel() -> void:
-	if levelIndex < 10:
+	if levelIndex < 11:
 		var desiredLevelName : String = "level_" + str(levelIndex)
 		Level = load("res://Scenes/Levels/" + desiredLevelName + ".tscn").instantiate()
 	else:
