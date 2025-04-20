@@ -84,7 +84,7 @@ func _physics_process(_delta : float) -> void:
 		updateJumpChargeSprite()
 		updateTeleportSprite()
 	
-	if(Input.is_action_just_pressed("Jump") && jumpCharges > 0):
+	if(Input.is_action_pressed("Jump") && jumpCharges > 0):
 		if (maxJumpCharges == 1 and is_on_floor()) or maxJumpCharges > 1:
 			velocity.y = -jumpForce;
 		if maxJumpCharges > 1:
@@ -93,7 +93,7 @@ func _physics_process(_delta : float) -> void:
 		updateJumpChargeSprite()
 		currentState = AnimationState.Jump
 	
-	if(Input.is_action_just_pressed("Teleport") and canTeleport and teleportCharge > 0 and TeleportFeeler.get_overlapping_bodies().is_empty()):
+	if(Input.is_action_pressed("Teleport") and canTeleport and teleportCharge > 0 and TeleportFeeler.get_overlapping_bodies().is_empty()):
 		position.x += teleportLength * sign(horizontalDirection+0.1);
 		self.velocity.y = 0
 		SpriteAnimation.play("Teleport")
