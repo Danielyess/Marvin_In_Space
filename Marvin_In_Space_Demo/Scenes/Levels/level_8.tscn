@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://pnomkxokmd1t"]
+[gd_scene load_steps=13 format=4 uid="uid://pnomkxokmd1t"]
 
 [ext_resource type="TileSet" uid="uid://cgoaqjyb343q3" path="res://resources/TileSets/Main_Tile_Set.tres" id="1_4uyyv"]
 [ext_resource type="PackedScene" uid="uid://dyc5f4uqp1qu7" path="res://Scenes/start_level_door.tscn" id="2_nbr6a"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://p04j5jtsnw4v" path="res://Scenes/end_of_level_door.tscn" id="7_qlp7g"]
 [ext_resource type="PackedScene" uid="uid://bcfg0bhgf8xoh" path="res://Scenes/no_teleport_area.tscn" id="9_2ckth"]
 [ext_resource type="PackedScene" uid="uid://dw4gulmlywi5" path="res://Scenes/gravity_area.tscn" id="9_ixfw4"]
+[ext_resource type="Script" uid="uid://bjcx0lsm0velm" path="res://Scripts/hit_box2D.gd" id="11_nnumf"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6qxou"]
 
 [node name="Level8" type="Node2D"]
 
@@ -51,7 +54,7 @@ points = PackedVector2Array(373, 289, 373, 242, 624, 242, 624, 274)
 width = 2.0
 script = ExtResource("5_qlp7g")
 emitter = NodePath("../../Emitters/SwitchBox3")
-reciever = NodePath("../../Recievers/EndOfLevelDoor")
+reciever = NodePath("../../Receivers/EndOfLevelDoor")
 metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
 
 [node name="PL_L1ToSW1" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
@@ -75,7 +78,7 @@ points = PackedVector2Array(364, 515, 364, 506, 241, 506, 241, 239, 592, 239, 59
 width = 2.0
 script = ExtResource("5_qlp7g")
 emitter = NodePath("../../Emitters/SwitchBox")
-reciever = NodePath("../../Recievers/Door2")
+reciever = NodePath("../../Receivers/Door2")
 metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
 
 [node name="PL_L3ToSW2" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
@@ -99,7 +102,7 @@ points = PackedVector2Array(929, 513, 929, 504, 1040, 504, 1040, 239, 603, 239, 
 width = 2.0
 script = ExtResource("5_qlp7g")
 emitter = NodePath("../../Emitters/SwitchBox2")
-reciever = NodePath("../../Recievers/Door1")
+reciever = NodePath("../../Receivers/Door1")
 metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
 
 [node name="Emitters" type="Node" parent="Objects/PowerGrid"]
@@ -141,17 +144,17 @@ Subroutine = 1
 Gate0 = 1
 Wire0 = NodePath("../../Wires/PL_L5ToSW3")
 
-[node name="Recievers" type="Node" parent="Objects/PowerGrid"]
+[node name="Receivers" type="Node" parent="Objects/PowerGrid"]
 
-[node name="Door1" parent="Objects/PowerGrid/Recievers" instance=ExtResource("7_jaooa")]
+[node name="Door1" parent="Objects/PowerGrid/Receivers" instance=ExtResource("7_jaooa")]
 position = Vector2(656, 336)
 rotation = -1.5708
 
-[node name="Door2" parent="Objects/PowerGrid/Recievers" instance=ExtResource("7_jaooa")]
+[node name="Door2" parent="Objects/PowerGrid/Receivers" instance=ExtResource("7_jaooa")]
 position = Vector2(624, 432)
 rotation = -1.5708
 
-[node name="EndOfLevelDoor" parent="Objects/PowerGrid/Recievers" instance=ExtResource("7_qlp7g")]
+[node name="EndOfLevelDoor" parent="Objects/PowerGrid/Receivers" instance=ExtResource("7_qlp7g")]
 position = Vector2(624, 296)
 scale = Vector2(1.5, 1.5)
 
@@ -168,3 +171,11 @@ scale = Vector2(0.64, 0.84)
 position = Vector2(641.471, 494.224)
 scale = Vector2(0.52, 1.28)
 gravityMult = 0.6
+
+[node name="HitBox2D" type="Area2D" parent="Objects"]
+script = ExtResource("11_nnumf")
+metadata/_custom_type_script = "uid://bjcx0lsm0velm"
+
+[node name="HitBoxCollShape" type="CollisionShape2D" parent="Objects/HitBox2D"]
+position = Vector2(666, 800)
+shape = SubResource("WorldBoundaryShape2D_6qxou")

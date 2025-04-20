@@ -25,6 +25,7 @@ func _ready() -> void:
 	InteractionSprite.visible = false
 	InteractionSprite.scale = self.scale * 0.5
 	InteractionSprite.position.y = -30 * (self.scale.x + self.scale.y) /2
+	InteractionSprite.rotation = -self.rotation
 	# This is connected to a powerGrid's refreshGrid function
 	connect("stateChanged", $"../..".refreshGrid)
 

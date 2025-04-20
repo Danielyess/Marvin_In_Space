@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://dhmbbitnp2rws"]
+[gd_scene load_steps=10 format=4 uid="uid://dhmbbitnp2rws"]
 
 [ext_resource type="TileSet" uid="uid://cgoaqjyb343q3" path="res://resources/TileSets/Main_Tile_Set.tres" id="1_qyfjo"]
 [ext_resource type="Script" uid="uid://c7xlswb662q1m" path="res://Scripts/power_grid.gd" id="2_5sum7"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://bnk5b2ptmbdnt" path="res://Scripts/power_line.gd" id="4_k2j6k"]
 [ext_resource type="PackedScene" uid="uid://b5dr7q8wglje5" path="res://Scenes/lever.tscn" id="4_uxb2q"]
 [ext_resource type="PackedScene" uid="uid://c87y1ft2pdqgc" path="res://Scenes/electric_fence.tscn" id="5_k2j6k"]
+[ext_resource type="Script" uid="uid://bjcx0lsm0velm" path="res://Scripts/hit_box2D.gd" id="8_5l77v"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5l77v"]
 
 [node name="Level6" type="Node2D"]
 
@@ -36,7 +39,7 @@ points = PackedVector2Array(372, 513, 372, 528, 336, 528, 336, 415, 351, 415)
 width = 2.0
 script = ExtResource("4_k2j6k")
 emitter = NodePath("../../Emitters/Lever")
-reciever = NodePath("../../Recievers/Electric_Fence")
+reciever = NodePath("../../Receivers/Electric_Fence")
 metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
 
 [node name="PowerLine2D2" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
@@ -44,7 +47,7 @@ points = PackedVector2Array(375, 512, 375, 528, 738, 528, 738, 511)
 width = 2.0
 script = ExtResource("4_k2j6k")
 emitter = NodePath("../../Emitters/Lever")
-reciever = NodePath("../../Recievers/Electric_Fence2")
+reciever = NodePath("../../Receivers/Electric_Fence2")
 metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
 
 [node name="PowerLine2D3" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
@@ -52,7 +55,7 @@ points = PackedVector2Array(369, 289, 369, 304, 336, 304, 336, 240, 527, 240, 52
 width = 2.0
 script = ExtResource("4_k2j6k")
 emitter = NodePath("../../Emitters/Lever2")
-reciever = NodePath("../../Recievers/EndOfLevelDoor")
+reciever = NodePath("../../Receivers/EndOfLevelDoor")
 metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
 
 [node name="Emitters" type="Node" parent="Objects/PowerGrid"]
@@ -63,19 +66,27 @@ position = Vector2(372, 497)
 [node name="Lever2" parent="Objects/PowerGrid/Emitters" instance=ExtResource("4_uxb2q")]
 position = Vector2(368, 273)
 
-[node name="Recievers" type="Node" parent="Objects/PowerGrid"]
+[node name="Receivers" type="Node" parent="Objects/PowerGrid"]
 
-[node name="Electric_Fence" parent="Objects/PowerGrid/Recievers" instance=ExtResource("5_k2j6k")]
+[node name="Electric_Fence" parent="Objects/PowerGrid/Receivers" instance=ExtResource("5_k2j6k")]
 position = Vector2(366, 371)
 rotation = 1.5708
 
-[node name="Electric_Fence2" parent="Objects/PowerGrid/Recievers" instance=ExtResource("5_k2j6k")]
+[node name="Electric_Fence2" parent="Objects/PowerGrid/Receivers" instance=ExtResource("5_k2j6k")]
 position = Vector2(782, 496)
 
-[node name="EndOfLevelDoor" parent="Objects/PowerGrid/Recievers" instance=ExtResource("3_uxb2q")]
+[node name="EndOfLevelDoor" parent="Objects/PowerGrid/Receivers" instance=ExtResource("3_uxb2q")]
 position = Vector2(788, 488)
 scale = Vector2(1.5, 1.5)
 
 [node name="StartLevelDoor" parent="Objects" instance=ExtResource("3_xddmj")]
 position = Vector2(432, 488)
 scale = Vector2(1.5, 1.5)
+
+[node name="HitBox2D" type="Area2D" parent="Objects"]
+script = ExtResource("8_5l77v")
+metadata/_custom_type_script = "uid://bjcx0lsm0velm"
+
+[node name="HitBoxCollShape" type="CollisionShape2D" parent="Objects/HitBox2D"]
+position = Vector2(666, 800)
+shape = SubResource("WorldBoundaryShape2D_5l77v")

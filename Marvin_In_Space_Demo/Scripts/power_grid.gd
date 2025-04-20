@@ -1,16 +1,16 @@
 #Firstly, this has to have 3 Node2Ds which themselves serve no purpose apart from being containers,
-#They are required for functioning and the 3 Nodes Should be: "Emitters", "Wires" and "Recievers"
+#They are required for functioning and the 3 Nodes Should be: "Emitters", "Wires" and "Receivers"
 
 #Emitters should contain everything that can emit a powerstate such as Levers and SwitchBoxes
 #Wires should contain PowerLine2Ds that are connected to an emitter and a reciever and only transport info
-#Recievers should contain things that can be turned on and off or opened and closed, such as fences and doors
+#Receivers should contain things that can be turned on and off or opened and closed, such as fences and doors
 
 class_name PowerGrid
 extends Node
 
 var emitters : Node
 var wires : Node
-var recievers : Node
+var receivers : Node
 
 func _ready() -> void:
 	if self.has_node("Emitters"):
@@ -23,10 +23,10 @@ func _ready() -> void:
 	else:
 		printerr("NO WIRES IN POWERGRID: " + self.name)
 	
-	if self.has_node("Recievers"):
-		recievers = self.get_node("Recievers")
+	if self.has_node("Receivers"):
+		receivers = self.get_node("Receivers")
 	else:
-		printerr("NO RECIEVERS IN POWERGRID: " + self.name)
+		printerr("NO Receivers IN POWERGRID: " + self.name)
 	
 	if emitters:
 		for i in range(emitters.get_child_count()):

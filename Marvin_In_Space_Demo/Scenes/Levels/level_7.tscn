@@ -47,7 +47,7 @@ points = PackedVector2Array(842, 416, 842, 432, 752, 432, 752, 480)
 width = 2.0
 script = ExtResource("4_8y25g")
 emitter = NodePath("../../Emitters/Lever2")
-reciever = NodePath("../../Recievers/Door2")
+reciever = NodePath("../../Receivers/Door2")
 metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
 
 [node name="PowerLine2D2" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
@@ -56,7 +56,7 @@ points = PackedVector2Array(518, 513, 518, 528, 880, 528, 880, 442, 851, 442, 85
 width = 2.0
 script = ExtResource("4_8y25g")
 emitter = NodePath("../../Emitters/Lever")
-reciever = NodePath("../../Recievers/EndOfLevelDoor")
+reciever = NodePath("../../Receivers/EndOfLevelDoor")
 metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
 
 [node name="PowerLine2D3" type="Line2D" parent="Objects/PowerGrid/Wires" node_paths=PackedStringArray("emitter", "reciever")]
@@ -65,7 +65,7 @@ points = PackedVector2Array(446, 385, 446, 400, 400, 400, 400, 521, 886, 521, 88
 width = 2.0
 script = ExtResource("4_8y25g")
 emitter = NodePath("../../Emitters/Lever3")
-reciever = NodePath("../../Recievers/Door")
+reciever = NodePath("../../Receivers/Door")
 metadata/_custom_type_script = "uid://bnk5b2ptmbdnt"
 
 [node name="Emitters" type="Node" parent="Objects/PowerGrid"]
@@ -79,16 +79,16 @@ position = Vector2(842, 401)
 [node name="Lever3" parent="Objects/PowerGrid/Emitters" instance=ExtResource("5_cgbbm")]
 position = Vector2(446, 369)
 
-[node name="Recievers" type="Node" parent="Objects/PowerGrid"]
+[node name="Receivers" type="Node" parent="Objects/PowerGrid"]
 
-[node name="Door" parent="Objects/PowerGrid/Recievers" instance=ExtResource("6_tvwx8")]
+[node name="Door" parent="Objects/PowerGrid/Receivers" instance=ExtResource("6_tvwx8")]
 position = Vector2(784, 496)
 
-[node name="EndOfLevelDoor" parent="Objects/PowerGrid/Recievers" instance=ExtResource("7_r56u0")]
+[node name="EndOfLevelDoor" parent="Objects/PowerGrid/Receivers" instance=ExtResource("7_r56u0")]
 position = Vector2(849, 488)
 scale = Vector2(1.5, 1.5)
 
-[node name="Door2" parent="Objects/PowerGrid/Recievers" instance=ExtResource("6_tvwx8")]
+[node name="Door2" parent="Objects/PowerGrid/Receivers" instance=ExtResource("6_tvwx8")]
 position = Vector2(752, 496)
 
 [node name="NoDashArea" parent="Objects" instance=ExtResource("8_safr0")]
